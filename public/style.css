@@ -1,0 +1,1071 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+*{
+    font-family: "Fira Sans", serif;
+    padding: 0;
+    margin: 0; 
+    max-width: 100%;
+    box-sizing: border-box;
+    
+  }
+
+  body {
+    display: block;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+    overflow-x: hidden;
+    flex-direction: column;
+}
+
+/* ✅ تنسيق الشريط العلوي */
+.hash {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.844);
+  color: white;
+  padding: 10px 20px;
+  font-size: 15px;
+}
+
+@media (max-width: 768px) {
+  .hash {
+    width: auto;
+  }
+}
+/* ✅ ضبط عناصر القائمة العلوية */
+.container5 {
+  font-weight: bold;
+  color: white !important;
+}
+
+.top_links,
+.language,
+.currency {
+  position: relative;
+  list-style: none;
+  margin-left: 20px;
+  display: inline-block;
+}
+
+/* ✅ تصميم الروابط داخل القوائم */
+.top_links a,
+.language a,
+.currency a {
+  color: white;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 14px;
+  min-width: 120px;
+  /* جعل العنصر أوسع لضمان ظهور الأيقونة */
+}
+
+/* ✅ ضبط أيقونة اللغة */
+.language img {
+  width: 20px;
+  height: 15px;
+  margin-right: 5px;
+}
+
+/* ✅ تحسين مظهر الأيقونات */
+.top_links i,
+.language i,
+.currency i {
+  font-size: 12px;
+  margin-left: 5px;
+  color: white;
+}
+
+/* ✅ تنسيق القوائم المنسدلة */
+.dropdown_links,
+.dropdown_language,
+.dropdown_currency {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  list-style: none;
+  padding: 5px 0;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  min-width: 160px;
+  z-index: 100;
+}
+
+/* ✅ تحسين مظهر عناصر القوائم */
+.dropdown_links li,
+.dropdown_language li,
+.dropdown_currency li {
+  padding: 8px  20px;
+  text-align: left;
+}
+
+/* ✅ تحسين مظهر الروابط داخل القوائم */
+.dropdown_links li a,
+.dropdown_language li a,
+.dropdown_currency li a {
+  text-decoration: none;
+  color: black;
+    display: inline-block;
+        font-size: 14px;
+  width: 100%;
+  position: relative;
+      padding-bottom: 5px;
+    align-items: center;
+      }
+
+/* ✅ جعل الخط السفلي لا يتجاوز عرض القائمة */
+.dropdown_links li a::after,
+.dropdown_language li a::after,
+.dropdown_currency li a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: black;
+  transition: width 0.3s ease-in-out;
+}
+
+.dropdown_links li a:hover::after,
+.dropdown_language li a:hover::after,
+.dropdown_currency li a:hover::after {
+  width: 100%;
+      left: 0; /* جعل الخط يمتد تحت النص فقط */
+
+}
+
+/* ✅ إظهار القائمة عند التمرير */
+.top_links:hover .dropdown_links,
+.language:hover .dropdown_language,
+.currency:hover .dropdown_currency {
+  display: block;
+}
+
+/* ✅ إبقاء القائمة ظاهرة عند التمرير */
+.dropdown_links:hover,
+.dropdown_language:hover,
+.dropdown_currency:hover {
+  display: block;
+}
+
+
+/*logo*/
+    .photo{
+        width: 350px;
+        height: 300px;
+        padding-bottom: 10px;
+        text-align: center;
+        transform: translate(0% , 14%);
+    }
+a{
+    text-decoration: none;
+    color: black;
+    width: 5px;
+}
+
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: left;
+}
+
+/* almotabaed word*/
+.container3 {
+  text-align: center; /* Center the text */
+  transform: translate(0% , -450%);
+}
+
+.almotabaed {
+  font-size: 4em; 
+  color: #333; 
+   font-weight: bold; 
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.2); 
+  letter-spacing : 0.1em;
+    
+}
+.almotabaed :hover{
+  background-color: black;
+    color: #ffffff;
+    box-shadow: 0 6px 12px rgba(99, 102, 241, 0.4);
+}
+
+/* Responsive Design (Example) */
+@media (max-width: 768px) {
+  .almotabaed {
+      font-size: 3em;
+  }
+}
+.container6 {
+transform: translate(0% , -650%);
+}
+
+ul{
+    width: 60%;
+    list-style: none;
+    display: flex;
+    justify-content: space-evenly;
+    padding-top: 10px;
+    font-size: 15px;
+    
+}
+ul a{
+    border-bottom: 2px solid transparent;
+    color:black(44, 44, 145);
+    font-size: 20px;
+    font-style: inherit;
+    text-decoration: none;
+}
+ul a:hover{
+    border-bottom-color: black;
+}
+@media (max-width: 768px) {
+  .ul  {
+      font-size: 3em;
+  }
+}
+
+
+/*support*/
+.support{
+    padding-left:20% ;
+    transform: translate(-5% , 30%);
+    
+}
+.support a{
+    color: blue;
+    
+}
+
+
+/*search*/
+.search-container {
+    position: relative;
+    width: 300px;
+    text-align: center;
+    transform: translate(0% , -160%);
+
+    
+  }
+
+  input[type="text"] {
+    width: 100%;
+    padding: 12px 40px 12px 16px;
+    border: 2px solid #ddd;
+    border-radius: 50px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    top:50%;
+    transform: translate(200%, -500%);
+  }
+
+  input[type="text"]:focus {
+    outline: none;
+    border-color: #6366f1;
+    box-shadow: 0 0 8px rgba(99, 102, 241, 0.5);
+    text-align: center;
+    top:50%;
+  }
+
+  .search-icon {
+    position: absolute;
+    top: 50%;
+    right: 16px;
+    transform: translateY(-50%);
+    color: #888;
+    cursor: pointer;
+    font-size: 25px;
+    transition: color 0.3s;
+    text-align: center;
+    top: 50%
+  }
+
+  input[type="text"]:focus + .search-icon {
+    color: #6366f1;
+    top: 50%;
+  }
+  /*select*/
+  .select-container {
+    position: relative;
+    width: 100%;
+  }
+
+  select {
+    padding: 10px 10px 10px 10px;
+    border: 2px solid #ddd;
+    border-radius: 25px;
+    background-color: white;
+    font-size: 10px;
+    appearance: none;
+    cursor: pointer;
+    transform: translate(280%, -625%);
+        text-align: center;
+  }
+
+  select:focus {
+    outline: none;
+    border-color: #6366f1;
+    box-shadow: 0 0 8px rgba(99, 102, 241, 0.5);
+  }
+
+  .select-icon {
+    position: absolute;
+    top: 50%;
+    right: 16px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    font-size: 16px;
+    color: #888;
+  }
+
+    @media (max-width: 768px) {
+      .select-container,
+        .search-container { 
+        flex-direction: column;
+        /* يجعل العناصر تحت بعض عند تصغير الشاشة */
+        align-items: center;
+        gap: 10px;
+      }
+  
+      .select-container,
+      .search-container {
+        width: 100%;
+        max-width: 300px;
+        /* تقليل الحجم قليلاً على الهواتف */
+      }
+    }
+
+/* حاوية رئيسية */
+.content-container {
+  display: flex;
+  flex-wrap: wrap;
+  /* يجعل العناصر تتكيف مع الشاشة */
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 50px auto;
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  gap: 20px;
+  /* إضافة مسافة بين العناصر */
+  overflow: hidden;
+}
+
+/* الصورة */
+.content-container img {
+  width: 45%;
+  /* تحديد عرض مناسب للصورة */
+  height: auto;
+  /* تجنب التشوه */
+  /* تحديد ارتفاع أقصى */
+  object-fit: cover;
+  border-radius: 8px;
+  /* زوايا ناعمة */
+}
+
+/* النص */
+.text-content {
+  width: 50%;
+  font-family: Arial, sans-serif;
+  line-height: 1.8;
+  text-align: left;
+  /* محاذاة النص */
+}
+
+.text-content h2 {
+  font-size: 28px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+/* تحسين التصميم للشاشات الصغيرة */
+@media (max-width: 768px) {
+  .content-container {
+    flex-direction: column;
+    /* يجعل الصورة فوق النص عند الشاشات الصغيرة */
+    text-align: center;
+  }
+
+  .content-container img {
+    width: 90%;
+    /* تكبير الصورة عند الشاشات الصغيرة */
+    max-height: 300px;
+    /* تقليل الارتفاع لمنع التغطية */
+  }
+
+  .text-content {
+    width: 100%;
+    text-align: center;
+  }
+}
+  /*body section*/
+  .slider-container {
+    position: relative;
+    width: 100%;
+    max-width: 1519px;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: translate(0% , -30%);
+}
+.slider {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+.slide {
+    min-width: 100%;
+    transition: opacity 0.5s ease-in-out;
+}
+.slide img {
+    width: 1500px;
+    height: 600px;
+    display: block;
+}
+.buttons {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+}
+.buttons button {
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 18px;
+}
+.buttons button:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+
+  .words{
+    text-align: center;
+    word-spacing: 10px;
+    font-style: italic;
+    transform: translate(0%, -160%);
+     
+  }
+  .words h1{
+    text-align: center;
+    transform: translate(0%, 40%);
+    font-size: 60px;
+  }
+  .words h1:hover{
+    color: red;
+  }
+  
+  
+  .words a{
+    color:rgba(255, 0, 0, 0.762);
+    text-align: center;
+    text-decoration: underline;
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-style: inherit;
+    }
+   
+    /*men's wear text*/
+    .animated-text {
+      font-size: 60px;
+      font-weight: bold;
+      font-family: 'Arial', sans-serif;
+      color: #222;
+      padding: 10px 20px;
+      position: relative;
+      display: inline-block;
+      text-transform: uppercase;
+      overflow: hidden;
+      text-align: center;
+    }
+    .animated-text::before, .animated-text::after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border: 2px solid #222;
+      transition: all 0.5s ease-in-out;
+  }
+
+  .animated-text::before {
+      top: 0;
+      left: 0;
+      border-width: 2px 0 0 2px;
+      transform: scaleX(0);
+  }
+
+  .animated-text::after {
+      bottom: 0;
+      right: 0;
+      border-width: 0 2px 2px 0;
+      transform: scaleY(0);
+  }
+
+  /* تأثير الظهور */
+  .animated-text:hover::before {
+      transform: scaleX(1);
+  }
+
+  .animated-text:hover::after {
+      transform: scaleY(1);
+  }
+
+  /* تأثير النص عند التحويل */
+  .animated-text:hover {
+      color: #e74c3c;
+      transition: color 0.3s ease-in-out;
+  }
+    
+  /*men's photo*/
+ 
+ .container2{
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    padding-bottom: 5px;
+
+      
+ }
+ .container2:hover{
+    transform: scale(1.1) translateY(-10px);
+      filter: brightness(0.8);
+ }
+ .text-overlay {
+    position: absolute;
+    transform: translate(30%, -450%);
+    font-family: monospace;
+    color: rgb(233, 165, 8);
+    padding: 10px 20px;
+    font-size: 45px;
+    text-align: center;
+    font-weight: bold;
+ }
+ 
+ /* صور الملابس الرجالي الشتوي*/
+ .gallery {
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+   /* يجعل الصور تتكيف تلقائيًا */
+   gap: 20px;
+   max-width: 100%;
+   text-align: center;
+   padding: 20px;
+ }
+  .item {
+    width: 300px;
+    text-align: center;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    padding-bottom: 50px;
+    padding-top: 30px;
+    
+    
+    
+  }
+  .item img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 10px;
+    
+    
+    
+  }
+  .price {
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #2d2d2d;
+  }
+  .item :hover{
+    transform: scale(1.1) translateY(-10px);
+    filter: brightness(0.8);
+  }
+  
+  .winter-clothes-text {
+    
+    padding: 10px 20px;
+    font-size: 24px;
+    color: black;
+    border: 3px solid black;
+    border-radius: 25px;
+    background-color: #ffffff;
+    text-transform: uppercase;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(99, 102, 241, 0.2);
+    transition: all 0.3s ease;
+    text-align: center;
+    padding-top: px;
+  }
+
+  .winter-clothes-text:hover {
+    background-color: black;
+    color: #ffffff;
+    box-shadow: 0 6px 12px rgba(99, 102, 241, 0.4);
+    
+  }
+  
+  .summer-clothes-text {
+    padding: 10px 20px;
+    font-size: 24px;
+    color: #34a906e6;
+    border: 3px solid #34a906e6;
+    border-radius: 25px;
+    background-color: #ffffff;
+    text-transform: uppercase;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(99, 102, 241, 0.2);
+    transition: all 0.3s ease;
+    text-align: center;
+  }
+
+  .summer-clothes-text:hover {
+    background-color: #34a906e6;
+    color: #ffffff;
+    box-shadow: 0 6px 12px rgba(99, 102, 241, 0.4);
+  }
+  /*perfume word*/
+  .perfume-label {
+    
+    align-items: center;
+    padding: 10px 20px;
+    font-size: 24px;
+    color: rgb(12, 151, 206);
+    border: 2px solid skyblue;
+    border-radius: 30px;
+    background-color: #ffffff;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    
+  }
+  .perfume-label:hover{
+    background-color: rgb(12, 151, 206);
+    color: #ffffff;
+    box-shadow: 0 6px 12px rgba(99, 102, 241, 0.4);
+  }
+
+  .scroll-button {
+    position: fixed;
+    right: 20px;
+    background-color: skyblue;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+  }
+
+  .scroll-button:hover {
+    background-color: #4f46e5;
+  }
+
+  .scroll-up {
+    bottom: 80px;
+  }
+
+  .scroll-down {
+    bottom: 20px;
+  }
+
+  .scroll-button i {
+    font-size: 24px;
+  }
+
+  /* Styling for Arrow Animation */
+  .scroll-button i {
+    animation: bounce 1s infinite;
+  }
+
+  @keyframes bounce {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-5px);
+    }
+  }
+  /* perfume main photo */
+  .man-with-perfume img{
+    width: 100%;
+    height: 100%;
+    padding-bottom: 35px;
+  }
+  .text-overlay2{
+    position: absolute;
+    transform: translate(0%, -570%);
+    font-family: monospace;
+    color: rgb(233, 165, 8);
+    padding: 10px 20px;
+    font-size: 45px;
+    text-align: center;
+    font-weight: bold;
+  }
+  /*woman's main photo*/
+
+
+  .text-overlay3{
+    position: absolute;
+    transform: translate(0%, -300%);
+    color: black(233, 165, 8);
+    padding: 10px 20px;
+    font-size: 50px;
+    text-align: center;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.737); 
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.475); 
+  }
+  /*women's winter clothes word*/
+  .winter-woman-clothes-text{
+    padding: 10px 20px;
+    font-size: 24px;
+    color: #a9069be6;
+    border: 3px solid #a9069be6;
+    border-radius: 25px;
+    background-color: #ffffff;
+    text-transform: uppercase;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(99, 102, 241, 0.2);
+    transition: all 0.3s ease;
+    text-align: center;
+  }
+  .winter-woman-clothes-text:hover {
+    background-color: #a9069be6;
+    color: #ffffff;
+    box-shadow: 0 6px 12px rgba(99, 102, 241, 0.4);
+  }
+
+  /*women's summer clothes text*/
+  .summer-woman-clothes-text{
+    padding: 10px 20px;
+    font-size: 24px;
+    color: gold;
+    border: 3px solid gold;
+    border-radius: 25px;
+    background-color: #ffffff;
+    text-transform: uppercase;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(99, 102, 241, 0.2);
+    transition: all 0.3s ease;
+    text-align: center;
+  }
+  .summer-woman-clothes-text:hover {
+    background-color: rgba(255, 217, 0, 0.801);
+    color: #ffffff;
+    box-shadow: 0 6px 12px rgba(99, 102, 241, 0.4);
+  }
+
+ 
+  .text-overlay5{
+    position: absolute;
+    transform: translate(0%, -300%);
+    color: black(233, 165, 8);
+    padding: 10px 20px;
+    font-size: 50px;
+    text-align: center;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.737); 
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.475); 
+  }
+
+  /*woman's perfume word*/
+.woman-perfume-text{
+    
+    align-items: center;
+    padding: 10px 20px;
+    font-size: 24px;
+    color: rgba(190, 110, 110, 0.995);
+    border: 2px solid rosybrown;
+    border-radius: 30px;
+    background-color: #ffffff;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    
+  }
+  .woman-perfume-text:hover{
+    background-color: rosybrown;
+    color: #ffffff;
+    box-shadow: 0 6px 12px rgba(99, 102, 241, 0.4);
+  }
+
+  /*footer content*/
+  .footer {
+    background: #222;
+    color: #fff;
+    padding: 40px 0;
+    text-align: center;
+    font-size: 14px;
+}
+.footer .container7 {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    text-align: left;
+}
+.footer .column {
+    flex: 1;
+    min-width: 250px;
+    margin-bottom: 10px;
+}
+.footer h3 {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #f39c12;
+    font-weight: normal;
+    font-style: inherit;
+}
+.footer p, .footer a {
+    color: #bbb;
+    text-decoration: none;
+   
+    margin: 5px 0;
+    transition: 0.3s;
+}
+.footer a:hover {
+    color: #f39c12;
+}
+.footer .social a {
+    display: inline-block;
+    margin-right: 10px;
+    font-size: 18px;
+}
+.footer .copyright {
+    margin-top: 20px;
+    font-size: 12px;
+    color: #777;
+    text-align: center;
+    padding-top: 10px;
+    border-top: 1px solid #444;
+}
+
+/*--------------------------------------------------------------------------------------*/
+
+/* ===== General Styles ===== */
+.customer_login {
+  padding: 5rem 0;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.container {
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 4rem;
+}
+
+/* ===== Form Common Styles ===== */
+.account_form {
+  background: #fff;
+  width: 100%;
+  padding: 2.5rem;
+  border-radius: 1.5rem;
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.account_form:hover {
+  transform: translateY(-0.5rem);
+}
+
+.account_form h2 {
+  font-size: 2rem;
+  color: #2d3436;
+  margin-bottom: 2rem;
+  position: relative;
+  padding-bottom: 1rem;
+}
+
+.account_form h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 3rem;
+  height: 0.25rem;
+  background: #0984e3;
+  border-radius: 2px;
+}
+
+/* ===== Input Fields ===== */
+.account_form label {
+  display: block;
+  font-weight: 600;
+  color: #636e72;
+  margin-bottom: 0.5rem;
+}
+
+.account_form label span {
+  color: #e74c3c;
+}
+
+.account_form input {
+  width: 80%;
+  padding: 0.875rem 1.25rem;
+  border: 2px solid #dfe6e9;
+  border-radius: 0.75rem;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.account_form input:focus {
+  border-color: #0984e3;
+  box-shadow: 0 0 0 3px rgba(9, 132, 227, 0.15);
+  outline: none;
+}
+
+/* ===== Button & Helpers ===== */
+.login_submit {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.login_submit button {
+  background: #0984e3;
+  color: #fff;
+  border: none;
+  padding: 0.875rem 2rem;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.login_submit button:hover {
+  background: #0873c4;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(9, 132, 227, 0.3);
+}
+
+/* ===== Checkbox & Links ===== */
+.login_submit label[for="remember"] {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #636e72;
+  cursor: pointer;
+}
+
+.login_submit input[type="checkbox"] {
+  width: auto;
+  margin: 0;
+  accent-color: #0984e3;
+}
+
+.login_submit a {
+  color: #636e72;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.login_submit a:hover {
+  color: #0984e3;
+}
+
+/* ===== Register Form Specific ===== */
+.account_form.register {
+  background: #2d3436;
+}
+
+.account_form.register h2 {
+  color: #fff;
+}
+
+.account_form.register h2::after {
+  background: #00b894;
+}
+
+.account_form.register input {
+  border-color: #3c4245;
+  background: #353b3d;
+  color: #fff;
+}
+
+.account_form.register input:focus {
+  border-color: #00b894;
+  box-shadow: 0 0 0 3px rgba(0, 184, 148, 0.15);
+}
+
+.account_form.register button {
+  background: #00b894;
+}
+
+.account_form.register button:hover {
+  background: #00a884;
+}
+
+/* ===== Responsive Design ===== */
+@media (max-width: 768px) {
+  .row {
+    gap: 2rem;
+  }
+
+  .account_form {
+    padding: 1.5rem;
+  }
+
+  .account_form h2 {
+    font-size: 1.75rem;
+  }
+}
+
+/*---------------------------------------------*/
+
+@media (max-width: 768px) {
+  .hash {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .search-container,
+  .select-container {
+    width: 90%;
+  }
+}
+
+@media (max-width: 480px) {
+  .hash {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .footer {
+    padding: 20px;
+    min-height: 120px;
+  }
+}
