@@ -7,6 +7,16 @@
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="normalize.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script>
+      // التحقق مما إذا كان المستخدم مسجلاً الدخول
+      const token = localStorage.getItem("token") || sessionStorage.getItem("token");
+
+      if (!token) {
+        // إذا لم يكن هناك توكن، يتم إعادة توجيهه إلى صفحة تسجيل الدخول
+        window.location.href = "login.html";
+      }
+    </script>
+
   </head>
   <body>
   
@@ -105,12 +115,13 @@
 
       <div class="words">
         <h1>" OUR Collection "</h1>
+        <a href="#mens-wear">men</a>
+        <a href="#women-wear">women</a>
+        <a href="#mperfums">men perfumes</a>
+         <a href="#wperfums">women perfumes</a>
 
-        <a href="#">men</a>
-        <a href="#">women</a>
-        <a href="#">perfumes</a>
-        
       </div>
+
     
       <div class="content-container">
         <img src="img/ph3.jpg" alt="صورة توضيحية" />
@@ -126,7 +137,7 @@
     <hr style="transform: translate(0% , -2000%);">
 
     <!--men's wear text-->
-    <div class="animated-text">MEN'S WEAR</div>
+<div class="animated-text" id="mens-wear">MEN'S WEAR</div>
 
     <!--men's photo-->
     <img src="img/man-model.webp" />
@@ -251,7 +262,7 @@
     </button>
 
     <!--perfume main photo-->
-    <div class="man-with-perfume">
+    <div class="man-with-perfume" id="mperfums">
       <img src="img/man-with -perfume.webp" alt="" />
       <div class="text-overlay2">
       </div>
@@ -294,7 +305,7 @@
     <br />
     
      <!--men's wear text-->
-     <div class="animated-text">WOMEN'S WEAR</div>
+     <div class="animated-text" id="women-wear">WOMEN'S WEAR</div>
 
     <!--woman's main photo-->
     <div class="woman_photo">
@@ -412,7 +423,7 @@
     <br>
 
     <!--women's perfume text-->
-    <div class="animated-text">WOMEN'S perfume</div>
+    <div class="animated-text" id="wperfums">WOMEN'S perfume</div>
 
     <!--woman's perfume main photo-->
     <div class="woman_perfume_photo">

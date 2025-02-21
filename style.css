@@ -484,22 +484,20 @@ select:focus {
 }
 
 
-/* حاوية رئيسية */
+/* Content Container Styling */
 .content-container {
   display: flex;
   flex-wrap: wrap;
-  /* يجعل العناصر تتكيف مع الشاشة */
-  align-items: center;
-  justify-content: space-between;
-  max-width: 1200px;
-  margin: 50px auto;
-  background-color: #f9f9f9;
-  border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  gap: 20px;
-  /* إضافة مسافة بين العناصر */
-  overflow: hidden;
+align-items: center;
+justify-content: space-between;
+max-width: 1200px;
+margin: 50px auto;
+background-color: #f9f9f9;
+border-radius: 12px;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+padding: 20px;
+gap: 20px;
+overflow: hidden;
 }
 
 /* الصورة */
@@ -508,29 +506,91 @@ select:focus {
   /* تحديد عرض مناسب للصورة */
   height: auto;
   /* تجنب التشوه */
-  /* تحديد ارتفاع أقصى */
   object-fit: cover;
+  /* المحافظة على نسب الصورة */
   border-radius: 8px;
   box-shadow: 5px 10px 12px rgba(0, 0, 0, 0.1);
-
 }
 
 /* النص */
 .text-content {
-  width: 50%;
+  width: 40%;
+  /* تحديد عرض النص */
   font-family: Arial, sans-serif;
   line-height: 1.8;
   text-align: left;
+    font-size: 20px;
+    
   /* محاذاة النص */
-  
 }
 
 .text-content h2 {
-  font-size: 28px;
+  font-size: 40px;
   margin-bottom: 10px;
   color: #333;
 }
 
+/* Responsive Design */
+@media (max-width: 768px) {
+
+  /* Change layout to vertical on smaller screens */
+  .content-container {
+    display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 50px auto;
+      background-color: #f9f9f9;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      gap: 20px;
+      overflow: hidden;
+  }
+
+  /* Adjust image size for mobile */
+  .content-container img {
+    width: 45%;
+      /* تحديد عرض مناسب للصورة */
+      height: auto;
+      /* تجنب التشوه */
+      object-fit: cover;
+      /* المحافظة على نسب الصورة */
+      border-radius: 8px;
+      box-shadow: 5px 10px 12px rgba(0, 0, 0, 0.1);
+  }
+    .text-content {
+      width: 40%;
+        /* تحديد عرض النص */
+        font-family: Arial, sans-serif;
+              font-size: 20px;
+        line-height: 1.8;
+        text-align: left;
+        box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
+    }
+  
+    .text-content h2 {
+      font-size: 29px;
+        margin-bottom: 15px;
+        color: #333;
+    }
+    }
+  
+    /* Additional adjustments for very small screens */
+    @media (max-width: 480px) {
+      .text-content h2 {
+        font-size: 18px;
+        /* تقليل حجم العنوان أكثر */
+      }
+  
+      .text-content p {
+        font-size: 14px;
+        /* تقليل حجم النص */
+        line-height: 1.6;
+        /* تقليل المسافة بين السطور */
+      }
+    }
 
 
   /*body section*/
@@ -1301,3 +1361,7 @@ select:focus {
   }
 }
 /*---------------------------------------------*/
+html {
+  scroll-behavior: smooth;
+  /* 🔹 يجعل التمرير سلسًا عند النقر */
+}
