@@ -1018,12 +1018,17 @@ select:focus {
 /*--------------------------------------------------------------------------------------*/
 
 /* ===== General Styles ===== */
+
+
+/* Customer Login Section Styling */
 .customer_login {
   padding: 5rem 0;
   background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
   min-height: 100vh;
   display: flex;
   align-items: center;
+  justify-content: center;
+  /* Center content horizontally and vertically */
 }
 
 .container {
@@ -1034,30 +1039,37 @@ select:focus {
 
 .row {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  gap: 4rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  /* Adjusted minimum width for responsiveness */
+  gap: 2rem;
+  /* Reduced gap for smaller screens */
 }
 
-/* ===== Form Common Styles ===== */
+/* Form Common Styles */
 .account_form {
   background: #fff;
   width: 100%;
-  padding: 2.5rem;
-  border-radius: 1.5rem;
-  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  /* Reduced padding for smaller screens */
+  border-radius: 1rem;
+  /* Slightly reduced radius */
+  box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.1);
+  /* Slightly reduced shadow */
   transition: transform 0.3s ease;
 }
 
 .account_form:hover {
-  transform: translateY(-0.5rem);
+  transform: translateY(-0.3rem);
+  /* Reduced hover effect */
 }
 
 .account_form h2 {
-  font-size: 2rem;
+  font-size: 1.75rem;
+  /* Reduced font size for smaller screens */
   color: #2d3436;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
   position: relative;
-  padding-bottom: 1rem;
+  padding-bottom: 0.75rem;
 }
 
 .account_form h2::after {
@@ -1065,13 +1077,13 @@ select:focus {
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 3rem;
-  height: 0.25rem;
+  width: 2.5rem;
+  height: 0.2rem;
   background: #0984e3;
   border-radius: 2px;
 }
 
-/* ===== Input Fields ===== */
+/* Input Fields */
 .account_form label {
   display: block;
   font-weight: 600;
@@ -1084,10 +1096,11 @@ select:focus {
 }
 
 .account_form input {
-  width: 80%;
-  padding: 0.875rem 1.25rem;
+  width: 100%;
+  /* Full width for better usability on mobile */
+  padding: 0.75rem 1rem;
   border: 2px solid #dfe6e9;
-  border-radius: 0.75rem;
+  border-radius: 0.5rem;
   font-size: 1rem;
   transition: all 0.3s ease;
 }
@@ -1098,7 +1111,7 @@ select:focus {
   outline: none;
 }
 
-/* ===== Button & Helpers ===== */
+/* Button & Helpers */
 .login_submit {
   margin-top: 1.5rem;
   display: flex;
@@ -1112,8 +1125,9 @@ select:focus {
   background: #0984e3;
   color: #fff;
   border: none;
-  padding: 0.875rem 2rem;
-  border-radius: 0.75rem;
+  padding: 0.75rem 1.5rem;
+  /* Reduced padding for smaller screens */
+  border-radius: 0.5rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -1125,7 +1139,7 @@ select:focus {
   box-shadow: 0 5px 15px rgba(9, 132, 227, 0.3);
 }
 
-/* ===== Checkbox & Links ===== */
+/* Checkbox & Links */
 .login_submit label[for="remember"] {
   display: flex;
   align-items: center;
@@ -1150,7 +1164,7 @@ select:focus {
   color: #0984e3;
 }
 
-/* ===== Register Form Specific ===== */
+/* Register Form Specific */
 .account_form.register {
   background: #2d3436;
 }
@@ -1182,19 +1196,52 @@ select:focus {
   background: #00a884;
 }
 
-/* ===== Responsive Design ===== */
+/* Responsive Design */
 @media (max-width: 768px) {
-  .row {
-    gap: 2rem;
+  .customer_login {
+    padding: 3rem 0;
+    /* Reduced padding for smaller screens */
   }
 
   .account_form {
     padding: 1.5rem;
+    /* Further reduce padding */
+    border-radius: 0.75rem;
+    /* Further reduce radius */
   }
 
   .account_form h2 {
-    font-size: 1.75rem;
+    font-size: 1.5rem;
+    /* Further reduce font size */
+  }
+
+  .account_form input {
+    padding: 0.625rem 0.875rem;
+    /* Reduce input padding */
+  }
+
+  .login_submit button {
+    padding: 0.625rem 1.25rem;
+    /* Reduce button padding */
   }
 }
 
+@media (max-width: 480px) {
+  .account_form input {
+    font-size: 0.9rem;
+    /* Reduce font size for very small screens */
+  }
+
+  .login_submit {
+    flex-direction: column;
+    /* Stack elements vertically */
+    align-items: flex-start;
+  }
+
+  .login_submit button {
+    width: 100%;
+    /* Make buttons full width */
+    margin-top: 0.5rem;
+  }
+}
 /*---------------------------------------------*/
