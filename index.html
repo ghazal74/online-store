@@ -8,11 +8,8 @@
     <link rel="stylesheet" href="normalize.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script>
-      // التحقق مما إذا كان المستخدم مسجلاً الدخول
       const token = localStorage.getItem("token") || sessionStorage.getItem("token");
-
       if (!token) {
-        // إذا لم يكن هناك توكن، يتم إعادة توجيهه إلى صفحة تسجيل الدخول
         window.location.href = "login.html";
       }
     </script>

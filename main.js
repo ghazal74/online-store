@@ -52,11 +52,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (localStorage.getItem('token') || sessionStorage.getItem('token')) {
                     window.location.href = "home.html";
                 }
-    const cookieParser = require('cookie-parser');
-    app.use(cookieParser());
-    res.cookie("token", token, { httpOnly: true, secure: true, sameSite: 'Strict' }).json({ message: "Logged in!" });
-
-
+    
     document.addEventListener("DOMContentLoaded", function () {
         const token = localStorage.getItem("token") || sessionStorage.getItem("token");
 
