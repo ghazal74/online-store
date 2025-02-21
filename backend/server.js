@@ -75,6 +75,15 @@ const authenticateUser = (req, res, next) => {
         res.status(403).json({ message: "Invalid token" });
     }
 };
+console.log("🔍 Sending login data:", { email, password });
+
+const res = await fetch(`${API_URL}/login`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email, password })
+});
+
+console.log("🛠 Server Response:", res);
 
 // تطبيق الحماية على أي API خاص بالمستخدمين
 app.get("/protected-route", authenticateUser, (req, res) => {
