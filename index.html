@@ -10,30 +10,34 @@
   </head>
   <body>
   
-    <!-- hash section -->
+<!-- hash section -->
 <div class="hash">
-    <div class="container5">Free Returns: For First 40 Days</div>
-    <li class="top_links"><a href="#">My Account <i class="ion-chevron-down"></i></a>
-      <ul class="dropdown_links">
-        <li><a href="my-account.html">My Account </a></li>
-        <li><a href="#">Sign In</a></li>
-      </ul>
-    </li>
-    <li class="language"><a href="#"><img src="img/language.png" alt=""> English <i
-          class="ion-chevron-down"></i></a>
-      <ul class="dropdown_language">
-        <li><a href="#"><img src="img/language2.png" alt="">Arabic</a></li>
-      </ul>
-    </li>
-    <div class="currency">
-        <a href="#">USD <i class="ion-chevron-down"></i></a>
-        <ul class="dropdown_currency">
-            <li><a href="#">SAR</a></li>
-            <li><a href="#">AED</a></li>
-            <li><a href="#">UED</a></li>
-        </ul>
-    </div>
+  <div class="container5">Free Returns: For First 40 Days</div>
 
+  <li class="top_links">
+    <a href="#">My Account <i class="ion-chevron-down"></i></a>
+    <ul class="dropdown_links">
+      <li><a href="my-account.html">My Account</a></li>
+      <li><a href="#">Sign In</a></li>
+      <li><a href="#" id="logout">Logout</a></li> <!-- 🔹 زر تسجيل الخروج -->
+    </ul>
+  </li>
+
+  <li class="language">
+    <a href="#"><img src="img/language.png" alt=""> English <i class="ion-chevron-down"></i></a>
+    <ul class="dropdown_language">
+      <li><a href="#"><img src="img/language2.png" alt="">Arabic</a></li>
+    </ul>
+  </li>
+
+  <div class="currency">
+    <a href="#">USD <i class="ion-chevron-down"></i></a>
+    <ul class="dropdown_currency">
+      <li><a href="#">SAR</a></li>
+      <li><a href="#">AED</a></li>
+      <li><a href="#">UED</a></li>
+    </ul>
+  </div>
 </div>
 
 
@@ -535,6 +539,14 @@
               });
             });
           });
+
+          document.getElementById("logout").addEventListener("click", function () {
+              localStorage.removeItem("token");  // حذف التوكن من التخزين
+              sessionStorage.removeItem("token");
+              window.location.href = "login.html";  // تحويل المستخدم لصفحة تسجيل الدخول
+            });
+
     </script>
+<script src="main.js"></script>
   </body>
 </html>

@@ -23,24 +23,14 @@
 /* Header Section Styling */
 .hash {
   display: flex;
-  flex-direction: column;
-  /* Change to column on small screens */
-  justify-content: center;
+  flex-direction: row;
+  /* Always keep elements horizontal */
+  justify-content: space-between;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.844);
   color: white;
   padding: 10px 20px;
   font-size: 15px;
-}
-
-/* Adjust for mobile devices */
-@media (min-width: 768px) {
-  .hash {
-    flex-direction: row;
-    /* Change back to row on larger screens */
-    justify-content: space-between;
-    align-items: center;
-  }
 }
 
 /* Top Links and Menus */
@@ -165,30 +155,33 @@
 /* Responsive Design */
 @media (max-width: 768px) {
 
-  /* Stack elements vertically on smaller screens */
+  /* Keep elements horizontal even on small screens */
   .hash {
-    flex-direction: column;
-    align-items: flex-start;
+    flex-wrap: wrap;
+    /* Allow wrapping if the screen is too narrow */
+    justify-content: flex-start;
+    /* Align items to the start */
     padding: 10px;
   }
 
   .top_links,
   .language,
   .currency {
-    margin-left: 0;
-    margin-top: 10px;
-    display: block;
-    width: 100%;
+    margin-left: 10px;
+    /* Reduce spacing between elements */
+    display: inline-block;
+    /* Ensure elements are displayed horizontally */
   }
 
   .top_links a,
   .language a,
   .currency a {
-    padding: 10px;
-    font-size: 14px;
+    padding: 8px 10px;
+    /* Reduce padding for smaller screens */
+    font-size: 12px;
+    /* Reduce font size for better fit */
     min-width: auto;
-    width: 100%;
-    text-align: left;
+    /* Remove fixed minimum width */
   }
 
   .language img {
@@ -199,16 +192,12 @@
   .dropdown_links,
   .dropdown_language,
   .dropdown_currency {
-    position: static;
-    /* Keep dropdowns visible on small screens */
-    width: 100%;
-    margin-top: 10px;
-  }
-
-  .dropdown_links li,
-  .dropdown_language li,
-  .dropdown_currency li {
-    padding: 10px;
+    position: absolute;
+    /* Keep dropdowns positioned absolutely */
+    width: 160px;
+    /* Set a fixed width for dropdowns */
+    margin-top: 0;
+    /* Remove unnecessary margin */
   }
 }
 
@@ -223,31 +212,38 @@
     }
   
     /* ✅ تحسين الهيدر ليكون متجاوبًا */
+/* Header Section Styling */
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: #fff;
-  padding: 15px 0;
+  padding: 15px 20px;
+  /* Add horizontal padding */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-top: 10px;
 }
-
-
 
 /* Navigation Menu */
 header ul {
   list-style: none;
   display: flex;
-  margin: 10px;
+  /* Keep the menu horizontal */
+  margin: 0;
+  /* Remove unnecessary margin */
+  padding: 0;
+  /* Remove default padding */
 }
 
 header ul li {
   position: relative;
   margin-right: 30px;
+  /* Space between menu items */
 }
 
 header ul li:last-child {
   margin-right: 0;
+  /* Remove margin for the last item */
 }
 
 header ul li a {
@@ -256,11 +252,11 @@ header ul li a {
   font-size: 16px;
   font-weight: 600;
   transition: color 0.3s ease;
-  margin-left: 50px;
 }
 
 header ul li a:hover {
   color: #e74c3c;
+  /* Change color on hover */
 }
 
 /* Support Section */
@@ -270,7 +266,8 @@ header ul li a:hover {
 }
 
 .support p {
-  margin: 10px;
+  margin: 0;
+  /* Remove unnecessary margin */
 }
 
 .support a {
@@ -284,19 +281,41 @@ header ul li a:hover {
   text-decoration: underline;
 }
 
+/* Responsive Design */
 @media (max-width: 768px) {
+
+  /* Keep the header elements horizontal even on small screens */
+  header {
+    flex-wrap: wrap;
+    /* Allow wrapping if necessary */
+    justify-content: space-between;
+    align-items: center;
+  }
+
   header ul {
-    flex-direction: column;
-    align-items: flex-start;
+    flex-direction: row;
+    /* Keep the menu horizontal */
+    margin: 0;
+    /* Remove unnecessary margin */
+    padding: 0;
+    /* Remove default padding */
   }
 
   header ul li {
-    margin-bottom: 10px;
+    margin-right: 15px;
+    /* Reduce spacing between menu items */
+  }
+
+  header ul li a {
+    font-size: 14px;
+    /* Reduce font size for better fit */
   }
 
   .support {
-    text-align: center;
     margin-top: 10px;
+    /* Add some spacing for the support section */
+    text-align: center;
+    /* Center align the support text */
   }
 }
   
@@ -490,7 +509,7 @@ select:focus {
   margin: 50px auto;
   overflow: hidden;
   border-radius: 15px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 5px 10px 12px rgba(0, 0, 0, 0.1);
 }
 
 /* Slider Styling */
@@ -510,6 +529,7 @@ select:focus {
   height: 80%;
   display: block;
   border-radius: 10px;
+    box-shadow: 5px 10px 12px rgba(0, 0, 0, 0.1);
 }
 
 /* Buttons Styling */

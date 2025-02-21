@@ -28,7 +28,6 @@
         <div class="container5">Free Returns: For First 40 Days</div>
         <li class="top_links"><a href="#">Sign In <i class="ion-chevron-down"></i></a>
             <ul class="dropdown_links">
-                <li><a href="index.html">home </a></li>
                 <li><a href="#">Sign In</a></li>
             </ul>
         </li>
@@ -155,12 +154,9 @@
 
                     const data = await res.json();
                     if (res.ok) {
-                        alert("✅ Logged in successfully!");
-                        localStorage.setItem('token', data.token);
-                        window.location.href = "index.html";  // 🔹 توجيه المستخدم إلى الصفحة الرئيسية
-                    } else {
-                        alert(`❌ Error: ${data.message}`);
-                    }
+                        localStorage.setItem('token', data.token); // تخزين التوكن
+                        window.location.href = "index.html";  // تحويل المستخدم للصفحة الرئيسية
+                    } 
                 });
             }
 
@@ -178,13 +174,13 @@
 
                     const data = await res.json();
                     if (res.ok) {
-                        window.location.href = "index.html";  // 🔹 توجيه المستخدم إلى الصفحة الرئيسية بعد التسجيل
-                    } else {
-                        alert(`❌ Error: ${data.message}`);
-                    }
+                        localStorage.setItem('token', data.token); // تخزين التوكن
+                        window.location.href = "index.html";  // تحويل المستخدم للصفحة الرئيسية
+                    } 
                 });
             }
         });
+
         if (document.querySelector("#remember").checked) {
                 localStorage.setItem('token', data.token);
             } else {
@@ -198,7 +194,20 @@
     app.use(cookieParser());
     res.cookie("token", token, { httpOnly: true, secure: true, sameSite: 'Strict' }).json({ message: "Logged in!" });
 
-    
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const token = localStorage.getItem("token") || sessionStorage.getItem("token");
+
+        // إذا لم يكن المستخدم مسجلًا، قم بتحويله إلى login.html
+        if (!token && window.location.pathname !== "/login.html") {
+            window.location.href = "login.html";
+        }
+    });
+    document.getElementById("logout").addEventListener("click", function () {
+        localStorage.removeItem("token");  // حذف التوكن من التخزين
+        sessionStorage.removeItem("token");
+        window.location.href = "login.html";  // تحويل المستخدم لصفحة تسجيل الدخول
+    });
 
  </script>
 <!-- Plugins JS -->

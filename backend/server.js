@@ -54,6 +54,30 @@ app.post('/login', async (req, res) => {
         res.status(500).json({ error: err.message });
     }
 });
+
+const jwt = require("jsonwebtoken");
+
+// Middleware للتحقق من صلاحية المستخدم
+const authenticateUser = (req, res, next) => {
+    const token = req.headers.authorization?.split(" ")[1];
+    if (!token) {
+        return res.status(401).json({ message: "Unauthorized" });
+    }
+
+    try {
+        const verified = jwt.verify(token, process.env.JWT_SECRET);
+        req.user = verified;
+        next();
+    } catch (error) {
+        res.status(403).json({ message: "Invalid token" });
+    }
+};
+
+// تطبيق الحماية على أي API خاص بالمستخدمين
+app.get("/protected-route", authenticateUser, (req, res) => {
+    res.json({ message: "You have access to this protected route!" });
+});
+
 const compression = require("compression");
 app.use(compression());
 
