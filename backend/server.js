@@ -10,16 +10,9 @@ const app = express();
 app.use(express.json());
 app.use(cors({
     origin: "*", // أو حدد النطاق المسموح به مثل "https://ghazal74.github.io"
-    methods: "GET, POST, PUT, DELETE, OPTIONS",
+    methods: "GET,POST,PUT,DELETE",
     allowedHeaders: "Content-Type,Authorization"
-})); app.use(compression());
-app.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "https://ghazal74.github.io"); // 👈 السماح لموقعك فقط
-    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
-    res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
-    res.sendStatus(200);
-});
-
+}));app.use(compression());
 
 // ✅ الاتصال بقاعدة البيانات MongoDB
 mongoose.connect(process.env.MONGO_URI)
