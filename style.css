@@ -522,7 +522,7 @@ select:focus {
   line-height: 1.8;
   text-align: left;
   /* محاذاة النص */
-    box-shadow: 5px 10px 12px rgba(0, 0, 0, 0.1);
+  
 }
 
 .text-content h2 {
