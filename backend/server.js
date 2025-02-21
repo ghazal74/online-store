@@ -4,41 +4,47 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const cors = require('cors');
+const compression = require("compression");
 
 const app = express();
 app.use(express.json());
 app.use(cors());
+app.use(compression());
 
-// الاتصال بقاعدة البيانات MongoDB
-mongoose.connect(process.env.MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-}).then(() => console.log("✅ Connected to MongoDB"))
-.catch(err => console.log("❌ Error: ", err));
+// ✅ الاتصال بقاعدة البيانات MongoDB
+mongoose.connect(process.env.MONGO_URI)
+    .then(() => console.log("✅ Connected to MongoDB"))
+    .catch(err => console.error("❌ MongoDB Connection Error: ", err));
 
-
-// إنشاء نموذج المستخدم
+// ✅ إنشاء نموذج المستخدم
 const UserSchema = new mongoose.Schema({
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true }
 });
-
 const User = mongoose.model('User', UserSchema);
 
-// 📌 تسجيل مستخدم جديد
+// ✅ تسجيل مستخدم جديد
 app.post('/register', async (req, res) => {
     try {
         const { email, password } = req.body;
+        const existingUser = await User.findOne({ email });
+
+        if (existingUser) {
+            return res.status(400).json({ message: "Email already registered" });
+        }
+
         const hashedPassword = await bcrypt.hash(password, 10);
         const user = new User({ email, password: hashedPassword });
         await user.save();
+
         res.status(201).json({ message: "User registered successfully!" });
     } catch (err) {
+        console.error("🚨 Registration Error:", err);
         res.status(500).json({ error: err.message });
     }
 });
 
-// 📌 تسجيل الدخول
+// ✅ تسجيل الدخول
 app.post('/login', async (req, res) => {
     try {
         const { email, password } = req.body;
@@ -51,54 +57,44 @@ app.post('/login', async (req, res) => {
         if (!isMatch) return res.status(400).json({ message: "Incorrect password" });
 
         const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
-        res.json({ token, user: { email: user.email } });
+        return res.json({ token, user: { email: user.email } });
+
     } catch (err) {
         console.error("🚨 Login error:", err);
-        res.status(500).json({ error: err.message });
+        return res.status(500).json({ error: err.message });
     }
 });
 
-
-
-// Middleware للتحقق من صلاحية المستخدم
+// ✅ Middleware للتحقق من صلاحية المستخدم
 const authenticateUser = (req, res, next) => {
     const token = req.headers.authorization?.split(" ")[1];
-    if (!token) {
-        return res.status(401).json({ message: "Unauthorized" });
-    }
+    if (!token) return res.status(401).json({ message: "Unauthorized" });
 
     try {
         const verified = jwt.verify(token, process.env.JWT_SECRET);
         req.user = verified;
         next();
     } catch (error) {
-        res.status(403).json({ message: "Invalid token" });
+        return res.status(403).json({ message: "Invalid token" });
     }
 };
-console.log("🔍 Sending login data:", { email, password });
 
-const res = await fetch(`${API_URL}/login`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ email, password })
-});
-
-console.log("🛠 Server Response:", res);
-
-// تطبيق الحماية على أي API خاص بالمستخدمين
+// ✅ تطبيق الحماية على API خاص بالمستخدمين
 app.get("/protected-route", authenticateUser, (req, res) => {
     res.json({ message: "You have access to this protected route!" });
 });
 
-const compression = require("compression");
-app.use(compression());
-
+// ✅ عرض قائمة المستخدمين (البريد الإلكتروني فقط)
 app.get("/users", async (req, res) => {
-    const users = await User.find({}, "email");
-    res.json(users);
+    try {
+        const users = await User.find({}, "email");
+        res.json(users);
+    } catch (err) {
+        console.error("🚨 Error fetching users:", err);
+        res.status(500).json({ error: err.message });
+    }
 });
 
-
-// تشغيل الخادم
+// ✅ تشغيل الخادم
 const PORT = process.env.PORT || 5000;
-app.listen(5000, '0.0.0.0', () => console.log(`✅ Server running on port 5000 and accessible from other devices`));
+app.listen(PORT, '0.0.0.0', () => console.log(`✅ Server running on port ${PORT} and accessible from other devices`));
