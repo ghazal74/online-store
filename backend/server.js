@@ -55,7 +55,6 @@ app.post('/login', async (req, res) => {
     }
 });
 
-const jwt = require("jsonwebtoken");
 
 // Middleware للتحقق من صلاحية المستخدم
 const authenticateUser = (req, res, next) => {
