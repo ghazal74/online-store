@@ -18,10 +18,14 @@
 }
 
 
-/* ✅ تنسيق الشريط العلوي */
+
+
+/* Header Section Styling */
 .hash {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  /* Change to column on small screens */
+  justify-content: center;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.844);
   color: white;
@@ -29,8 +33,17 @@
   font-size: 15px;
 }
 
+/* Adjust for mobile devices */
+@media (min-width: 768px) {
+  .hash {
+    flex-direction: row;
+    /* Change back to row on larger screens */
+    justify-content: space-between;
+    align-items: center;
+  }
+}
 
-/* ✅ ضبط عناصر القائمة العلوية */
+/* Top Links and Menus */
 .container5 {
   font-weight: bold;
   color: white !important;
@@ -45,7 +58,7 @@
   display: inline-block;
 }
 
-/* ✅ تصميم الروابط داخل القوائم */
+/* Links Inside Menus */
 .top_links a,
 .language a,
 .currency a {
@@ -58,17 +71,16 @@
   cursor: pointer;
   font-size: 14px;
   min-width: 120px;
-  /* جعل العنصر أوسع لضمان ظهور الأيقونة */
 }
 
-/* ✅ ضبط أيقونة اللغة */
+/* Language Icon */
 .language img {
   width: 20px;
   height: 15px;
   margin-right: 5px;
 }
 
-/* ✅ تحسين مظهر الأيقونات */
+/* Icons Styling */
 .top_links i,
 .language i,
 .currency i {
@@ -77,7 +89,7 @@
   color: white;
 }
 
-/* ✅ تنسيق القوائم المنسدلة */
+/* Dropdown Menus */
 .dropdown_links,
 .dropdown_language,
 .dropdown_currency {
@@ -94,29 +106,29 @@
   z-index: 100;
 }
 
-/* ✅ تحسين مظهر عناصر القوائم */
+/* Dropdown Items */
 .dropdown_links li,
 .dropdown_language li,
 .dropdown_currency li {
-  padding: 8px  20px;
+  padding: 8px 20px;
   text-align: left;
 }
 
-/* ✅ تحسين مظهر الروابط داخل القوائم */
+/* Dropdown Links */
 .dropdown_links li a,
 .dropdown_language li a,
 .dropdown_currency li a {
   text-decoration: none;
   color: black;
-    display: inline-block;
-        font-size: 14px;
+  display: inline-block;
+  font-size: 14px;
   width: 100%;
   position: relative;
-      padding-bottom: 5px;
-    align-items: center;
-      }
+  padding-bottom: 5px;
+  align-items: center;
+}
 
-/* ✅ جعل الخط السفلي لا يتجاوز عرض القائمة */
+/* Bottom Line Effect */
 .dropdown_links li a::after,
 .dropdown_language li a::after,
 .dropdown_currency li a::after {
@@ -134,24 +146,71 @@
 .dropdown_language li a:hover::after,
 .dropdown_currency li a:hover::after {
   width: 100%;
-      left: 0; /* جعل الخط يمتد تحت النص فقط */
-
+  left: 0;
 }
 
-/* ✅ إظهار القائمة عند التمرير */
+/* Show Dropdown on Hover */
 .top_links:hover .dropdown_links,
 .language:hover .dropdown_language,
 .currency:hover .dropdown_currency {
   display: block;
 }
 
-/* ✅ إبقاء القائمة ظاهرة عند التمرير */
 .dropdown_links:hover,
 .dropdown_language:hover,
 .dropdown_currency:hover {
   display: block;
 }
 
+/* Responsive Design */
+@media (max-width: 768px) {
+
+  /* Stack elements vertically on smaller screens */
+  .hash {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+  }
+
+  .top_links,
+  .language,
+  .currency {
+    margin-left: 0;
+    margin-top: 10px;
+    display: block;
+    width: 100%;
+  }
+
+  .top_links a,
+  .language a,
+  .currency a {
+    padding: 10px;
+    font-size: 14px;
+    min-width: auto;
+    width: 100%;
+    text-align: left;
+  }
+
+  .language img {
+    width: 15px;
+    height: 10px;
+  }
+
+  .dropdown_links,
+  .dropdown_language,
+  .dropdown_currency {
+    position: static;
+    /* Keep dropdowns visible on small screens */
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .dropdown_links li,
+  .dropdown_language li,
+  .dropdown_currency li {
+    padding: 10px;
+  }
+}
 
 /*logo*/
     /* ✅ تحسين الصور لتكون متجاوبة */
