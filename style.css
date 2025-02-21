@@ -351,11 +351,39 @@ header ul li a:hover {
   letter-spacing: 2px;
 }
 
+/* Responsive Design */
+@media (max-width: 768px) {
+  .logo {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 15px;
+  }
+
+  .photo {
+    width: 80px;
+  }
+
+  .almotabaed {
+    font-size: 20px;
+  }
+}
+
+/* Select Container Styling */
+/* Header Actions Container Styling */
+.header-actions {
+  display: flex;
+  /* Use Flexbox for horizontal layout */
+  align-items: center;
+  /* Vertically center the items */
+  gap: 15px;
+  /* Add spacing between elements */
+}
+
 /* Select Container Styling */
 .select-container {
   position: relative;
-  margin-left: auto;
-  /* Push to the right */
+  flex: 1;
+  /* Allow the container to grow/shrink as needed */
 }
 
 select {
@@ -368,6 +396,8 @@ select {
   font-size: 16px;
   background-color: #fff;
   cursor: pointer;
+  width: 100%;
+  /* Make the select field responsive */
   transition: border-color 0.3s ease;
 }
 
@@ -392,7 +422,8 @@ select:focus {
 /* Search Container Styling */
 .search-container {
   position: relative;
-  margin-left: 20px;
+  flex: 1;
+  /* Allow the container to grow/shrink as needed */
 }
 
 .search-container input {
@@ -401,7 +432,8 @@ select:focus {
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 16px;
-  width: 250px;
+  width: 100%;
+  /* Make the input field responsive */
   transition: border-color 0.3s ease;
 }
 
@@ -425,31 +457,32 @@ select:focus {
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .logo {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 15px;
+
+  /* Keep the elements horizontal and reduce their size */
+  .header-actions {
+    gap: 10px;
+    /* Reduce spacing between elements */
   }
 
-  .photo {
-    width: 80px;
+  .select-container select,
+  .search-container input {
+    font-size: 14px;
+    /* Reduce font size for better fit */
+    padding: 8px 35px 8px 10px;
+    /* Reduce padding for better fit */
   }
 
-  .almotabaed {
-    font-size: 20px;
-  }
-
-  .select-container,
-  .search-container {
-    margin-top: 10px;
-    width: auto;
-      margin-right: 240px;
+  .select-container select {
+    width: 100%;
+    /* Ensure the select field is responsive */
   }
 
   .search-container input {
-    width: auto;
+    width: 100%;
+    /* Ensure the input field is responsive */
   }
 }
+
 
 /* حاوية رئيسية */
 .content-container {
@@ -529,7 +562,7 @@ select:focus {
   height: 80%;
   display: block;
   border-radius: 10px;
-    box-shadow: 5px 10px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 5px 10px 12px rgba(0, 0, 0, 0.1);
 }
 
 /* Buttons Styling */
@@ -562,6 +595,7 @@ select:focus {
 /* Responsive Design */
 @media (max-width: 768px) {
   .slider-container {
+    margin-top: -35px;
     max-width: 100%;
   }
 
