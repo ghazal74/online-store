@@ -136,53 +136,70 @@
 
 <!-- JS
 ============================================ -->
-<script>document.addEventListener("DOMContentLoaded", function () {
-        const loginForm = document.querySelector('.account_form form[action="#"]');
-        const registerForm = document.querySelector('.account_form.register form[action="#"]');
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+            const loginForm = document.querySelector('.account_form form[action="#"]');
+            const registerForm = document.querySelector('.account_form.register form[action="#"]');
 
-        if (loginForm) {
-            loginForm.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                const email = document.querySelector('#username').value;
-                const password = document.querySelector('#password').value;
+            if (loginForm) {
+                loginForm.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    const email = document.querySelector('#username').value;
+                    const password = document.querySelector('#password').value;
 
-                const res = await fetch('http://localhost:5000/login', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email, password })
+                    const res = await fetch('http://localhost:5000/login', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ email, password })
+                    });
+
+                    const data = await res.json();
+                    if (res.ok) {
+                        alert("✅ Logged in successfully!");
+                        localStorage.setItem('token', data.token);
+                        window.location.href = "index.html";  // 🔹 توجيه المستخدم إلى الصفحة الرئيسية
+                    } else {
+                        alert(`❌ Error: ${data.message}`);
+                    }
                 });
+            }
 
-                const data = await res.json();
-                if (res.ok) {
-                    alert("✅ Logged in successfully!");
-                    localStorage.setItem('token', data.token);
-                } else {
-                    alert(`❌ Error: ${data.message}`);
-                }
-            });
-        }
+            if (registerForm) {
+                registerForm.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    const email = document.querySelector('#email').value;
+                    const password = document.querySelector('#reg_password').value;
 
-        if (registerForm) {
-            registerForm.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                const email = document.querySelector('#email').value;
-                const password = document.querySelector('#reg_password').value;
+                    const res = await fetch('http://localhost:5000/register', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ email, password })
+                    });
 
-                const res = await fetch('http://localhost:5000/register', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email, password })
+                    const data = await res.json();
+                    if (res.ok) {
+                        window.location.href = "index.html";  // 🔹 توجيه المستخدم إلى الصفحة الرئيسية بعد التسجيل
+                    } else {
+                        alert(`❌ Error: ${data.message}`);
+                    }
                 });
+            }
+        });
+        if (document.querySelector("#remember").checked) {
+                localStorage.setItem('token', data.token);
+            } else {
+                sessionStorage.setItem('token', data.token);
+            }
 
-                const data = await res.json();
-                if (res.ok) {
-                    alert("✅ Registered successfully!");
-                } else {
-                    alert(`❌ Error: ${data.message}`);
+            if (localStorage.getItem('token') || sessionStorage.getItem('token')) {
+                    window.location.href = "home.html";
                 }
-            });
-        }
-    });
+    const cookieParser = require('cookie-parser');
+    app.use(cookieParser());
+    res.cookie("token", token, { httpOnly: true, secure: true, sameSite: 'Strict' }).json({ message: "Logged in!" });
+
+    
+
  </script>
 <!-- Plugins JS -->
 <script src="plugins.js"></script>

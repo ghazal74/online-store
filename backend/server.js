@@ -54,6 +54,14 @@ app.post('/login', async (req, res) => {
         res.status(500).json({ error: err.message });
     }
 });
+const compression = require("compression");
+app.use(compression());
+
+app.get("/users", async (req, res) => {
+    const users = await User.find({}, "email");
+    res.json(users);
+});
+
 
 // تشغيل الخادم
 const PORT = process.env.PORT || 5000;

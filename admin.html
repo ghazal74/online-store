@@ -1,0 +1,13 @@
+<h2>Users List</h2>
+<ul id="users-list"></ul>
+<script>
+    fetch("http://localhost:5000/users", { headers: { Authorization: "Bearer " + localStorage.getItem("token") } })
+        .then(res => res.json())
+        .then(users => {
+            users.forEach(user => {
+                const li = document.createElement("li");
+                li.innerText = user.email;
+                document.getElementById("users-list").appendChild(li);
+            });
+        });
+</script>
