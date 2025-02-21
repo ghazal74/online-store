@@ -7,14 +7,12 @@
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="normalize.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- 
-    <script>
+    <!--<script>
       const token = localStorage.getItem("token") || sessionStorage.getItem("token");
       if (!token) {
         window.location.href = "login.html";
       }
-    </script> 
-    -->
+    </script> -->
 
   </head>
   <body>
@@ -65,7 +63,7 @@
         <select>
           <option value="" disabled selected>Choose an option</option>
           <option value="1">ALL Categories</option>
-          <option value="2">Men</option>
+          <option value="2" href="#mens-wear">Men</option>
           <option value="3">Women</option>
           <option value="4">Perfumes</option>
         </select>
@@ -111,7 +109,7 @@
   
   
 
-      <div class="words">
+      <div class="words" id="collection">
         <h1>" OUR Collection "</h1>
         <a href="#mens-wear">men</a>
         <a href="#women-wear">women</a>
@@ -458,9 +456,12 @@
         <div class="price">$142.58</div>
       </div>
     </div>
+    <hr>
+
+    
 
     <!--footer content-->
-    <footer class="footer">
+    <footer class="footer" >
       <div class="container7">
           <div class="column">
               <h3>Contact Information</h3>

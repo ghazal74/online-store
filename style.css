@@ -1131,6 +1131,90 @@ overflow: hidden;
     border-top: 1px solid #444;
 }
 
+/*about*/
+/* الأنماط العامة */
+.about_content {
+  text-align: center;
+}
+
+.about_content h1 {
+  font-weight: bold;
+  font-style: initial;
+  font-size: 50px;
+  text-align: right;
+  margin-top: 150px;
+  margin-right: 75px;
+}
+
+.about_content p {
+  font-style: initial;
+  text-align: right;
+  margin-right: 75px;
+}
+
+.about_content img {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+.about_content a {
+  text-align: right;
+  color: rgb(6, 6, 99);
+  display: inline-block;
+  margin-top: 50px; /* قيمة ثابتة لتجنب التداخل */
+}
+
+.about_content a:hover {
+  color: red;
+}
+
+/* استهداف الأجهزة المحمولة (أقل من 768px) */
+@media (max-width: 768px) {
+  .about_content h1 {
+    font-size: 30px; /* تقليل حجم الخط */
+    margin-top: 50px; /* تقليل الهامش العلوي */
+    margin-right: 15px; /* تقليل الهامش الأيمن */
+  }
+
+  .about_content p {
+    font-size: 16px; /* تقليل حجم النص */
+    margin-right: 15px; /* تقليل الهامش الأيمن */
+  }
+
+  .about_content img {
+    width: 90%; /* زيادة عرض الصورة لتغطي معظم الشاشة */
+    margin-top: 20px; /* إضافة هامش أعلى للتناسق */
+  }
+
+  .about_content a {
+    font-size: 14px; /* تقليل حجم الخط */
+    margin-top: 10px; /* تقليل الهامش العلوي */
+  }
+}
+
+/* استهداف الشاشات الصغيرة جدًا (أقل من 480px) */
+@media (max-width: 480px) {
+  .about_content h1 {
+    font-size: 24px; /* تقليل حجم الخط أكثر */
+    margin-top: 30px; /* تقليل الهامش العلوي */
+  }
+
+  .about_content p {
+    font-size: 14px; /* تقليل حجم النص أكثر */
+  }
+
+  .about_content img {
+    width: 100%; /* جعل الصورة تأخذ كامل عرض الشاشة */
+    margin-top: 15px; /* إضافة هامش أعلى صغير */
+  }
+
+  .about_content a {
+    font-size: 12px; /* تقليل حجم الخط أكثر */
+  }
+}
+
 /*--------------------------------------------------------------------------------------*/
 
 /* ===== General Styles ===== */
