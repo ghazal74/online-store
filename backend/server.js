@@ -8,8 +8,11 @@ const compression = require("compression");
 
 const app = express();
 app.use(express.json());
-app.use(cors());
-app.use(compression());
+app.use(cors({
+    origin: "*", // أو حدد النطاق المسموح به مثل "https://ghazal74.github.io"
+    methods: "GET,POST,PUT,DELETE",
+    allowedHeaders: "Content-Type,Authorization"
+}));app.use(compression());
 
 // ✅ الاتصال بقاعدة البيانات MongoDB
 mongoose.connect(process.env.MONGO_URI)
