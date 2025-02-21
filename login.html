@@ -141,94 +141,71 @@
             const loginForm = document.querySelector('.account_form form[action="#"]');
             const registerForm = document.querySelector('.account_form.register form[action="#"]');
 
-            const API_URL = "https://172.23.128.1:5000"; // 🔹 تأكيد العنوان الصحيح للسيرفر
-
-            // ✅ التعامل مع نموذج تسجيل الدخول
+            // التعامل مع نموذج تسجيل الدخول
             if (loginForm) {
                 loginForm.addEventListener('submit', async (e) => {
                     e.preventDefault();
-                    const email = document.getElementById('username')?.value.trim();
-                    const password = document.getElementById('password')?.value.trim();
-
-                    if (!email || !password) {
-                        alert("❌ Please enter both email and password.");
-                        return;
-                    }
+                    const email = document.getElementById('username').value.trim();
+                    const password = document.getElementById('password').value.trim();
 
                     console.log("🔍 Sending login data:", { email, password });
 
                     try {
-                        const res = await fetch(`${API_URL}/login`, {
+                        const res = await fetch('http://172.23.128.1:5000/login', {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json' },
                             body: JSON.stringify({ email, password })
                         });
 
-                        let data;
-                        try {
-                            data = await res.json(); // ✅ محاولة قراءة JSON إذا كان متاحًا
-                        } catch (jsonError) {
-                            throw new Error("❌ Server response is not valid JSON.");
-                        }
+                        const data = await res.json();
+                        console.log("🛠 Server Response:", data);
 
                         if (!res.ok) {
                             throw new Error(data.message || "Login failed");
                         }
 
-                        console.log("🛠 Server Response:", data);
                         localStorage.setItem('token', data.token);
                         window.location.href = "index.html";
                     } catch (error) {
-                        alert(`❌ Login failed: ${error.message}`);
+                        alert("❌ Login failed. Check your credentials.");
                         console.error("🚨 Error:", error);
                     }
                 });
             }
 
-            // ✅ التعامل مع نموذج التسجيل
+            // التعامل مع نموذج التسجيل
             if (registerForm) {
                 registerForm.addEventListener('submit', async (e) => {
                     e.preventDefault();
-                    const email = document.getElementById('email')?.value.trim();
-                    const password = document.getElementById('reg_password')?.value.trim();
+                    const email = document.getElementById('email').value.trim();
+                    const password = document.getElementById('reg_password').value.trim();
 
                     if (!email || !password) {
                         alert("❌ Please enter a valid email and password.");
                         return;
                     }
 
-                    console.log("🔍 Sending register data:", { email, password });
-
                     try {
-                        const res = await fetch(`${API_URL}/register`, {
+                        const res = await fetch('http://172.23.128.1:5000/register', {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json' },
                             body: JSON.stringify({ email, password })
                         });
 
-                        let data;
-                        try {
-                            data = await res.json(); // ✅ محاولة قراءة JSON إذا كان متاحًا
-                        } catch (jsonError) {
-                            throw new Error("❌ Server response is not valid JSON.");
-                        }
-
                         if (!res.ok) {
-                            throw new Error(data.message || "Registration failed");
+                            throw new Error("Registration failed");
                         }
 
-                        console.log("🛠 Server Response:", data);
+                        const data = await res.json();
                         localStorage.setItem('token', data.token);
                         window.location.href = "index.html";
                     } catch (error) {
-                        alert(`❌ Registration failed: ${error.message}`);
+                        alert("❌ Registration failed. Try again.");
                         console.error("🚨 Error:", error);
                     }
                 });
             }
         });
-
-
 
 
 
@@ -255,7 +232,7 @@
         sessionStorage.removeItem("token");
         window.location.href = "login.html";  // تحويل المستخدم لصفحة تسجيل الدخول
     });
-
+    
 
  </script>
 <!-- Plugins JS -->
