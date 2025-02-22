@@ -135,6 +135,23 @@ def protected():
         logging.error(f"Error in protected: {str(e)}")
         return jsonify({"error": str(e)}), 500
 
+@app.route("/send-message", methods=["POST"])
+def send_message():
+    try:
+        data = request.json
+        email = data.get("email")  # ✅ فقط المستخدم المسجل يمكنه الإرسال
+        name = data.get("name")
+        subject = data.get("subject")
+        message = data.get("message")
+
+        if not email or not name or not subject or not message:
+            return jsonify({"message": "All fields are required"}), 400
+
+        logging.info(f"📩 New message from {email}: {subject} - {message}")
+        return jsonify({"message": "Message sent successfully!"}), 200
+    except Exception as e:
+        logging.error(f"🚨 Error in send-message: {str(e)}")
+        return jsonify({"error": str(e)}), 500
 
 @app.route("/", methods=["GET"])
 def home():

@@ -60,7 +60,39 @@
 .contact_area {
   margin-bottom: 60px;
 }
+#contact-form {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    margin: auto;
+}
+#contact-form input, 
+#contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+#contact-form button {
+    background: #4FBB72;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+#contact-form button:hover {
+    background: #3aa65f;
+}
 
+.form-message {
+    margin-top: 10px;
+    color: red;
+    font-weight: bold;
+}
 .contact_message h3 {
   font-size: 25px;
   text-transform: capitalize;
@@ -213,32 +245,87 @@
                 <hr>
                 <div class="col-lg-6 col-md-12">
                    <div class="contact_message form">
-                        <h3>Tell us your project</h3>   
-                        <form id="contact-form" method="POST"  action="https://whizthemes.com/mail-php/jaber/contact.php">
-                            <p>  
-                               <label> Your Name (required)</label>
-                                <input name="name" placeholder="Name *" type="text"> 
-                            </p>
-                            <p>       
-                               <label>  Your Email (required)</label>
-                                <input name="email" placeholder="Email *" type="email">
-                            </p>
-                            <p>          
-                               <label>  Subject</label>
-                                <input name="subject" placeholder="Subject *" type="text">
-                            </p>    
-                            <div class="contact_textarea">
-                                <label>  Your Message</label>
-                                <textarea placeholder="Message *" name="message"  class="form-control2" ></textarea>     
-                            </div>   
-                            <button type="submit"> Send</button>  
-                            <p class="form-messege"></p>
-                        </form> 
+                        <h3>Tell us</h3>   
+                    <form id="contact-form">
+                        <p>
+                            <label>Your Name (required)</label>
+                            <input id="name" name="name" placeholder="Name *" type="text" required>
+                        </p>
+                        <p>
+                            <label>Your Email (required)</label>
+                            <input id="email" name="email" placeholder="Email *" type="email" readonly> <!-- ✅ لا يمكن تغييره -->
+                        </p>
+                        <p>
+                            <label>Subject</label>
+                            <input id="subject" name="subject" placeholder="Subject *" type="text">
+                        </p>
+                        <div class="contact_textarea">
+                            <label>Your Message</label>
+                            <textarea id="message" placeholder="Message *" name="message" class="form-control2" required></textarea>
+                        </div>
+                        <button type="submit"> Send</button>
+                        <p class="form-message"></p>
+                    </form>
+
 
                     </div> 
                 </div>
             </div>
         </div>    
     </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+                const API_URL = "https://online-store-production-d74f.up.railway.app";
+                const contactForm = document.getElementById("contact-form");
+                const emailField = document.getElementById("email");
+                const messageBox = document.querySelector(".form-message");
+
+                // ✅ التأكد من تسجيل الدخول وجلب الإيميل
+                const userEmail = localStorage.getItem("user_email");
+                if (!userEmail) {
+                    alert("❌ You must be logged in to send a message.");
+                    contactForm.querySelector("button").disabled = true;
+                    return;
+                }
+
+                emailField.value = userEmail; // ✅ إدخال البريد المسجل تلقائيًا
+                emailField.readOnly = true; // ✅ لا يمكن تعديله
+
+                // ✅ معالجة إرسال الرسالة
+                contactForm.addEventListener("submit", async function (event) {
+                    event.preventDefault();
+
+                    const name = document.getElementById("name").value.trim();
+                    const subject = document.getElementById("subject").value.trim();
+                    const message = document.getElementById("message").value.trim();
+
+                    if (!name || !subject || !message) {
+                        messageBox.textContent = "❌ Please fill in all fields.";
+                        return;
+                    }
+
+                    const formData = { name, email: userEmail, subject, message };
+
+                    try {
+                        const res = await fetch(`${API_URL}/send-message`, {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify(formData),
+                        });
+
+                        const data = await res.json();
+                        if (!res.ok) throw new Error(data.message || "Failed to send message.");
+
+                        messageBox.style.color = "green";
+                        messageBox.textContent = "✅ Message sent successfully!";
+                        contactForm.reset();
+                    } catch (error) {
+                        messageBox.style.color = "red";
+                        messageBox.textContent = `❌ ${error.message}`;
+                    }
+                });
+            });
+
+    </script>
 </body>
 </html>
