@@ -28,14 +28,23 @@
         <div class="container5">Free Returns: For First 40 Days</div>
         <li class="top_links"><a href="#">Sign In <i class="ion-chevron-down"></i></a>
             <ul class="dropdown_links">
-                <li><a href="#">Sign In</a></li>
+                <li><a href="login.html">Sign In</a></li>
             </ul>
         </li>
-        <li class="language"><a href="#"><img src="img/language.png" alt=""> English <i class="ion-chevron-down"></i></a>
+        
+        <li class="language">
+            <a href="#" id="selected-language">
+                <img src="img/language.png" alt="" id="language-icon">
+                <span id="language-text">English</span>
+                <i class="ion-chevron-down"></i>
+            </a>
             <ul class="dropdown_language">
-                <li><a href="#"><img src="img/language2.png" alt="">Arabic</a></li>
+                <li><a href="#" id="switch-to-ar"><img src="img/language2.png" alt=""> العربية</a></li>
+                <li><a href="#" id="switch-to-en"><img src="img/language.png" alt=""> English</a></li>
             </ul>
         </li>
+
+
         <div class="currency">
             <a href="#">USD <i class="ion-chevron-down"></i></a>
             <ul class="dropdown_currency">
@@ -369,6 +378,7 @@
         setTimeout(() => alertBox.remove(), 3000);
     }
 
+    
 </script>
 <!-- Plugins JS -->
 <script src="plugins.js"></script>

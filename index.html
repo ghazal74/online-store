@@ -7,12 +7,12 @@
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="normalize.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!--<script>
+    <script>
       const token = localStorage.getItem("token") || sessionStorage.getItem("token");
       if (!token) {
         window.location.href = "login.html";
       }
-    </script> -->
+    </script>
 
   </head>
   <body>
@@ -24,18 +24,23 @@
   <li class="top_links">
     <a href="#">My Account <i class="ion-chevron-down"></i></a>
     <ul class="dropdown_links">
-      <li><a href="my-account.html">My Account</a></li>
-      <li><a href="#">Sign In</a></li>
+      <li><a href="login.html">Sign In</a></li>
       <li><a href="#" onclick="logout()">Logout</a></li> 
     </ul>
   </li>
 
   <li class="language">
-    <a href="#"><img src="img/language.png" alt=""> English <i class="ion-chevron-down"></i></a>
+    <a href="#" id="selected-language">
+      <img src="img/language.png" alt="" id="language-icon">
+      <span id="language-text">English</span>
+      <i class="ion-chevron-down"></i>
+    </a>
     <ul class="dropdown_language">
-      <li><a href="#"><img src="img/language2.png" alt="">Arabic</a></li>
+      <li><a href="#" id="switch-to-ar"><img src="img/language2.png" alt=""> العربية</a></li>
+      <li><a href="#" id="switch-to-en"><img src="img/language.png" alt=""> English</a></li>
     </ul>
   </li>
+
 
   <div class="currency">
     <a href="#">USD <i class="ion-chevron-down"></i></a>
@@ -559,6 +564,5 @@
             }
 
     </script>
-<script src="main.js"></script>
   </body>
 </html>
