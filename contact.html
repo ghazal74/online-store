@@ -76,17 +76,7 @@
     border: 1px solid #ddd;
     border-radius: 5px;
 }
-#contact-form button {
-    background: #4FBB72;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-#contact-form button:hover {
-    background: #3aa65f;
-}
+
 
 .form-message {
     margin-top: 10px;
@@ -253,7 +243,7 @@
                         </p>
                         <p>
                             <label>Your Email (required)</label>
-                            <input id="email" name="email" placeholder="Email *" type="email" readonly> <!-- ✅ لا يمكن تغييره -->
+                            <input id="email" name="email" placeholder="Email *" type="email" required> <!-- ✅ لا يمكن تغييره -->
                         </p>
                         <p>
                             <label>Subject</label>
@@ -277,34 +267,29 @@
         document.addEventListener("DOMContentLoaded", function () {
                 const API_URL = "https://online-store-production-d74f.up.railway.app";
                 const contactForm = document.getElementById("contact-form");
-                const emailField = document.getElementById("email");
                 const messageBox = document.querySelector(".form-message");
-
-                // ✅ التأكد من تسجيل الدخول وجلب الإيميل
-                const userEmail = localStorage.getItem("user_email");
-                if (!userEmail) {
-                    alert("❌ You must be logged in to send a message.");
-                    contactForm.querySelector("button").disabled = true;
-                    return;
-                }
-
-                emailField.value = userEmail; // ✅ إدخال البريد المسجل تلقائيًا
-                emailField.readOnly = true; // ✅ لا يمكن تعديله
 
                 // ✅ معالجة إرسال الرسالة
                 contactForm.addEventListener("submit", async function (event) {
                     event.preventDefault();
 
                     const name = document.getElementById("name").value.trim();
+                    const email = document.getElementById("email").value.trim();
                     const subject = document.getElementById("subject").value.trim();
                     const message = document.getElementById("message").value.trim();
+
+                    // ✅ التحقق من صحة البريد الإلكتروني
+                    if (!email.includes("@") || !email.includes(".")) {
+                        messageBox.textContent = "❌ Please enter a valid email address.";
+                        return;
+                    }
 
                     if (!name || !subject || !message) {
                         messageBox.textContent = "❌ Please fill in all fields.";
                         return;
                     }
 
-                    const formData = { name, email: userEmail, subject, message };
+                    const formData = { name, email, subject, message };
 
                     try {
                         const res = await fetch(`${API_URL}/send-message`, {
@@ -325,6 +310,7 @@
                     }
                 });
             });
+
 
     </script>
 </body>

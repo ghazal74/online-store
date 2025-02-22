@@ -135,11 +135,12 @@ def protected():
         logging.error(f"Error in protected: {str(e)}")
         return jsonify({"error": str(e)}), 500
 
+
 @app.route("/send-message", methods=["POST"])
 def send_message():
     try:
         data = request.json
-        email = data.get("email")  # ✅ فقط المستخدم المسجل يمكنه الإرسال
+        email = data.get("email")
         name = data.get("name")
         subject = data.get("subject")
         message = data.get("message")
@@ -152,6 +153,7 @@ def send_message():
     except Exception as e:
         logging.error(f"🚨 Error in send-message: {str(e)}")
         return jsonify({"error": str(e)}), 500
+
 
 @app.route("/", methods=["GET"])
 def home():
