@@ -26,7 +26,7 @@
     <ul class="dropdown_links">
       <li><a href="my-account.html">My Account</a></li>
       <li><a href="#">Sign In</a></li>
-      <li><a href="#" id="logout">Logout</a></li> <!-- 🔹 زر تسجيل الخروج -->
+      <li><a href="#" onclick="logout()">Logout</a></li> 
     </ul>
   </li>
 
@@ -550,11 +550,13 @@
             });
           });
 
-          document.getElementById("logout").addEventListener("click", function () {
-              localStorage.removeItem("token");  // حذف التوكن من التخزين
-              sessionStorage.removeItem("token");
-              window.location.href = "login.html";  // تحويل المستخدم لصفحة تسجيل الدخول
-            });
+          function logout() {
+              localStorage.removeItem("token");
+              localStorage.removeItem("refresh_token");
+              localStorage.removeItem("user_email");
+              alert("✅ Logged out successfully!");
+              window.location.href = "login.html";
+            }
 
     </script>
 <script src="main.js"></script>

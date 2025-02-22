@@ -133,7 +133,207 @@
 
     <!--footer area end-->
 
+<!-- JS
+============================================ 
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+    // استهداف نماذج تسجيل الدخول والتسجيل
+    const loginForm = document.querySelector('.account_form form[action="#"]');
+    const registerForm = document.querySelector('.account_form.register form[action="#"]');
 
+    // التعامل مع نموذج تسجيل الدخول
+    if (loginForm) {
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value.trim();
+
+            console.log("🔍 Sending login data:", { email, password });
+
+            try {
+                const res = await fetch('http://localhost:5000/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+
+                const data = await res.json();
+                console.log("🛠 Server Response:", data);
+
+                if (!res.ok) {
+                    throw new Error(data.message || "Login failed");
+                }
+
+                localStorage.setItem('token', data.token);
+                window.location.href = "index.html";
+            } catch (error) {
+                alert("❌ Login failed. Check your credentials.");
+                console.error("🚨 Error:", error);
+            }
+        });
+    }
+
+    // التعامل مع نموذج التسجيل
+    if (registerForm) {
+        registerForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('reg_password').value.trim();
+
+            if (!email || !password) {
+                alert("❌ Please enter a valid email and password.");
+                return;
+            }
+
+            try {
+                const res = await fetch('http://localhost:5000/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+
+                if (!res.ok) {
+                    throw new Error("Registration failed");
+                }
+
+                const data = await res.json();
+                localStorage.setItem('token', data.token);
+                window.location.href = "index.html";
+            } catch (error) {
+                alert("❌ Registration failed. Try again.");
+                console.error("🚨 Error:", error);
+            }
+        });
+    }
+});
+
+
+
+        if (document.querySelector("#remember").checked) {
+                localStorage.setItem('token', data.token);
+            } else {
+                sessionStorage.setItem('token', data.token);
+            }
+
+            if (localStorage.getItem('token') || sessionStorage.getItem('token')) {
+                    window.location.href = "index.html";
+                }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const token = localStorage.getItem("token") || sessionStorage.getItem("token");
+
+        // إذا لم يكن المستخدم مسجلًا، قم بتحويله إلى login.html
+        if (!token && window.location.pathname !== "/login.html") {
+            window.location.href = "login.html";
+        }
+    });
+    document.getElementById("logout").addEventListener("click", function () {
+        localStorage.removeItem("token");  // حذف التوكن من التخزين
+        sessionStorage.removeItem("token");
+        window.location.href = "login.html";  // تحويل المستخدم لصفحة تسجيل الدخول
+    });
+
+ </script>
+ -->
+<script>
+   document.addEventListener("DOMContentLoaded", function () {
+        const API_URL = "http://127.0.0.1:5000";
+
+        document.querySelector('.account_form form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const email = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value.trim();
+
+            if (!email || !password) {
+                alert("❌ Please enter both email and password.");
+                return;
+            }
+
+            try {
+                const res = await fetch(`${API_URL}/login`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ email, password })
+                });
+
+                let data;
+                try {
+                    data = await res.json();
+                } catch (jsonError) {
+                    throw new Error("❌ Server error, please try again later.");
+                }
+
+                if (!res.ok) throw new Error(data.message || "Login failed");
+
+                localStorage.setItem("token", data.token);
+                alert("✅ Login successful!");
+                window.location.href = "index.html";
+            } catch (error) {
+                alert(error.message);
+                console.error("🚨 Login error:", error);
+            }
+        });
+    });
+
+
+        // ✅ تسجيل مستخدم جديد
+       document.addEventListener("DOMContentLoaded", function () {
+            const API_URL = "http://127.0.0.1:5000";  // 🛠️ ضع هنا رابط `backend` الصحيح
+
+            // ✅ تسجيل مستخدم جديد
+            document.querySelector('.account_form.register form').addEventListener('submit', async (e) => {
+                e.preventDefault();
+
+                const email = document.getElementById('email').value.trim();
+                const password = document.getElementById('reg_password').value.trim();
+
+                if (!email || !password) {
+                    alert("❌ Please enter a valid email and password.");
+                    return;
+                }
+
+                try {
+                    const res = await fetch(`${API_URL}/register`, {  // ✅ استخدم API_URL هنا
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ email, password })
+                    });
+
+                    const data = await res.json();
+                    if (!res.ok) throw new Error(data.message || "Registration failed");
+
+                    alert("✅ Registration successful! Please login.");
+                } catch (error) {
+                    alert(`❌ Registration failed: ${error.message}`);
+                    console.error("🚨 Registration error:", error);
+                }
+            });
+        });
+
+
+    // ✅ دالة التحقق من تسجيل الدخول
+    function checkLoginStatus() {
+        const token = localStorage.getItem("token");
+        const currentPage = window.location.pathname.split("/").pop(); // استخراج اسم الصفحة الحالية
+
+        // ✅ تجنب إعادة التوجيه إذا كان المستخدم بالفعل على login.html
+        if (!token && currentPage !== "login.html") {
+            window.location.href = "login.html";
+        }
+    }
+
+    // ✅ دالة تسجيل الخروج
+    function logout() {
+        localStorage.removeItem("token");
+        localStorage.removeItem("refresh_token");
+        localStorage.removeItem("user_email");
+        alert("✅ Logged out successfully!");
+        window.location.href = "login.html";
+    }
+
+
+</script>
 <!-- Plugins JS -->
 <script src="plugins.js"></script>
 
