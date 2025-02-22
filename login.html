@@ -239,85 +239,113 @@
    document.addEventListener("DOMContentLoaded", function () {
         const API_URL = "https://online-store-production-d74f.up.railway.app";
 
-        document.querySelector('.account_form form').addEventListener('submit', async (e) => {
-            e.preventDefault();
+        // ✅ جلب عناصر الصفحة
+        const loginForm = document.querySelector('.account_form form');
+        const registerForm = document.querySelector('.account_form.register form');
+        const rememberMeCheckbox = document.getElementById('remember');
+        const loader = document.createElement("div"); // 🔹 Loader للتحميل
 
-            const email = document.getElementById('username').value.trim();
-            const password = document.getElementById('password').value.trim();
+        loader.innerHTML = "🔄 Loading..."; // نص التحميل
+        loader.style.display = "none"; // إخفاءه افتراضيًا
+        document.body.appendChild(loader);
 
-            if (!email || !password) {
-                alert("❌ Please enter both email and password.");
-                return;
-            }
+        // ✅ دالة تسجيل الدخول
+        if (loginForm) {
+            loginForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
 
-            try {
-                const res = await fetch(`${API_URL}/login`, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ email, password })
-                });
+                const email = document.getElementById('username').value.trim();
+                const password = document.getElementById('password').value.trim();
+                const rememberMe = rememberMeCheckbox.checked;
 
-                let data;
-                try {
-                    data = await res.json();
-                } catch (jsonError) {
-                    throw new Error("❌ Server error, please try again later.");
+                if (!email || !password) {
+                    showAlert("❌ Please enter both email and password.", "error");
+                    return;
                 }
 
-                if (!res.ok) throw new Error(data.message || "Login failed");
+                loader.style.display = "block"; // 🔄 إظهار التحميل
 
-                localStorage.setItem("token", data.token);
-                alert("✅ Login successful!");
-                window.location.href = "index.html";
-            } catch (error) {
-                alert(error.message);
-                console.error("🚨 Login error:", error);
-            }
-        });
-    });
+                try {
+                    const res = await fetch(`${API_URL}/login`, {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ email, password })
+                    });
 
+                    if (!res.ok) {
+                        const data = await res.json();
+                        throw new Error(data.message || "❌ Login failed");
+                    }
 
-        // ✅ تسجيل مستخدم جديد
-       document.addEventListener("DOMContentLoaded", function () {
-           const API_URL = "https://online-store-production-d74f.up.railway.app"; 
+                    const data = await res.json();
+                    saveUserSession(data.token, rememberMe);
+                    showAlert("✅ Login successful!", "success");
+                    setTimeout(() => window.location.href = "index.html", 1000);
+                } catch (error) {
+                    showAlert(error.message, "error");
+                    console.error("🚨 Login error:", error);
+                } finally {
+                    loader.style.display = "none"; // 🔄 إخفاء التحميل
+                }
+            });
+        }
 
-            // ✅ تسجيل مستخدم جديد
-            document.querySelector('.account_form.register form').addEventListener('submit', async (e) => {
+        // ✅ دالة تسجيل المستخدم الجديد
+        if (registerForm) {
+            registerForm.addEventListener('submit', async (e) => {
                 e.preventDefault();
 
                 const email = document.getElementById('email').value.trim();
                 const password = document.getElementById('reg_password').value.trim();
 
                 if (!email || !password) {
-                    alert("❌ Please enter a valid email and password.");
+                    showAlert("❌ Please enter a valid email and password.", "error");
                     return;
                 }
 
+                loader.style.display = "block"; // 🔄 إظهار التحميل
+
                 try {
-                    const res = await fetch(`${API_URL}/register`, {  // ✅ استخدم API_URL هنا
+                    const res = await fetch(`${API_URL}/register`, {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({ email, password })
                     });
 
-                    const data = await res.json();
-                    if (!res.ok) throw new Error(data.message || "Registration failed");
+                    if (!res.ok) {
+                        const data = await res.json();
+                        throw new Error(data.message || "❌ Registration failed");
+                    }
 
-                    alert("✅ Registration successful! Please login.");
+                    showAlert("✅ Registration successful! Please login.", "success");
+                    setTimeout(() => window.location.href = "login.html", 1000);
                 } catch (error) {
-                    alert(`❌ Registration failed: ${error.message}`);
+                    showAlert(`❌ Registration failed: ${error.message}`, "error");
                     console.error("🚨 Registration error:", error);
+                } finally {
+                    loader.style.display = "none"; // 🔄 إخفاء التحميل
                 }
             });
-        });
+        }
 
+        // ✅ التحقق من تسجيل الدخول
+        checkLoginStatus();
+    });
+
+    // ✅ دالة لحفظ بيانات المستخدم بناءً على "Remember Me"
+    function saveUserSession(token, rememberMe) {
+        if (rememberMe) {
+            localStorage.setItem("token", token);
+        } else {
+            sessionStorage.setItem("token", token);
+        }
+    }
 
     // ✅ دالة التحقق من تسجيل الدخول
     function checkLoginStatus() {
-        const token = localStorage.getItem("token");
-        const currentPage = window.location.pathname.split("/").pop(); // استخراج اسم الصفحة الحالية
+        const token = localStorage.getItem("token") || sessionStorage.getItem("token");
+        const currentPage = window.location.pathname.split("/").pop();
 
-        // ✅ تجنب إعادة التوجيه إذا كان المستخدم بالفعل على login.html
         if (!token && currentPage !== "login.html") {
             window.location.href = "login.html";
         }
@@ -326,12 +354,20 @@
     // ✅ دالة تسجيل الخروج
     function logout() {
         localStorage.removeItem("token");
-        localStorage.removeItem("refresh_token");
-        localStorage.removeItem("user_email");
-        alert("✅ Logged out successfully!");
-        window.location.href = "login.html";
+        sessionStorage.removeItem("token");
+        showAlert("✅ Logged out successfully!", "success");
+        setTimeout(() => window.location.href = "login.html", 1000);
     }
 
+    // ✅ دالة عرض إشعارات الرسائل
+    function showAlert(message, type) {
+        const alertBox = document.createElement("div");
+        alertBox.innerText = message;
+        alertBox.className = `alert ${type}`;
+        document.body.appendChild(alertBox);
+
+        setTimeout(() => alertBox.remove(), 3000);
+    }
 
 </script>
 <!-- Plugins JS -->
