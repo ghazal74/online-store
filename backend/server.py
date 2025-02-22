@@ -64,7 +64,7 @@ def register():
 @app.route("/login", methods=["POST"])
 def login():
     try:
-        data = request.get_json()  # ✅ استخدم get_json() بدلاً من request.json
+        data = request.get_json(force=True)  
         email = data.get("email")
         password = data.get("password")
 
@@ -72,7 +72,9 @@ def login():
             return jsonify({"message": "Email and password are required"}), 400
 
         user = User.objects(email=email).first()
-        if not user or not bcrypt.checkpw(password.encode("utf-8"), user.password.encode("utf-8")):
+        if not user or not bcrypt.checkpw(
+            password.encode("utf-8"), user.password.encode("utf-8")
+        ):
             return jsonify({"message": "Invalid email or password"}), 401
 
         access_token = jwt.encode({"email": email}, JWT_SECRET, algorithm="HS256")
@@ -80,7 +82,6 @@ def login():
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
-
 
 
 # ✅ تجديد `Access Token` باستخدام `Refresh Token`
