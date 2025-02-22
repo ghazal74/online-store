@@ -155,6 +155,23 @@ def send_message():
         return jsonify({"error": str(e)}), 500
 
 
+@app.route("/messages", methods=["GET"])
+def get_messages():
+    try:
+        messages = [
+            {
+                "email": user.email,
+                "subject": "User Inquiry",
+                "message": "Hello, I need help!",
+            }
+            for user in User.objects()
+        ]
+        return jsonify(messages), 200
+    except Exception as e:
+        logging.error(f"🚨 Error in get_messages: {str(e)}")
+        return jsonify({"error": str(e)}), 500
+
+
 @app.route("/", methods=["GET"])
 def home():
     return jsonify({"message": "🚀 Flask API is running!"}), 200

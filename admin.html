@@ -1,13 +1,93 @@
-<h2>Users List</h2>
-<ul id="users-list"></ul>
+<h2>Users & Messages</h2>
+<table id="users-table">
+    <thead>
+        <tr>
+            <th>Email</th>
+            <th>Subject</th>
+            <th>Message</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
 <script>
-    fetch("http://localhost:5000/users", { headers: { Authorization: "Bearer " + localStorage.getItem("token") } })
-        .then(res => res.json())
-        .then(users => {
-            users.forEach(user => {
-                const li = document.createElement("li");
-                li.innerText = user.email;
-                document.getElementById("users-list").appendChild(li);
+    document.addEventListener("DOMContentLoaded", function () {
+        const API_URL = "https://online-store-production-d74f.up.railway.app"; // تأكد من تحديث رابط الـ backend الصحيح
+        const token = localStorage.getItem("token");
+
+        if (!token) {
+            alert("Unauthorized access. Please log in.");
+            window.location.href = "login.html";
+            return;
+        }
+
+        fetch(`${API_URL}/messages`, {
+            headers: { Authorization: "Bearer " + token }
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (!Array.isArray(data)) {
+                    console.error("Unexpected response:", data);
+                    return;
+                }
+
+                const tableBody = document.querySelector("#users-table tbody");
+                tableBody.innerHTML = ""; // تفريغ أي بيانات سابقة
+
+                data.forEach(msg => {
+                    const row = document.createElement("tr");
+                    row.innerHTML = `
+                    <td>${msg.email}</td>
+                    <td>${msg.subject}</td>
+                    <td>${msg.message}</td>
+                `;
+                    tableBody.appendChild(row);
+                });
+            })
+            .catch(error => {
+                console.error("🚨 Error fetching users and messages:", error);
+                alert("Failed to load users data.");
             });
-        });
+    });
 </script>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        text-align: center;
+        padding: 20px;
+    }
+
+    h2 {
+        color: #333;
+    }
+
+    table {
+        width: 80%;
+        margin: 20px auto;
+        border-collapse: collapse;
+        background: white;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    th,
+    td {
+        padding: 12px;
+        border: 1px solid #ddd;
+        text-align: left;
+    }
+
+    th {
+        background: #4CAF50;
+        color: white;
+    }
+
+    tr:nth-child(even) {
+        background: #f9f9f9;
+    }
+
+    tr:hover {
+        background: #f1f1f1;
+    }
+</style>
