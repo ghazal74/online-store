@@ -1131,92 +1131,274 @@ overflow: hidden;
     border-top: 1px solid #444;
 }
 
-/*about*/
-/* الأنماط العامة */
-.about_content {
-  text-align: center;
-}
-
-.about_content h1 {
-  font-weight: bold;
-  font-style: initial;
-  font-size: 50px;
-  text-align: right;
-  margin-top: 150px;
-  margin-right: 75px;
-}
-
-.about_content p {
-  font-style: initial;
-  text-align: right;
-  margin-right: 75px;
-}
-
-.about_content img {
-  width: 50%;
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
-}
-
-.about_content a {
-  text-align: right;
-  color: rgb(6, 6, 99);
-  display: inline-block;
-  margin-top: 50px; /* قيمة ثابتة لتجنب التداخل */
-}
-
-.about_content a:hover {
-  color: red;
-}
-
-/* استهداف الأجهزة المحمولة (أقل من 768px) */
-@media (max-width: 768px) {
-  .about_content h1 {
-    font-size: 30px; /* تقليل حجم الخط */
-    margin-top: 50px; /* تقليل الهامش العلوي */
-    margin-right: 15px; /* تقليل الهامش الأيمن */
-  }
-
-  .about_content p {
-    font-size: 16px; /* تقليل حجم النص */
-    margin-right: 15px; /* تقليل الهامش الأيمن */
-  }
-
-  .about_content img {
-    width: 90%; /* زيادة عرض الصورة لتغطي معظم الشاشة */
-    margin-top: 20px; /* إضافة هامش أعلى للتناسق */
-  }
-
-  .about_content a {
-    font-size: 14px; /* تقليل حجم الخط */
-    margin-top: 10px; /* تقليل الهامش العلوي */
-  }
-}
-
-/* استهداف الشاشات الصغيرة جدًا (أقل من 480px) */
-@media (max-width: 480px) {
-  .about_content h1 {
-    font-size: 24px; /* تقليل حجم الخط أكثر */
-    margin-top: 30px; /* تقليل الهامش العلوي */
-  }
-
-  .about_content p {
-    font-size: 14px; /* تقليل حجم النص أكثر */
-  }
-
-  .about_content img {
-    width: 100%; /* جعل الصورة تأخذ كامل عرض الشاشة */
-    margin-top: 15px; /* إضافة هامش أعلى صغير */
-  }
-
-  .about_content a {
-    font-size: 12px; /* تقليل حجم الخط أكثر */
-  }
-}
 
 /*--------------------------------------------------------------------------------------*/
 
+/* 🔹 نافذة عرض الصورة */
+/* 🔹 نافذة عرض الصورة */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  overflow: auto;
+}
+
+/* 🔹 تصميم المحتوى داخل النافذة */
+.modal-content {
+  display: flex;
+  flex-direction: row;
+  background: #fff;
+  width: 90%;
+  max-width: 1200px;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+  position: relative;
+}
+
+/* 🔹 زر الإغلاق */
+.close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #555;
+  background: none;
+  border: none;
+  transition: color 0.3s ease;
+}
+
+.close:hover {
+  color: red;
+}
+
+/* 🔹 الصورة الكبيرة في النافذة */
+.modal-left {
+  flex: 1;
+  /* توزيع المساحة بالتساوي */
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.modal-left img {
+  width: 100%;
+  max-height: 300px;
+  /* حجم مناسب للهواتف */
+  object-fit: contain;
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.modal-left .price {
+  font-size: 20px;
+  font-weight: bold;
+  color: #0984e3;
+  margin-top: 10px;
+}
+
+/* 🔹 القسم الأيمن - صور عشوائية */
+.modal-right {
+  flex: 1;
+  /* توزيع المساحة بالتساوي */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-left: 20px;
+  border-left: 2px solid #ddd;
+}
+
+.modal-right h3 {
+  font-size: 18px;
+  margin-bottom: 15px;
+  color: #333;
+  text-align: center;
+}
+
+/* 🔹 الشبكة الخاصة بالصور العشوائية */
+.random-images {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  /* عدد الأعمدة يعتمد على الشاشة */
+  gap: 15px;
+  width: 100%;
+}
+
+.random-images .item {
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.random-images img {
+  width: 100%;
+  max-width: 100px;
+  /* حجم مناسب للهواتف */
+  height: auto;
+  border-radius: 8px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.random-images img:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+}
+
+.random-images .price {
+  font-size: 14px;
+  font-weight: bold;
+  color: #444;
+  margin-top: 5px;
+}
+
+/* 🔹 تحسين التصميم للشاشات الصغيرة (الهواتف المحمولة) */
+@media (max-width: 768px) {
+
+  /* جعل التصميم عموديًا على الهواتف */
+  .modal-content {
+    flex-direction: row;
+    /* الاحتفاظ بالتصميم الأفقي على الأجهزة اللوحية */
+    width: auto;
+    height: 550px;
+  
+
+    padding: 15px;
+  }
+   .modal .item {
+      width: 150px;
+      text-align: center;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      padding: 10px;
+      padding-bottom: 50px;
+      padding-top: 30px;
+    }
+.modal-right h3 {
+  font-size: 18px;
+  margin-top: 8px;
+  color: #333;
+  text-align: center;
+}
+  /* الصورة الكبيرة والسعر في الجانب الأيسر */
+  .modal-left {
+    flex: 1;
+    /* توزيع المساحة بالتساوي */
+    margin-right: 10px;
+    /* فصل بين الجانبين */
+  }
+
+  .modal-left img {
+    max-height: 250px;
+    /* تقليل الارتفاع الأقصى للصورة */
+  }
+
+  /* الصور العشوائية والأسعار في الجانب الأيمن */
+  .modal-right {
+    flex: 1;
+    /* توزيع المساحة بالتساوي */
+    padding-left: 10px;
+    /* تقليل الحواف */
+    border-left: none;
+    /* إزالة الخط الفاصل */
+  }
+
+  .random-images {
+    grid-template-columns: repeat(2, 1fr);
+    /* عدد أعمدة أقل */
+    gap: 10px;
+    /* تقليل المسافة بين الصور */
+  }
+
+  .random-images img {
+    max-width: 80px;
+    /* تقليل حجم الصور العشوائية */
+  }
+}
+
+/* 🔹 تحسين التصميم للشاشات الصغيرة جدًا (الهواتف المحمولة) */
+@media (max-width: 480px) {
+
+  /* جعل التصميم عموديًا تمامًا */
+  .modal-content {
+    flex-direction: column;
+    /* تحويل الترتيب إلى عمودي */
+    width: 95%;
+    padding: 5px;
+    height: 900px;
+    margin-top:300px ;
+  }
+.modal .item {
+  width: 120px;
+  text-align: center;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  padding-bottom: 30px;
+  padding-top: 30px;
+  position: relative;
+top: -80px;
+}
+.modal-right h3 {
+  font-size: 18px;
+  margin-bottom: 100px;
+  color: #333;
+  text-align: center;
+  margin-left: 45px;
+}
+  /* الصورة الكبيرة والسعر في الجزء العلوي */
+  .modal-left {
+    width: 100%;
+    /* جعل الصورة الكبيرة تأخذ كامل العرض */
+    margin-right: 0;
+    /* إزالة الهامش */
+    margin-bottom: 15px;
+    align-items: center;
+    /* إضافة فراغ أسفل الصورة */
+  }
+
+  .modal-left img {
+    max-height: 300px;
+    /* زيادة الارتفاع الأقصى للصورة */
+  }
+
+  /* الصور العشوائية والأسعار في الجزء السفلي */
+  .modal-right {
+    width: 50%;
+    /* جعل الصور العشوائية تأخذ كامل العرض */
+    padding-left: 0;
+    /* إزالة الحواف */
+    border-left: none;
+    /* إزالة الخط الفاصل */
+        margin-left: 30px;
+        
+  }
+
+  .random-images {
+    grid-template-columns: repeat(2, 1fr);
+    /* عدد أعمدة أقل */
+    gap: 20px;
+    /* تقليل المسافة بين الصور */
+  }
+
+  .random-images img {
+    max-width: 100px;
+    /* زيادة حجم الصور العشوائية قليلًا */
+  }
+}
 /* ===== General Styles ===== */
 
 

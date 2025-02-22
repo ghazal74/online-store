@@ -463,7 +463,23 @@
     </div>
     <hr>
 
-    
+    <!-- نافذة العرض المنبثقة -->
+    <!-- نافذة عرض الصورة -->
+<div id="imageModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <div class="modal-left">
+            <img id="largeImage" src="" alt="Selected Image">
+            <p id="largePrice" class="price"></p>
+        </div>
+        <div class="modal-right">
+            <h3>Similar Items</h3>
+            <div class="random-images"></div>
+        </div>
+    </div>
+</div>
+
+
 
     <!--footer content-->
     <footer class="footer" >
@@ -562,6 +578,67 @@
               alert("✅ Logged out successfully!");
               window.location.href = "login.html";
             }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const modal = document.getElementById("imageModal");
+    const largeImage = document.getElementById("largeImage");
+    const largePrice = document.getElementById("largePrice");
+    const closeModal = document.querySelector(".close");
+    const randomImagesContainer = document.querySelector(".random-images");
+
+    // جمع كل الصور في الصفحة
+    const allItems = document.querySelectorAll(".gallery .item img");
+
+    // عند الضغط على صورة، افتح النافذة
+    allItems.forEach(img => {
+      img.addEventListener("click", function () {
+        largeImage.src = this.src; // عرض الصورة المختارة
+        largePrice.textContent = this.nextElementSibling.textContent; // عرض السعر
+
+        // جلب 8 صور عشوائية مختلفة عن الصورة المختارة
+        let shuffledItems = [...allItems].filter(item => item !== this); // إزالة الصورة المختارة
+        shuffledItems = shuffledItems.sort(() => 0.5 - Math.random()).slice(0, 4); // اختيار 8 صور عشوائية
+
+        // إعادة تعيين المحتوى ثم إضافة الصور الجديدة
+        randomImagesContainer.innerHTML = "";
+        shuffledItems.forEach(item => {
+          const div = document.createElement("div");
+          div.classList.add("item");
+
+          const newImg = document.createElement("img");
+          newImg.src = item.src;
+          newImg.alt = item.alt;
+          newImg.addEventListener("click", function () {
+            largeImage.src = this.src;
+            largePrice.textContent = this.nextElementSibling.textContent;
+          });
+
+          const price = document.createElement("p");
+          price.classList.add("price");
+          price.textContent = item.nextElementSibling.textContent;
+
+          div.appendChild(newImg);
+          div.appendChild(price);
+          randomImagesContainer.appendChild(div);
+        });
+
+        // عرض النافذة
+        modal.style.display = "flex";
+      });
+    });
+
+    // إغلاق النافذة عند الضغط على X
+    closeModal.addEventListener("click", function () {
+      modal.style.display = "none";
+    });
+
+    // إغلاق النافذة عند الضغط خارجها
+    window.addEventListener("click", function (event) {
+      if (event.target === modal) {
+        modal.style.display = "none";
+      }
+    });
+  });
 
     </script>
   </body>

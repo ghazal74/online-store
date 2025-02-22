@@ -5,6 +5,362 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>contact</title>
     <style>
+        *{
+    font-family: "Fira Sans", serif;
+    padding: 0;
+    margin: 0; 
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+        .hash {
+  display: flex;
+  flex-direction: row;
+  /* Always keep elements horizontal */
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.844);
+  color: white;
+  padding: 10px 20px;
+  font-size: 15px;
+}
+
+/* Top Links and Menus */
+.container5 {
+  font-weight: bold;
+  color: white !important;
+}
+
+.top_links,
+.language,
+.currency {
+  position: relative;
+  list-style: none;
+  margin-left: 20px;
+  display: inline-block;
+}
+
+/* Links Inside Menus */
+.top_links a,
+.language a,
+.currency a {
+  color: white;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 14px;
+  min-width: 120px;
+}
+
+/* Language Icon */
+.language img {
+  width: 20px;
+  height: 15px;
+  margin-right: 5px;
+}
+
+/* Icons Styling */
+.top_links i,
+.language i,
+.currency i {
+  font-size: 12px;
+  margin-left: 5px;
+  color: white;
+}
+
+/* Dropdown Menus */
+.dropdown_links,
+.dropdown_language,
+.dropdown_currency {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  list-style: none;
+  padding: 5px 0;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  min-width: 160px;
+  z-index: 100;
+}
+
+/* Dropdown Items */
+.dropdown_links li,
+.dropdown_language li,
+.dropdown_currency li {
+  padding: 8px 20px;
+  text-align: left;
+}
+
+/* Dropdown Links */
+.dropdown_links li a,
+.dropdown_language li a,
+.dropdown_currency li a {
+  text-decoration: none;
+  color: black;
+  display: inline-block;
+  font-size: 14px;
+  width: 100%;
+  position: relative;
+  padding-bottom: 5px;
+  align-items: center;
+}
+
+/* Bottom Line Effect */
+.dropdown_links li a::after,
+.dropdown_language li a::after,
+.dropdown_currency li a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: black;
+  transition: width 0.3s ease-in-out;
+}
+
+.dropdown_links li a:hover::after,
+.dropdown_language li a:hover::after,
+.dropdown_currency li a:hover::after {
+  width: 100%;
+  left: 0;
+}
+
+/* Show Dropdown on Hover */
+.top_links:hover .dropdown_links,
+.language:hover .dropdown_language,
+.currency:hover .dropdown_currency {
+  display: block;
+}
+
+.dropdown_links:hover,
+.dropdown_language:hover,
+.dropdown_currency:hover {
+  display: block;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+
+  /* Keep elements horizontal even on small screens */
+  .hash {
+    flex-wrap: wrap;
+    /* Allow wrapping if the screen is too narrow */
+    justify-content: flex-start;
+    /* Align items to the start */
+    padding: 10px;
+  }
+
+  .top_links,
+  .language,
+  .currency {
+    margin-left: 10px;
+    /* Reduce spacing between elements */
+    display: inline-block;
+    /* Ensure elements are displayed horizontally */
+  }
+
+  .top_links a,
+  .language a,
+  .currency a {
+    padding: 8px 10px;
+    /* Reduce padding for smaller screens */
+    font-size: 12px;
+    /* Reduce font size for better fit */
+    min-width: auto;
+    /* Remove fixed minimum width */
+  }
+
+  .language img {
+    width: 15px;
+    height: 10px;
+  }
+
+  .dropdown_links,
+  .dropdown_language,
+  .dropdown_currency {
+    position: absolute;
+    /* Keep dropdowns positioned absolutely */
+    width: 160px;
+    /* Set a fixed width for dropdowns */
+    margin-top: 0;
+    /* Remove unnecessary margin */
+  }
+}
+/*----------------------------------------------------------------*/
+/*logo*/
+    /* ✅ تحسين الصور لتكون متجاوبة */
+    
+  
+    /* ✅ تحسين الروابط */
+    a {
+      text-decoration: none;
+      color: black;
+    }
+  
+    /* ✅ تحسين الهيدر ليكون متجاوبًا */
+/* Header Section Styling */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  padding: 15px 20px;
+  /* Add horizontal padding */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-top: 10px;
+}
+
+/* Navigation Menu */
+header ul {
+  list-style: none;
+  display: flex;
+  /* Keep the menu horizontal */
+  margin: 0;
+  /* Remove unnecessary margin */
+  padding: 0;
+  /* Remove default padding */
+}
+
+header ul li {
+  position: relative;
+  margin-right: 30px;
+  /* Space between menu items */
+}
+
+header ul li:last-child {
+  margin-right: 0;
+  /* Remove margin for the last item */
+}
+
+header ul li a {
+  text-decoration: none;
+  color: #333;
+  font-size: 16px;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+header ul li a:hover {
+  color: #e74c3c;
+  /* Change color on hover */
+}
+
+/* Support Section */
+.support {
+  font-size: 14px;
+  color: #666;
+}
+
+.support p {
+  margin: 0;
+  /* Remove unnecessary margin */
+}
+
+.support a {
+  text-decoration: none;
+  color: #e74c3c;
+  /* Highlight the phone number */
+  font-weight: bold;
+}
+
+.support a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+
+  /* Keep the header elements horizontal even on small screens */
+  header {
+    flex-wrap: wrap;
+    /* Allow wrapping if necessary */
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  header ul {
+    flex-direction: row;
+    /* Keep the menu horizontal */
+    margin: 0;
+    /* Remove unnecessary margin */
+    padding: 0;
+    /* Remove default padding */
+  }
+
+  header ul li {
+    margin-right: 15px;
+    /* Reduce spacing between menu items */
+  }
+
+  header ul li a {
+    font-size: 14px;
+    /* Reduce font size for better fit */
+  }
+
+  .support {
+    margin-top: 10px;
+    /* Add some spacing for the support section */
+    text-align: center;
+    /* Center align the support text */
+  }
+}
+  
+    
+/* Logo Section Styling */
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Logo Image Styling */
+.photo {
+  width: 100px;
+  /* Adjust the logo size */
+  height: auto;
+  border-radius: 5px;
+}
+
+/* Almotabaed Word Styling */
+.container3 {
+  margin-left: 20px;
+}
+
+.almotabaed {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .logo {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 15px;
+  }
+
+  .photo {
+    width: 80px;
+  }
+
+  .almotabaed {
+    font-size: 20px;
+  }
+}
+
+/*----------------------------------------------------------------*/
         .footer {
     background: #222;
     color: #fff;
@@ -59,6 +415,7 @@
 }
 .contact_area {
   margin-bottom: 60px;
+  margin-left: 10px;
 }
 #contact-form {
     background: #fff;
@@ -185,54 +542,110 @@
     </style>
 </head>
 <body>
-    <footer class="footer" id="contact">
-        <div class="container7">
-            <div class="column">
-                <h3>Contact Information</h3>
-                <p>📞 Phone: 0528686321</p>
-                <p>✉️ Email: Info@almotabaed.com</p>
-            </div>
-            <div class="column">
-                <h3>Important Links</h3>
-                <a href="#">Privacy Policy</a>
-                <br>
-                <a href="#">Terms of Use</a>
-            </div>
-            <div class="column social">
-                <h3>Follow Us</h3>
-                <a href="#"> Facebook</a>
-                <br>
-                <a href="#"> Twitter</a>
-                <br>
-                <a href="#"> Instagram</a>
-            </div>
-        </div>
-
-
-       
+    <div class="hash">
+        <div class="container5">Free Returns: For First 40 Days</div>
     
-
-
-
-        <div class="copyright">
-            &copy; 2025 All Rights Reserved | KGM Marketing
+        <li class="top_links">
+            <a href="#">My Account <i class="ion-chevron-down"></i></a>
+            <ul class="dropdown_links">
+                <li><a href="index.html">home</a></li>
+                <li><a href="#" onclick="logout()">Logout</a></li>
+            </ul>
+        </li>
+    
+        <li class="language">
+            <a href="#" id="selected-language">
+                <img src="img/language.png" alt="" id="language-icon">
+                <span id="language-text">English</span>
+                <i class="ion-chevron-down"></i>
+            </a>
+            <ul class="dropdown_language">
+                <li><a href="#" id="switch-to-ar"><img src="img/language2.png" alt=""> العربية</a></li>
+                <li><a href="#" id="switch-to-en"><img src="img/language.png" alt=""> English</a></li>
+            </ul>
+        </li>
+    
+    
+        <div class="currency">
+            <a href="#">USD <i class="ion-chevron-down"></i></a>
+            <ul class="dropdown_currency">
+                <li><a href="#">SAR</a></li>
+                <li><a href="#">AED</a></li>
+                <li><a href="#">UED</a></li>
+            </ul>
         </div>
-    </footer>
+    </div>
+    <br>
+    <!--header section-->
+    <!--logo-->
+    <div class="logo">
+        <img class="photo" src="img/logo.jpeg" />
+    
+        <!--almotabaed word-->
+        <div class="container3">
+            <h1 class="almotabaed">AL MOTABAED</h1>
+        </div>
+        <!--search-->
+        <div class="header-actions">
+            <div class="select-container">
+    
+    
+    
+                <i class="fas fa-chevron-down select-icon"></i>
+            </div>
+    
+        </div>
+    </div>
+    
+    <hr>
+    
+    <div class="container6">
+        <header>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="login.html">Log In</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+    
+            <!--support-->
+            <div class="support">
+                <p>call free support : <a href="tel:0528686321">0528686321</a></p>
+            </div>
+        </header>
+        <br>
+    </div>
     <div class="contact_area">
         <div class="container">   
             <div class="row">
                 <div class="col-lg-6 col-md-12">
                    <div class="contact_message content">
                         <h3>contact us</h3>    
-                         <p>Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram anteposuerit litterarum formas human. qui sequitur mutationem consuetudium lectorum. Mirum est notare quam</p>
+<p>
+    <strong>We welcome your contact!</strong><br>
+    We are here to assist you and answer all your inquiries. Whether you need technical support, have a question about
+    our products, or have suggestions to share, do not hesitate to contact us.<br>
+
+    <strong>How can you reach us?</strong><br>
+    <strong>Email:</strong> You can send your inquiries via email, and we will make sure to respond as soon as
+    possible.<br>
+    <strong>Phone:</strong> Our support team is available to answer your calls during official working hours.<br>
+    <strong>Contact Form:</strong> You can fill out the form below, and we will get back to you soon.<br>
+
+    <strong>Your feedback matters to us!</strong><br>
+    We always strive to improve our services, and we appreciate your feedback and suggestions. Thank you for your trust
+    in us! 
+</p>
+
                         <ul>
-                            <li><i class="fa fa-fax"></i>  Address : Your address goes here.</li>
-                            <li><i class="fa fa-phone"></i> <a href="#">Info@almotabaed.com</a></li>
+                            <li><i class="fa fa-fax"></i>  Address : <a href="#">Info@almotabaed.com</a></li>
                             <li><i class="fa fa-envelope-o"></i><a href="tel:0528686321">0528686321</a></li>
                         </ul>             
                     </div> 
                 </div>
+                <br>
                 <hr>
+                <br>
                 <div class="col-lg-6 col-md-12">
                    <div class="contact_message form">
                         <h3>Tell us</h3>   
@@ -263,6 +676,33 @@
             </div>
         </div>    
     </div>
+    <footer class="footer" id="contact">
+        <div class="container7">
+            <div class="column">
+                <h3>Contact Information</h3>
+                <p>📞 Phone: 0528686321</p>
+                <p>✉️ Email: Info@almotabaed.com</p>
+            </div>
+            <div class="column">
+                <h3>Important Links</h3>
+                <a href="#">Privacy Policy</a>
+                <br>
+                <a href="#">Terms of Use</a>
+            </div>
+            <div class="column social">
+                <h3>Follow Us</h3>
+                <a href="#"> Facebook</a>
+                <br>
+                <a href="#"> Twitter</a>
+                <br>
+                <a href="#"> Instagram</a>
+            </div>
+        </div>
+    
+        <div class="copyright">
+            &copy; 2025 All Rights Reserved | KGM Marketing
+        </div>
+    </footer>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
                 const API_URL = "https://online-store-production-d74f.up.railway.app";
