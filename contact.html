@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>contact</title>
+    <!--<script src="contact.js"></script>-->
     <style>
         *{
     font-family: "Fira Sans", serif;
@@ -324,10 +325,11 @@ header ul li a:hover {
 
 /* Logo Image Styling */
 .photo {
-  width: 100px;
+  width: 250px;
   /* Adjust the logo size */
   height: auto;
   border-radius: 5px;
+  
 }
 
 /* Almotabaed Word Styling */
@@ -336,11 +338,104 @@ header ul li a:hover {
 }
 
 .almotabaed {
-  font-size: 24px;
+  font-size: 40px;
   font-weight: bold;
-  color: #333;
+  color: #70dd76fe;
   text-transform: uppercase;
   letter-spacing: 2px;
+  display: inline-block;
+}
+
+.almotabaed span {
+  display: inline-block;
+  animation: leRotateSkateInTop 1.5s ease-in-out forwards, blinkEffect 1.5s infinite alternate;
+  opacity: 0;
+}
+
+/* إضافة تأخير زمني لكل حرف لظهور تدريجي */
+.almotabaed span:nth-child(1) {
+  animation-delay: 0s, 0.8s;
+}
+
+.almotabaed span:nth-child(2) {
+  animation-delay: 0.1s, 0.9s;
+}
+
+.almotabaed span:nth-child(3) {
+  animation-delay: 0.2s, 1s;
+}
+
+.almotabaed span:nth-child(4) {
+  animation-delay: 0.3s, 1.1s;
+}
+
+.almotabaed span:nth-child(5) {
+  animation-delay: 0.4s, 1.2s;
+}
+
+.almotabaed span:nth-child(6) {
+  animation-delay: 0.5s, 1.3s;
+}
+
+.almotabaed span:nth-child(7) {
+  animation-delay: 0.6s, 1.4s;
+}
+
+.almotabaed span:nth-child(8) {
+  animation-delay: 0.7s, 1.5s;
+}
+
+.almotabaed span:nth-child(9) {
+  animation-delay: 0.8s, 1.6s;
+}
+
+.almotabaed span:nth-child(10) {
+  animation-delay: 0.9s, 1.7s;
+}
+.almotabaed span:nth-child(11) {
+  animation-delay: 1s, 1.8s;
+}
+.almotabaed span:nth-child(12) {
+  animation-delay: 1.1s, 1.9s;
+}
+.almotabaed span:nth-child(13) {
+  animation-delay: 1.2s, 2s;
+}
+.almotabaed span:nth-child(14) {
+  animation-delay: 1.3s, 2.1s;
+}
+.almotabaed span:nth-child(15) {
+  animation-delay: 1.4s, 2.2s;
+}
+.almotabaed span:nth-child(16) {
+  animation-delay: 1.5s, 2.3s;
+}
+.almotabaed span:nth-child(17) {
+  animation-delay: 1.6s, 2.4s;
+}
+
+/* الأنميشن الأول لتحريك الحروف */
+@keyframes leRotateSkateInTop {
+  from {
+    transform: scaleY(0.2) translateY(-100px);
+    opacity: 0;
+  }
+
+  to {
+    transform: scaleY(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+/* تأثير الإضاءة المتكرر بعد انتهاء الأنميشن */
+@keyframes blinkEffect {
+  0% {
+    text-shadow: 0 0 7px rgba(0, 0, 0, 0.8);
+  }
+
+  100% {
+    text-shadow: #81c784;
+  }
 }
 
 /* Responsive Design */
@@ -352,7 +447,7 @@ header ul li a:hover {
   }
 
   .photo {
-    width: 80px;
+    width: 150px;
   }
 
   .almotabaed {
@@ -583,7 +678,9 @@ header ul li a:hover {
     
         <!--almotabaed word-->
         <div class="container3">
-            <h1 class="almotabaed">AL MOTABAED</h1>
+          <h1 class="almotabaed">
+            <span>A</span><span>L</span><span>M</span><span>O</span><span>T</span><span>A</span><span>B</span><span>A</span><span>E</span><span>D</span><br><span>t</span><span>R<span>A<span>D<span>I<span>N<span>G</span>
+          </h1>
         </div>
         <!--search-->
         <div class="header-actions">
@@ -601,12 +698,12 @@ header ul li a:hover {
     
     <div class="container6">
         <header>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="login.html">Log In</a></li>
-                <li><a href="contact.html">Contact Us</a></li>
-            </ul>
+          <ul>
+            <li><a id="nav-home" href="index.html">Home</a></li>
+            <li><a id="nav-about" href="about.html">About Us</a></li>
+            <li><a id="nav-login" href="login.html">Log In</a></li>
+            <li><a id="nav-contact" href="contact.html">Contact Us</a></li>
+          </ul>
     
             <!--support-->
             <div class="support">
@@ -621,21 +718,21 @@ header ul li a:hover {
                 <div class="col-lg-6 col-md-12">
                    <div class="contact_message content">
                         <h3>contact us</h3>    
-<p>
-    <strong>We welcome your contact!</strong><br>
-    We are here to assist you and answer all your inquiries. Whether you need technical support, have a question about
-    our products, or have suggestions to share, do not hesitate to contact us.<br>
 
-    <strong>How can you reach us?</strong><br>
-    <strong>Email:</strong> You can send your inquiries via email, and we will make sure to respond as soon as
-    possible.<br>
-    <strong>Phone:</strong> Our support team is available to answer your calls during official working hours.<br>
-    <strong>Contact Form:</strong> You can fill out the form below, and we will get back to you soon.<br>
+    <strong>We welcome your contact!</strong>
+    <p>We are here to assist you and answer all your inquiries. Whether you need technical support, have a question about
+    our products, or have suggestions to share, do not hesitate to contact us.</p>
 
-    <strong>Your feedback matters to us!</strong><br>
-    We always strive to improve our services, and we appreciate your feedback and suggestions. Thank you for your trust
-    in us! 
-</p>
+    <p><strong>How can you reach us?</strong></p>
+    <p><strong>Email:</strong> You can send your inquiries via email, and we will make sure to respond as soon as
+    possible.</p>
+    <strong>Phone:</strong> Our support team is available to answer your calls during official working hours.<br><br>
+    <strong>Contact Form:</strong> You can fill out the form below, and we will get back to you soon.<br><br>
+
+    <p><strong>Your feedback matters to us!</strong><br></p>
+    <p>We always strive to improve our services, and we appreciate your feedback and suggestions. Thank you for your trust
+    in us! </p>
+
 
                         <ul>
                             <li><i class="fa fa-fax"></i>  Address : <a href="#">Info@almotabaed.com</a></li>
@@ -680,8 +777,8 @@ header ul li a:hover {
         <div class="container7">
             <div class="column">
                 <h3>Contact Information</h3>
-                <p>📞 Phone: 0528686321</p>
-                <p>✉️ Email: Info@almotabaed.com</p>
+                <p>📞 Phone: <a href="tel:0528686321">0528686321</a></p>
+                <p>✉️ Email: <a href="mailto:Info@almotabaed.com">Info@almotabaed.com</a></p>
             </div>
             <div class="column">
                 <h3>Important Links</h3>
@@ -691,11 +788,11 @@ header ul li a:hover {
             </div>
             <div class="column social">
                 <h3>Follow Us</h3>
-                <a href="#"> Facebook</a>
+                <a href="https://www.facebook.com/almotabaedtrading?mibextid=ZbWKwL"> Facebook</a>
                 <br>
                 <a href="#"> Twitter</a>
                 <br>
-                <a href="#"> Instagram</a>
+                <a href="https://www.instagram.com/almotabaedtrading/profilecard/?igsh=cGtsMWhrZmZmdDU4"> Instagram</a>
             </div>
         </div>
     

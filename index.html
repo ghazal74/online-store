@@ -7,6 +7,11 @@
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="normalize.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/i18next/22.4.9/i18next.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/i18next-browser-languagedetector/6.1.4/i18nextBrowserLanguageDetector.min.js"></script>
+<script src="index.js"></script>
+
     <!--<script>
       const token = localStorage.getItem("token") || sessionStorage.getItem("token");
       if (!token) {
@@ -14,6 +19,45 @@
       }
     </script>
   -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+          const categorySelect = document.getElementById("category-select");
+
+          categorySelect.addEventListener("change", function () {
+            const selectedOption = categorySelect.options[categorySelect.selectedIndex];
+            const targetId = selectedOption.getAttribute("data-target");
+
+            if (targetId) {
+              document.getElementById(targetId).scrollIntoView({ behavior: "smooth" });
+            }
+          });
+        });
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+          const searchInput = document.querySelector(".search-container input");
+
+          // قائمة الكلمات المفتاحية وأقسامها
+          const sections = {
+            "men": "mens-wear",
+            "women": "womens-wear",
+            "mens perfume": "mens-perfume",
+            "woman perfume": "woman-perfume"
+          };
+
+          searchInput.addEventListener("keypress", function (event) {
+            if (event.key === "Enter") { // عند الضغط على Enter
+              const searchText = searchInput.value.trim().toLowerCase(); // النص المُدخل
+
+              if (sections[searchText]) {
+                document.getElementById(sections[searchText]).scrollIntoView({ behavior: "smooth" });
+                searchInput.value = ""; // مسح حقل البحث بعد الانتقال
+              }
+            }
+          });
+        });
+
+    </script>
   </head>
   <body>
   
@@ -32,7 +76,7 @@
   <li class="language">
     <a href="#" id="selected-language">
       <img src="img/language.png" alt="" id="language-icon">
-      <span id="language-text">English</span>
+      <span id="language-text">language</span>
       <i class="ion-chevron-down"></i>
     </a>
     <ul class="dropdown_language">
@@ -43,13 +87,14 @@
 
 
   <div class="currency">
-    <a href="#">USD <i class="ion-chevron-down"></i></a>
+    <a href="#" id="selected-currency">USD <i class="ion-chevron-down"></i></a>
     <ul class="dropdown_currency">
-      <li><a href="#">SAR</a></li>
-      <li><a href="#">AED</a></li>
-      <li><a href="#">UED</a></li>
+      <li><a href="#" id="currency-sar">SAR</a></li>
+      <li><a href="#" id="currency-aed">AED</a></li>
+      <li><a href="#" id="currency-ued">UED</a></li>
     </ul>
   </div>
+
 </div>
 
     <!--header section-->
@@ -59,21 +104,22 @@
 
       <!--almotabaed word-->
       <div class="container3">
-        <h1 class="almotabaed"> <span>A</span><span>L</span><span>M</span><span>O</span><span>T</span><span>A</span><span>B</span><span>A</span><span>E</span><span>D</span></h1>
+        <h1 class="almotabaed"> <span>A</span><span>L</span><span>M</span><span>O</span><span>T</span><span>A</span><span>B</span><span>A</span><span>E</span><span>D</span><br><span>t</span><span>R<span>A<span>D<span>I<span>N<span>G</span></h1>
       </div>
 
       <!--search-->
       <div class="header-actions">
       <div class="select-container">
-        <select>
+        <select id="category-select">
           <option value="" disabled selected>Choose an option</option>
-          <option value="1">ALL Categories</option>
-          <option value="2" href="#mens-wear">Men</option>
-          <option value="3">Women</option>
-          <option value="4">Perfumes</option>
+          <option value="1" data-target="mens-perfume">Men Perfumes</option>
+          <option value="2" data-target="mens-wear">Men</option>
+          <option value="3" data-target="womens-wear">Women</option>
+          <option value="4" data-target="woman-perfume">Woman Perfumes</option>
         </select>
         <i class="fas fa-chevron-down select-icon"></i>
       </div>
+
       <div class="search-container">
         <input type="text" placeholder="Search here..." />
         <i class="fas fa-search search-icon"></i>
@@ -87,7 +133,7 @@
         <ul>
           <li><a href="index.html">Home</a></li>
           <li><a href="about.html">About Us</a></li>
-          <li><a href="login.html">Log In</a></li>
+<li><a id="login-link" href="login.html">Log In</a></li>
           <li><a href="contact.html">Contact Us</a></li>
         </ul>
 
@@ -115,20 +161,20 @@
   
 
       <div class="words" id="collection">
-        <h1>" OUR Collection "</h1>
-        <a href="#mens-wear">men</a>
-        <a href="#women-wear">women</a>
-        <a href="#mperfums">men perfumes</a>
-         <a href="#wperfums">women perfumes</a>
-
+        <h1 id="collection-title">" OUR Collection "</h1>
+        <a href="#mens-wear" id="men-link">men</a>
+        <a href="#women-wear" id="women-link">women</a>
+        <a href="#mperfums" id="men-perfumes-link">men perfumes</a>
+        <a href="#wperfums" id="women-perfumes-link">women perfumes</a>
       </div>
+
 
     
       <div class="content-container">
         <img src="img/ph3.jpg" alt="صورة توضيحية" />
         <div class="text-content">
           <h2>Trending Collection</h2>
-          <p>Explore our latest products in the world of clothing</p>
+          <p>Explore our latest products in the world of clothes</p>
         
       </div>
       <img src="img/ph1.jpg" />
@@ -272,7 +318,7 @@
     <!--perfume word-->
     <div class="perfume-label">
       <i class="fas fa-wind perfume-icon"></i>
-      Men's Perfume
+      <span id="mens-perfume">Men's Perfume</span>
     </div>
     <!--perfume photos-->
     <div class="gallery">
@@ -281,23 +327,23 @@
         <div class="price">$125.44</div>
       </div>
       <div class="item">
-        <img src="img/man-per2.webp" alt="Image 2" />
+        <img src="img/man-per2.png" alt="Image 2" />
         <div class="price">$125.44</div>
       </div>
       <div class="item">
-        <img src="img/man-per3.webp" alt="Image 3" />
+        <img src="img/creed aventus.png" alt="Image 3" />
         <div class="price">$340.52</div>
       </div>
       <div class="item">
-        <img src="img/man-per4.webp" alt="Image 4" />
+        <img src="img/acqua di gi.png" alt="Image 4" />
         <div class="price">$109.75</div>
       </div>
       <div class="item">
-        <img src="img/man-per5.webp" alt="Image 5" />
+        <img src="img/tom ford.png" alt="Image 5" />
         <div class="price">$300.00</div>
       </div>
       <div class="item">
-        <img src="img/man-per7.png" alt="Image 6" />
+        <img src="img/gentle men.png" alt="Image 6" />
         <div class="price">$100.00</div>
       </div>
     </div>
@@ -306,15 +352,13 @@
     <br />
     
      <!--men's wear text-->
-     <div class="animated-text" id="women-wear">WOMEN'S WEAR</div>
-
+<div class="animated-text" id="women-wear-text">WOMEN'S WEAR</div>
     <!--woman's main photo-->
-    <div class="woman_photo">
+    <div class="woman_photo" id="womens-wear">
       <img src="img/woman photo.png" />
     </div>
 
-    <div class="winter-woman-clothes-text">Winter Clothes</div>
-    <!--women's winter clothes and prices-->
+<div class="winter-woman-clothes-text" id="winter-clothes">Winter Clothes</div>
     <div class="gallery">
       <div class="item">
         <img src="img/woman w1.jpg" alt="ملابس 1" />
@@ -367,8 +411,7 @@
     </div>
 
     <!--women's summer clothes text-->
-    <div class="summer-woman-clothes-text">Summer Clothes</div>
-    <!--women's summer clothes and prices-->
+<div class="summer-woman-clothes-text" id="summer-clothes">Summer Clothes</div>    <!--women's summer clothes and prices-->
     <div class="gallery">
       <div class="item">
         <img src="img/summer1.jpg" alt="ملابس 1" />
@@ -424,8 +467,7 @@
     <br>
 
     <!--women's perfume text-->
-    <div class="animated-text" id="wperfums">WOMEN'S perfume</div>
-
+<div class="animated-text" id="wperfums-text">WOMEN'S perfume</div>
     <!--woman's perfume main photo-->
     <div class="woman_perfume_photo">
       <img src="img/per7.webp" />
@@ -433,35 +475,102 @@
     </div>
 
     <!--perfume word-->
-    <div class="woman-perfume-text">Women's Perfume</div>
-    <!--perfume photos-->
+<div class="woman-perfume-text" id="woman-perfume">Women's Perfume</div>    <!--perfume photos-->
     <div class="gallery">
       <div class="item">
-        <img src="img/per.webp" alt="Image 1" />
+        <img src="img/peredit.jpg" alt="Image 1" />
         <div class="price">$130</div>
       </div>
       <div class="item">
-        <img src="img/per3.webp" alt="Image 2" />
+        <img src="img/gucci.png" alt="Image 2" />
         <div class="price">$100</div>
       </div>
       <div class="item">
-        <img src="img/per4.webp" alt="Image 3" />
+        <img src="img/فيرزاتشي.png" alt="Image 3" />
         <div class="price">$110.</div>
       </div>
       <div class="item">
-        <img src="img/per5.webp" alt="Image 4" />
+        <img src="img/tomford.png" alt="Image 4" />
         <div class="price">$220</div>
       </div>
       <div class="item">
-        <img src="img/per6.webp" alt="Image 5" />
+        <img src="img/SL.png" alt="Image 5" />
         <div class="price">$105.69</div>
       </div>
       <div class="item">
-        <img src="img/per2.webp" alt="Image 6" />
+        <img src="img/per2edit.jpg" alt="Image 6" />
         <div class="price">$142.58</div>
       </div>
     </div>
     <hr>
+<!--cosemetics text-->
+<div class="animated-text" id="cosemetics">cosemetics</div>
+
+<!--cosemetics photo-->
+<img src="img/cosemetics background.webp" />
+
+<div class="gallery">
+  <div class="item">
+    <img src="img/eye liner.jpg" alt="ملابس 1" />
+    <p class="price">eye linear</p>
+    <p class="price">$50</p>
+  </div>
+  <div class="item">
+    <img src="img/foundation.jpg" alt="ملابس 2" />
+    <p class="price">foundation</p>
+    <p class="price">$50</p>
+  </div>
+  <div class="item">
+    <img src="img/makeup remover.jpg" alt="ملابس 3" />
+    <p class="price">makeup remover</p>
+    <p class="price">$75</p>
+  </div>
+  <div class="item">
+    <img src="img/makeup brush.jpg" alt="ملابس 4" />
+    <p class="price">makeup brush</p>
+    <p class="price">$50</p>
+  </div>
+  <div class="item">
+    <img src="img/lip palm.jpg" alt="ملابس 5" />
+    <p class="price">lip palm</p>
+    <p class="price">$50</p>
+  </div>
+  <div class="item">
+    <img src="img/contour.jpg" alt="ملابس 6" />
+    <p class="price">contour</p>
+    <p class="price">$50</p>
+  </div>
+  <div class="item">
+    <img src="img/body wash.jpg" alt="ملابس 7" />
+    <p class="price">body wash</p>
+    <p class="price">$50</p>
+  </div>
+  <div class="item">
+    <img src="img/ghost shampoo.jpg" alt="ملابس 8" />
+    <p class="price">ghost shampoo</p>
+    <p class="price">$50</p>
+  </div>
+  <div class="item">
+    <img src="img/serum oil.jpg" alt="ملابس 5" />
+    <p class="price">serum oil</p>
+    <p class="price">$50</p>
+  </div>
+  <div class="item">
+    <img src="img/hair oil.jpg" alt="ملابس 6" />
+    <p class="price">hair oil</p>
+    <p class="price">$50</p>
+  </div>
+  <div class="item">
+    <img src="img/sun cream body.jpg" alt="ملابس 7" />
+    <p class="price">sun cream body</p>
+    <p class="price">$50</p>
+  </div>
+  <div class="item">
+    <img src="img/body scrub.jpg" alt="ملابس 8" />
+    <p class="price">body scrup</p>
+    <p class="price">$50</p>
+  </div>
+</div>
 
     <!-- نافذة العرض المنبثقة -->
     <!-- نافذة عرض الصورة -->
@@ -473,41 +582,42 @@
             <p id="largePrice" class="price"></p>
         </div>
         <div class="modal-right">
-            <h3>Similar Items</h3>
-            <div class="random-images"></div>
+          <h3 id="similar-items">Similar Items</h3>
+          <div class="random-images"></div>
+        </div>
         </div>
     </div>
 </div>
 
 
 
-    <!--footer content-->
-    <footer class="footer" >
+    <footer class="footer">
       <div class="container7">
-          <div class="column">
-              <h3>Contact Information</h3>
-              <p>📞 Phone: 0528686321</p>
-              <p>✉️ Email: Info@almotabaed.com</p>
-          </div>
-          <div class="column">
-              <h3>Important Links</h3>
-              <a href="#">Privacy Policy</a>
-              <br>
-              <a href="#">Terms of Use</a>
-          </div>
-          <div class="column social">
-              <h3>Follow Us</h3>
-              <a href="#"> Facebook</a>
-              <br>
-              <a href="#"> Twitter</a>
-              <br>
-              <a href="#"> Instagram</a>
-          </div>
+        <div class="column">
+          <h3 id="contact-title">Contact Information</h3>
+          <p>📞 <span id="phone-text">Phone:</span> <a href="tel:0528686321">0528686321</a></p>
+          <p>✉️ <span id="email-text">Email:</span> <a href="mailto:Info@almotabaed.com">Info@almotabaed.com</a></p>
+        </div>
+        <div class="column">
+          <h3 id="important-links">Important Links</h3>
+          <a href="#" id="privacy-policy">Privacy Policy</a>
+          <br>
+          <a href="#" id="terms-of-use">Terms of Use</a>
+        </div>
+        <div class="column social">
+          <h3 id="follow-us">Follow Us</h3>
+          <a href="https://www.facebook.com/almotabaedtrading?mibextid=ZbWKwL"> Facebook</a>
+          <br>
+          <a href="#"> Twitter</a>
+          <br>
+          <a href="https://www.instagram.com/almotabaedtrading/profilecard/?igsh=cGtsMWhrZmZmdDU4"> Instagram</a>
+        </div>
       </div>
       <div class="copyright">
-          &copy; 2025 All Rights Reserved | KGM Marketing
+        &copy; 2025 <span id="all-rights">All Rights Reserved</span> | <span id="kgm-marketing">KGM Marketing</span>
       </div>
-  </footer>
+    </footer>
+
     <script>
       let currentIndex = 0;
         const slides = document.querySelectorAll(".slide");
@@ -642,5 +752,6 @@
 
  
     </script>
+    
   </body>
 </html>
