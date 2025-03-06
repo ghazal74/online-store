@@ -191,7 +191,7 @@
    
     <div class="winter-clothes-text">Winter Clothes</div>
     <!--men's winter clothes and prices-->
-    <div class="gallery">
+    <div class="gallery" data-category="winterMen">
       <div class="item">
         <img src="img/men3.webp" alt="ملابس 1" />
         <p class="price">$50</p>
@@ -245,7 +245,7 @@
     <div class="summer-clothes-text">SUMMER Clothes</div>
 
     <!--men's summer clothes-->
-    <div class="gallery">
+    <div class="gallery" data-category="summerMen">
       <div class="item">
         <img src="img/صيفي 1.jpg" alt="ملابس 1" />
         <p class="price">$50</p>
@@ -320,7 +320,7 @@
       <span id="mens-perfume">Men's Perfume</span>
     </div>
     <!--perfume photos-->
-    <div class="gallery">
+    <div class="gallery" data-category="perfumeMen">
       <div class="item">
         <img src="img/man-per8.png" alt="Image 1" />
         <div class="price">$125.44</div>
@@ -358,7 +358,7 @@
     </div>
 
 <div class="winter-woman-clothes-text" id="winter-clothes">Winter Clothes</div>
-    <div class="gallery">
+    <div class="gallery" data-category="winterWoman">
       <div class="item">
         <img src="img/woman w1.jpg" alt="ملابس 1" />
         <p class="price">$50</p>
@@ -411,7 +411,7 @@
 
     <!--women's summer clothes text-->
 <div class="summer-woman-clothes-text" id="summer-clothes">Summer Clothes</div>    <!--women's summer clothes and prices-->
-    <div class="gallery">
+    <div class="gallery" data-category="summrWoman">
       <div class="item">
         <img src="img/summer1.jpg" alt="ملابس 1" />
         <p class="price">$50</p>
@@ -475,7 +475,7 @@
 
     <!--perfume word-->
 <div class="woman-perfume-text" id="woman-perfume">Women's Perfume</div>    <!--perfume photos-->
-    <div class="gallery">
+    <div class="gallery" data-category="perfumeWoman">
       <div class="item">
         <img src="img/peredit.jpg" alt="Image 1" />
         <div class="price">$130</div>
@@ -486,7 +486,7 @@
       </div>
       <div class="item">
         <img src="img/فيرزاتشي.png" alt="Image 3" />
-        <div class="price">$110.</div>
+        <div class="price">$110</div>
       </div>
       <div class="item">
         <img src="img/tomford.png" alt="Image 4" />
@@ -508,7 +508,7 @@
 <!--cosemetics photo-->
 <img src="img/cosemetics background.webp" />
 
-<div class="gallery">
+<div class="gallery" data-category="cosemetics">
   <div class="item">
     <img src="img/eye liner.jpg" alt="ملابس 1" />
     <p class="price">eye linear</p>
@@ -689,65 +689,72 @@
             }
 
   document.addEventListener("DOMContentLoaded", function () {
-    const modal = document.getElementById("imageModal");
-    const largeImage = document.getElementById("largeImage");
-    const largePrice = document.getElementById("largePrice");
-    const closeModal = document.querySelector(".close");
-    const randomImagesContainer = document.querySelector(".random-images");
+      const modal = document.getElementById("imageModal");
+      const largeImage = document.getElementById("largeImage");
+      const largePrice = document.getElementById("largePrice");
+      const closeModal = document.querySelector(".close");
+      const randomImagesContainer = document.querySelector(".random-images");
 
-    // جمع كل الصور في الصفحة
-    const allItems = document.querySelectorAll(".gallery .item img");
+      // جمع كل الصور في الصفحة مع الفئات الخاصة بها
+      const allItems = document.querySelectorAll(".gallery .item");
 
-    // عند الضغط على صورة، افتح النافذة
-    allItems.forEach(img => {
-      img.addEventListener("click", function () {
-        largeImage.src = this.src; // عرض الصورة المختارة
-        largePrice.textContent = this.nextElementSibling.textContent; // عرض السعر
+      // عند الضغط على صورة، افتح النافذة مع المنتجات المشابهة فقط
+      allItems.forEach(item => {
+        const img = item.querySelector("img");
+        img.addEventListener("click", function () {
+          const selectedCategory = item.closest(".gallery").dataset.category; // الحصول على فئة المنتج المختار
 
-        // جلب 8 صور عشوائية مختلفة عن الصورة المختارة
-        let shuffledItems = [...allItems].filter(item => item !== this); // إزالة الصورة المختارة
-        shuffledItems = shuffledItems.sort(() => 0.5 - Math.random()).slice(0, 4); // اختيار 8 صور عشوائية
+          largeImage.src = this.src; // عرض الصورة المختارة
+          largePrice.textContent = item.querySelector(".price").textContent; // عرض السعر
 
-        // إعادة تعيين المحتوى ثم إضافة الصور الجديدة
-        randomImagesContainer.innerHTML = "";
-        shuffledItems.forEach(item => {
-          const div = document.createElement("div");
-          div.classList.add("item");
+          // جلب المنتجات المشابهة فقط من نفس الفئة
+          let similarItems = [...allItems].filter(el =>
+            el.closest(".gallery").dataset.category === selectedCategory && el !== item
+          );
 
-          const newImg = document.createElement("img");
-          newImg.src = item.src;
-          newImg.alt = item.alt;
-          newImg.addEventListener("click", function () {
-            largeImage.src = this.src;
-            largePrice.textContent = this.nextElementSibling.textContent;
+          // اختيار 8 منتجات مشابهة فقط
+          similarItems = similarItems.slice(0, 8);
+
+          // إعادة تعيين المحتوى ثم إضافة الصور المشابهة
+          randomImagesContainer.innerHTML = "";
+          similarItems.forEach(similarItem => {
+            const div = document.createElement("div");
+            div.classList.add("item");
+
+            const newImg = document.createElement("img");
+            newImg.src = similarItem.querySelector("img").src;
+            newImg.alt = similarItem.querySelector("img").alt;
+            newImg.addEventListener("click", function () {
+              largeImage.src = this.src;
+              largePrice.textContent = similarItem.querySelector(".price").textContent;
+            });
+
+            const price = document.createElement("p");
+            price.classList.add("price");
+            price.textContent = similarItem.querySelector(".price").textContent;
+
+            div.appendChild(newImg);
+            div.appendChild(price);
+            randomImagesContainer.appendChild(div);
           });
 
-          const price = document.createElement("p");
-          price.classList.add("price");
-          price.textContent = item.nextElementSibling.textContent;
-
-          div.appendChild(newImg);
-          div.appendChild(price);
-          randomImagesContainer.appendChild(div);
+          // عرض النافذة
+          modal.style.display = "flex";
         });
+      });
 
-        // عرض النافذة
-        modal.style.display = "flex";
+      // إغلاق النافذة عند الضغط على X
+      closeModal.addEventListener("click", function () {
+        modal.style.display = "none";
+      });
+
+      // إغلاق النافذة عند الضغط خارجها
+      window.addEventListener("click", function (event) {
+        if (event.target === modal) {
+          modal.style.display = "none";
+        }
       });
     });
-
-    // إغلاق النافذة عند الضغط على X
-    closeModal.addEventListener("click", function () {
-      modal.style.display = "none";
-    });
-
-    // إغلاق النافذة عند الضغط خارجها
-    window.addEventListener("click", function (event) {
-      if (event.target === modal) {
-        modal.style.display = "none";
-      }
-    });
-  });
 
  
     </script>
