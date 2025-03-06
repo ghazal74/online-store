@@ -459,7 +459,11 @@ header ul li a:hover {
     font-size: 40px;
   }
 }
-
+@media (max-width: 975px){
+  .almotabaed {
+      font-size: 22px;
+    }
+}
 /* Select Container Styling */
 /* Header Actions Container Styling */
 .header-actions {
@@ -575,6 +579,30 @@ select:focus {
   }
 }
 
+@media (max-width: 975px){
+  .header-actions {
+      gap: 5px;
+      /* Reduce spacing between elements */
+    }
+  
+    .select-container select,
+    .search-container input {
+      font-size: 12px;
+      /* Reduce font size for better fit */
+      padding: 5px 20px 8px 10px;
+      /* Reduce padding for better fit */
+    }
+  
+    .select-container select {
+      width: 100%;
+      /* Ensure the select field is responsive */
+    }
+  
+    .search-container input {
+      width: 100%;
+      /* Ensure the input field is responsive */
+    }
+}
 
 /* Content Container Styling */
 .content-container {
