@@ -182,3 +182,29 @@ document.addEventListener("DOMContentLoaded", function () {
         i18next.changeLanguage("en", updateContent);
     });
 });
+
+
+document.addEventListener("DOMContentLoaded", function () {
+      const allItems = document.querySelectorAll(".gallery .item");
+      let products = [];
+
+      allItems.forEach(item => {
+        const productPrice = item.querySelector(".price").textContent.replace("", "").trim();
+        const productImage = item.querySelector("img").src;
+        const productCategory = item.closest(".gallery").dataset.category.trim(); // ✅ تحديد الفئة من `data-category`
+
+        products.push({ price: productPrice, category: productCategory, image: productImage });
+
+        item.addEventListener("click", function () {
+          localStorage.setItem("product", JSON.stringify({
+            price: productPrice,
+            category: productCategory,
+            image: productImage
+          }));
+          window.location.href = "product.html";
+        });
+      });
+
+      localStorage.setItem("allProducts", JSON.stringify(products));
+    });
+

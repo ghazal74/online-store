@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details</title>
+        <link rel="stylesheet" href="style.css" />
+<script src="product.js"></script>
+
+</head>
+
+<body>
+
+<!-- hash section -->
+<div class="hash">
+    <div class="container5">Free Returns: For First 40 Days</div>
+
+    <li class="top_links">
+        <a href="#">My Account <i class="ion-chevron-down"></i></a>
+        <ul class="dropdown_links">
+            <li><a href="login.html">Sign In</a></li>
+            <li><a href="#" onclick="logout()">Logout</a></li>
+        </ul>
+    </li>
+
+    <li class="language">
+        <a href="#" id="selected-language">
+            <img src="img/language.png" alt="" id="language-icon">
+            <span id="language-text">language</span>
+            <i class="ion-chevron-down"></i>
+        </a>
+        <ul class="dropdown_language">
+            <li><a href="#" id="switch-to-ar"><img src="img/language2.png" alt=""> العربية</a></li>
+            <li><a href="#" id="switch-to-en"><img src="img/language.png" alt=""> English</a></li>
+        </ul>
+    </li>
+
+
+    <div class="currency">
+        <a href="#" id="selected-currency">USD <i class="ion-chevron-down"></i></a>
+        <ul class="dropdown_currency">
+            <li><a href="#" id="currency-sar">SAR</a></li>
+            <li><a href="#" id="currency-aed">AED</a></li>
+            <li><a href="#" id="currency-ued">UED</a></li>
+        </ul>
+    </div>
+
+</div>
+
+<!--header section-->
+<!--logo-->
+<div class="logo">
+    <img class="photo" src="img/logo.jpeg" />
+
+    
+    
+</div>
+<hr>
+
+<div class="container6">
+    <header>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a id="login-link" href="login.html">Log In</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+
+        <!--support-->
+        <div class="support">
+            <p>call free support : <a href="tel:0528686321">0528686321</a></p>
+        </div>
+    </header>
+</div>
+
+    <!-- Product Section -->
+    <div class="product-page">
+        <div class="product-details">
+            <div class="product-image-container">
+                <img id="product-image" src="" alt="Product Image">
+            </div>
+            <div class="product-info">
+                <h2 id="product-title">price</h2>
+                <p id="product-price"></p>
+    
+                <!-- Color Selection -->
+                <label for="color">Choose a color:</label>
+                <div class="color-selection">
+                    <select id="color" class="styled-select">
+                        <option value="White" data-color="#ecf0f1">⚪ White</option>
+                        <option value="Red" data-color="#e74c3c">🔴 Red</option>
+                        <option value="Blue" data-color="#3498db">🔵 Blue</option>
+                        <option value="Black" data-color="#2c3e50">⚫ Black</option>
+                        <option value="Green" data-color="#27ae60">🟢 Green</option>
+                        <option value="Yellow" data-color="#f1c40f">🟡 Yellow</option>
+                        
+                    </select>
+                </div>
+
+    
+                <!-- Size Selection -->
+                <label for="size">Choose a size:</label>
+                <div class="size-slider-container">
+                    <input type="range" id="size-slider" min="0" max="4" step="1" value="1">
+                    <div class="size-labels">
+                        <span data-index="0">S</span>
+                        <span data-index="1" class="active">M</span>
+                        <span data-index="2">L</span>
+                        <span data-index="3">XL</span>
+                        <span data-index="4">XXL</span>
+                    </div>
+                </div>
+                <p id="selected-size">Selected Size: M</p>
+
+    
+                <button id="buy-now">Buy Now</button>
+            </div>
+        </div>
+    
+        <!-- Similar Products Section -->
+        <h3 class="similar-title">Similar Products</h3>
+        <div class="related-products" id="related-products"></div>
+    </div>
+    
+    <footer class="footer">
+        <div class="container7">
+            <div class="column">
+                <h3 id="contact-title">Contact Information</h3>
+                <p>📞 <span id="phone-text">Phone:</span> <a href="tel:0528686321">0528686321</a></p>
+                <p>✉️ <span id="email-text">Email:</span> <a href="mailto:Info@almotabaed.com">Info@almotabaed.com</a></p>
+            </div>
+            <div class="column">
+                <h3 id="important-links">Important Links</h3>
+                <a href="#" id="privacy-policy">Privacy Policy</a>
+                <br>
+                <a href="#" id="terms-of-use">Terms of Use</a>
+            </div>
+            <div class="column social">
+                <h3 id="follow-us">Follow Us</h3>
+                <a href="https://www.facebook.com/almotabaedtrading?mibextid=ZbWKwL"> Facebook</a>
+                <br>
+                <a href="#"> Twitter</a>
+                <br>
+                <a href="https://www.instagram.com/almotabaedtrading/profilecard/?igsh=cGtsMWhrZmZmdDU4"> Instagram</a>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2025 <span id="all-rights">All Rights Reserved</span> | <span id="kgm-marketing">KGM Marketing</span>
+        </div>
+    </footer>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const product = JSON.parse(localStorage.getItem("product"));
+            const allProducts = JSON.parse(localStorage.getItem("allProducts")) || [];
+            const relatedContainer = document.getElementById("related-products");
+
+            if (product && product.category) {
+                document.getElementById("product-image").src = product.image;
+                document.getElementById("product-price").textContent = `${product.price}`;
+
+                console.log("Selected Product Category:", product.category); 
+
+                let relatedProducts = allProducts.filter(item =>
+                    item.category === product.category && item.image !== product.image
+                );
+
+                console.log("Filtered Related Products:", relatedProducts); 
+
+                relatedProducts = relatedProducts.slice(0, 8);
+
+                relatedContainer.innerHTML = "";
+                if (relatedProducts.length === 0) {
+                    relatedContainer.innerHTML = "<p>No similar products found.</p>";
+                } else {
+                    relatedProducts.forEach(item => {
+                        const div = document.createElement("div");
+                        div.classList.add("related-item");
+                        div.innerHTML = `
+                            <img src="${item.image}" alt="Similar Product">
+                            <p>${item.price}</p>
+                        `;
+                        div.addEventListener("click", function () {
+                            localStorage.setItem("product", JSON.stringify(item));
+                            window.location.reload(); 
+                        });
+                        relatedContainer.appendChild(div);
+                    });
+                }
+            } else {
+                console.error("No product data found in LocalStorage");
+            }
+
+            document.getElementById("buy-now").addEventListener("click", () => {
+                alert("Product added to cart!");
+            });
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+                const colorSelect = document.getElementById("color");
+
+                colorSelect.addEventListener("change", function () {
+                    let selectedColor = this.options[this.selectedIndex].getAttribute("data-color");
+                    colorSelect.style.backgroundColor = selectedColor;
+                    colorSelect.style.color = (selectedColor === "#ecf0f1" || selectedColor === "#f1c40f") ? "#333" : "#fff";
+                    colorSelect.style.border = `2px solid ${selectedColor}`;
+                });
+            });
+
+
+            document.addEventListener("DOMContentLoaded", function () {
+                    const sizeSlider = document.getElementById("size-slider");
+                    const sizeLabels = document.querySelectorAll(".size-labels span");
+                    const selectedSizeText = document.getElementById("selected-size");
+
+                    const sizes = ["S", "M", "L", "XL", "XXL"];
+
+                    sizeSlider.addEventListener("input", function () {
+                        let index = parseInt(sizeSlider.value);
+                        let selectedSize = sizes[index];
+
+                        selectedSizeText.textContent = `Selected Size: ${selectedSize}`;
+
+                        sizeLabels.forEach(label => label.classList.remove("active"));
+                        sizeLabels[index].classList.add("active");
+                    });
+                });
+
+
+    </script>
+    
+    <style>
+        /* ✅ تحسين تجربة المستخدم على جميع الأجهزة */
+body {
+    font-family: "Arial", sans-serif;
+    text-align: center;
+    background-color: #f9f9f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* ✅ ضبط حاوية المنتج */
+.product-page {
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* ✅ تصميم متجاوب للصور والمحتوى */
+.product-details {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+/* ✅ تنسيق صورة المنتج */
+.product-image-container {
+    flex: 1;
+    max-width: 50%;
+}
+
+.product-image-container img {
+    width: 100%;
+    max-width: 450px;
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* ✅ تحريك الصورة عند تمرير الماوس */
+.product-image-container img:hover {
+    transform: scale(1.05);
+}
+
+/* ✅ ضبط محتوى المعلومات */
+.product-info {
+    flex: 1;
+    text-align: left;
+    margin: 10px;
+}
+
+/* ✅ تحسين مظهر السعر */
+#product-price {
+    font-size: 24px;
+    font-weight: bold;
+    color: #27ae60;
+    margin-top: 10px;
+}
+
+/* ✅ تحسين مظهر قائمة الألوان والمقاسات */
+.styled-select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: border 0.3s ease-in-out;
+    background-color: white;
+    text-align: center;
+}
+
+.styled-select:hover {
+    border: 2px solid #27ae60;
+}
+
+/* ✅ تحسين زر الشراء */
+#buy-now {
+    display: block;
+    width: 100%;
+    background: linear-gradient(45deg, #27ae60, #06f067);
+    color: white;
+    padding: 12px;
+    font-size: 18px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+#buy-now:hover {
+    background: linear-gradient(45deg, #c0392b, #e74c3c);
+    transform: scale(1.05);
+}
+
+.similar-title {
+    margin-top: 40px; /* تعديل المسافة */
+    font-size: 22px;
+    font-weight: bold;
+}
+/* ✅ ضبط المنتجات المشابهة */
+.related-products {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.related-item {
+    background: white;
+    border-radius: 12px;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    cursor: pointer;
+    text-align: center;
+}
+
+.related-item:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.related-item img {
+    width: 100%;
+    max-width: 120px;
+    border-radius: 8px;
+}
+
+label[for="size"] {
+    display: block;  /* تأكد من أن العنصر يأخذ سطرًا كاملاً */
+    margin-top: 20px; /* تعديل المسافة بين الكلمة والعنصر الذي فوقها */
+    font-size: 16px;  /* تحسين حجم النص */
+    font-weight: bold; /* جعل النص أكثر وضوحًا */
+}
+
+#selected-size {
+    display: block;  /* تأكد من أن العنصر يأخذ سطرًا كاملاً */
+    margin-top: 20px; /* تعديل المسافة بين المقاس المختار والعنصر الذي فوقه */
+    font-size: 16px;  /* تحسين حجم النص */
+    font-weight: bold; /* جعل النص أكثر وضوحًا */
+    color: #388e3c; /* لون أخضر للمقاس */
+}
+/* ✅ تحسين شريط اختيار المقاسات */
+.size-slider-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    margin-top: 10px;
+}
+
+/* ✅ تحسين مظهر شريط التمرير */
+#size-slider {
+    width: 80%;
+    appearance: none;
+    height: 8px;
+    background: linear-gradient(90deg, #a8e063, #56ab2f);
+    border-radius: 5px;
+    outline: none;
+    transition: background 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+#size-slider::-webkit-slider-thumb {
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    background: white;
+    border: 2px solid #56ab2f;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out, border 0.3s ease-in-out;
+}
+
+#size-slider::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+    border: 2px solid #3b823b;
+}
+
+/* ✅ ضبط أزرار المقاسات */
+.size-labels {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    margin-top: 10px;
+}
+
+.size-labels span {
+    font-size: 16px;
+    font-weight: bold;
+    color: #4caf50;
+    transition: transform 0.2s ease-in-out, color 0.3s ease-in-out;
+}
+
+.size-labels span.active {
+    color: #2e7d32;
+    transform: scale(1.3);
+}
+
+label[for="color"] {
+    display: block;  /* تأكد من أن العنصر يأخذ سطرًا كاملاً */
+    margin-top: 20px; /* تعديل المسافة بين العنوان والعنصر الذي فوقه */
+    font-size: 16px;  /* تحسين حجم النص */
+    font-weight: bold; /* جعل النص أكثر وضوحًا */
+}
+
+/* ✅ تحسين التجاوب للموبايل والتابلت */
+@media screen and (max-width: 768px) {
+    .product-details {
+        text-align: center;
+    }
+
+    .product-image-container {
+        max-width: 100%;
+    }
+
+    .product-info {
+        text-align: center;
+    }
+
+    .related-products {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    }
+
+    .styled-select {
+        font-size: 14px;
+    }
+
+    #size-slider {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .product-page {
+        padding: 15px;
+        border-radius: 10px;
+    }
+
+    #product-price {
+        font-size: 20px;
+    }
+
+    .styled-select {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    #buy-now {
+        font-size: 16px;
+        padding: 10px;
+    }
+
+    .related-products {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        gap: 10px;
+    }
+
+    .related-item {
+        padding: 8px;
+    }
+
+    .related-item img {
+        max-width: 100px;
+    }
+    #size-slider::-webkit-slider-thumb{
+        width: 15px;
+        height: 15px;
+    }
+    
+}
+
+
+    </style>
+    
+    </body>
+    
+    </html>

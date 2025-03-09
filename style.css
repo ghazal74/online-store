@@ -723,7 +723,7 @@ overflow: hidden;
   max-width: 100%;
   margin: 50px auto;
   overflow: hidden;
-  border-radius: 15px;
+  
   box-shadow: 5px 10px 12px rgba(0, 0, 0, 0.1);
 }
 
@@ -741,9 +741,9 @@ overflow: hidden;
 .slide img {
   margin-top: 70px;
   width: 100%;
-  height: 80%;
+  
   display: block;
-  border-radius: 10px;
+  
   box-shadow: 5px 10px 12px rgba(0, 0, 0, 0.1);
 }
 
@@ -871,7 +871,7 @@ overflow: hidden;
       font-size: 60px;
       font-weight: bold;
       font-family: 'Arial', sans-serif;
-      color: #222;
+      color: #70dd76fe;
       padding: 10px 20px;
       position: relative;
       display: inline-block;
@@ -934,7 +934,7 @@ overflow: hidden;
     position: absolute;
     transform: translate(30%, -450%);
     font-family: monospace;
-    color: rgb(233, 165, 8);
+    color: #70dd76fe;
     padding: 10px 20px;
     font-size: 45px;
     text-align: center;
@@ -968,6 +968,16 @@ overflow: hidden;
    border-radius: 10px;
  }
 
+ .gallery[data-category="winterMen"] .item img {
+  width: 110%;
+  max-width: 500px;
+  height: auto;
+  transition: transform 0.3s ease-in-out;
+}
+
+.gallery[data-category="winterMen"] .item img:hover {
+  transform: scale(1.05);
+}
  .item:hover {
    transform: scale(1.05) translateY(-5px);
    filter: brightness(0.9);
@@ -1009,7 +1019,7 @@ overflow: hidden;
     padding: 10px 20px;
     font-size: 24px;
     color: black;
-    border: 3px solid black;
+    border: 3px solid #70dd76fe;
     border-radius: 25px;
     background-color: #ffffff;
     text-transform: uppercase;
@@ -1021,7 +1031,7 @@ overflow: hidden;
   }
 
   .winter-clothes-text:hover {
-    background-color: black;
+    background-color: #70dd76fe;
     color: #ffffff;
     box-shadow: 0 6px 12px rgba(99, 102, 241, 0.4);
     
@@ -1030,7 +1040,7 @@ overflow: hidden;
   .summer-clothes-text {
     padding: 10px 20px;
     font-size: 24px;
-    color: #34a906e6;
+    color: black;
     border: 3px solid #34a906e6;
     border-radius: 25px;
     background-color: #ffffff;
@@ -1166,8 +1176,8 @@ overflow: hidden;
   .winter-woman-clothes-text{
     padding: 10px 20px;
     font-size: 24px;
-    color: #a9069be6;
-    border: 3px solid #a9069be6;
+    color: black;
+    border: 3px solid #70dd76fe;
     border-radius: 25px;
     background-color: #ffffff;
     text-transform: uppercase;
@@ -1177,7 +1187,7 @@ overflow: hidden;
     text-align: center;
   }
   .winter-woman-clothes-text:hover {
-    background-color: #a9069be6;
+    background-color: #70dd76fe;
     color: #ffffff;
     box-shadow: 0 6px 12px rgba(99, 102, 241, 0.4);
   }
@@ -1186,8 +1196,8 @@ overflow: hidden;
   .summer-woman-clothes-text{
     padding: 10px 20px;
     font-size: 24px;
-    color: gold;
-    border: 3px solid gold;
+    color: black;
+    border: 3px solid #70dd76fe;
     border-radius: 25px;
     background-color: #ffffff;
     text-transform: uppercase;
@@ -1197,7 +1207,7 @@ overflow: hidden;
     text-align: center;
   }
   .summer-woman-clothes-text:hover {
-    background-color: rgba(255, 217, 0, 0.801);
+    background-color: #70dd76fe;
     color: #ffffff;
     box-shadow: 0 6px 12px rgba(99, 102, 241, 0.4);
   }
