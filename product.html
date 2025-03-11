@@ -85,8 +85,8 @@
                 <p id="product-price"></p>
     
                 <!-- Color Selection -->
-                <label for="color">Choose a color:</label>
-                <div class="color-selection">
+                <div id="color-selection">
+                    <label for="color">Choose a color:</label>
                     <select id="color" class="styled-select">
                         <option value="White" data-color="#ecf0f1">⚪ White</option>
                         <option value="Red" data-color="#e74c3c">🔴 Red</option>
@@ -94,24 +94,25 @@
                         <option value="Black" data-color="#2c3e50">⚫ Black</option>
                         <option value="Green" data-color="#27ae60">🟢 Green</option>
                         <option value="Yellow" data-color="#f1c40f">🟡 Yellow</option>
-                        
                     </select>
                 </div>
 
     
                 <!-- Size Selection -->
-                <label for="size">Choose a size:</label>
-                <div class="size-slider-container">
-                    <input type="range" id="size-slider" min="0" max="4" step="1" value="1">
-                    <div class="size-labels">
-                        <span data-index="0">S</span>
-                        <span data-index="1" class="active">M</span>
-                        <span data-index="2">L</span>
-                        <span data-index="3">XL</span>
-                        <span data-index="4">XXL</span>
+                <div id="size-selection">
+                    <label for="size">Choose a size:</label>
+                    <div class="size-slider-container">
+                        <input type="range" id="size-slider" min="0" max="4" step="1" value="1">
+                        <div class="size-labels">
+                            <span data-index="0">S</span>
+                            <span data-index="1" class="active">M</span>
+                            <span data-index="2">L</span>
+                            <span data-index="3">XL</span>
+                            <span data-index="4">XXL</span>
+                        </div>
                     </div>
+                    <p id="selected-size">Selected Size: M</p>
                 </div>
-                <p id="selected-size">Selected Size: M</p>
 
     
                 <button id="buy-now">Buy Now</button>
@@ -151,50 +152,59 @@
     </footer>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            const product = JSON.parse(localStorage.getItem("product"));
-            const allProducts = JSON.parse(localStorage.getItem("allProducts")) || [];
-            const relatedContainer = document.getElementById("related-products");
+                const product = JSON.parse(localStorage.getItem("product"));
+                const allProducts = JSON.parse(localStorage.getItem("allProducts")) || [];
+                const relatedContainer = document.getElementById("related-products");
 
-            if (product && product.category) {
-                document.getElementById("product-image").src = product.image;
-                document.getElementById("product-price").textContent = `${product.price}`;
+                if (product && product.category) {
+                    document.getElementById("product-image").src = product.image;
+                    document.getElementById("product-price").textContent = `${product.price}`;
 
-                console.log("Selected Product Category:", product.category); 
+                    console.log("Selected Product Category:", product.category);
 
-                let relatedProducts = allProducts.filter(item =>
-                    item.category === product.category && item.image !== product.image
-                );
+                    // ✅ إخفاء اللون والمقاس إذا كان المنتج من البرفيوم أو المكياج
+                    const excludedCategories = ["perfumeMen", "perfumeWoman", "cosemetics"];
+                    if (excludedCategories.includes(product.category)) {
+                        document.getElementById("color-selection").style.display = "none";
+                        document.getElementById("size-selection").style.display = "none";
+                    }
 
-                console.log("Filtered Related Products:", relatedProducts); 
+                    // ✅ عرض المنتجات المشابهة فقط من نفس الفئة
+                    let relatedProducts = allProducts.filter(item =>
+                        item.category === product.category && item.image !== product.image
+                    );
 
-                relatedProducts = relatedProducts.slice(0, 8);
+                    console.log("Filtered Related Products:", relatedProducts);
 
-                relatedContainer.innerHTML = "";
-                if (relatedProducts.length === 0) {
-                    relatedContainer.innerHTML = "<p>No similar products found.</p>";
-                } else {
-                    relatedProducts.forEach(item => {
-                        const div = document.createElement("div");
-                        div.classList.add("related-item");
-                        div.innerHTML = `
-                            <img src="${item.image}" alt="Similar Product">
-                            <p>${item.price}</p>
-                        `;
-                        div.addEventListener("click", function () {
-                            localStorage.setItem("product", JSON.stringify(item));
-                            window.location.reload(); 
+                    relatedProducts = relatedProducts.slice(0, 8);
+                    relatedContainer.innerHTML = "";
+
+                    if (relatedProducts.length === 0) {
+                        relatedContainer.innerHTML = "<p>No similar products found.</p>";
+                    } else {
+                        relatedProducts.forEach(item => {
+                            const div = document.createElement("div");
+                            div.classList.add("related-item");
+                            div.innerHTML = `
+                    <img src="${item.image}" alt="Similar Product">
+                    <p>${item.price}</p>
+                `;
+                            div.addEventListener("click", function () {
+                                localStorage.setItem("product", JSON.stringify(item));
+                                window.location.reload();
+                            });
+                            relatedContainer.appendChild(div);
                         });
-                        relatedContainer.appendChild(div);
-                    });
+                    }
+                } else {
+                    console.error("No product data found in LocalStorage");
                 }
-            } else {
-                console.error("No product data found in LocalStorage");
-            }
 
-            document.getElementById("buy-now").addEventListener("click", () => {
-                alert("Product added to cart!");
+                document.getElementById("buy-now").addEventListener("click", () => {
+                    alert("Product added to cart!");
+                });
             });
-        });
+
 
         document.addEventListener("DOMContentLoaded", function () {
                 const colorSelect = document.getElementById("color");
