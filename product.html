@@ -65,6 +65,8 @@
             <li><a href="about.html">About Us</a></li>
             <li><a id="login-link" href="login.html">Log In</a></li>
             <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="sort.html">sorting</a></li>
+
         </ul>
 
         <!--support-->
@@ -517,6 +519,40 @@ label[for="color"] {
         height: 15px;
     }
     
+}
+/* ✅ ضبط عرض الاسم والسعر في قسم "Cosmetics" فقط */
+.gallery[data-category="cosemetics"] .item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 10px;
+}
+
+.gallery[data-category="cosemetics"] .item img {
+    width: 100%;
+    max-width: 150px;
+    border-radius: 8px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.gallery[data-category="cosemetics"] .item:hover img {
+    transform: scale(1.05);
+}
+
+/* ✅ ضبط النصوص لتكون أوضح */
+.gallery[data-category="cosemetics"] .name {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    margin-top: 5px;
+}
+
+.gallery[data-category="cosemetics"] .price {
+    font-size: 14px;
+    font-weight: bold;
+    color: #e74c3c; /* لون مميز للسعر */
+    margin-top: 3px;
 }
 
 

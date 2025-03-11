@@ -19,6 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
             aboutUs: "About Us",
             login: "Log In",
             contactUs: "Contact Us",
+            sorting: "Sorting",
             chooseColor: "Choose a color:",
             chooseSize: "Choose a size:",
             selectedSize: "Selected Size:",
@@ -40,6 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
             aboutUs: "معلومات عنا",
             login: "تسجيل الدخول",
             contactUs: "اتصل بنا",
+            sorting :"فرز",
             chooseColor: "اختر اللون:",
             chooseSize: "اختر المقاس:",
             selectedSize: "المقاس المحدد:",
@@ -63,6 +65,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.querySelectorAll("header ul li a")[1].textContent = translations[lang].aboutUs;
         document.querySelectorAll("header ul li a")[2].textContent = translations[lang].login;
         document.querySelectorAll("header ul li a")[3].textContent = translations[lang].contactUs;
+        document.querySelectorAll("header ul li a")[4].textContent = translations[lang].sorting;
         document.querySelector("label[for='color']").textContent = translations[lang].chooseColor;
         document.querySelector("label[for='size']").textContent = translations[lang].chooseSize;
         document.getElementById("selected-size").textContent = translations[lang].selectedSize + " M";

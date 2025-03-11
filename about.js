@@ -38,6 +38,7 @@ const visionTitle = document.getElementById("vision-title");
             terms: "Terms of Use",
             followUs: "Follow Us",
             copyright: "All Rights Reserved | KGM Marketing",
+            sorting : "Sorting",
         },
         ar: {
             freeReturns: "إرجاع مجاني: لأول 40 يومًا",
@@ -48,6 +49,7 @@ const visionTitle = document.getElementById("vision-title");
             aboutUs: "من نحن",
             login: "تسجيل الدخول",
             contactUs: "اتصل بنا",
+            sorting :"فرز",
             callSupport: "اتصل بالدعم المجاني :",
             welcome: "مرحبًا بكم في متجرنا",
             description: "شركة المتباعد للتجارة هي شركة متخصصة في تجارة الجملة، تأسست في الإمارات العربية المتحدة عام 2024. شركة المتبضع للتجارة هي شركة متخصصة في تجارة الجملة للملابس ومستحضرات التجميل والعطور. مهمتنا الأساسية هي توفير جميع احتياجات التجار في جميع أنحاء العالم وليس فقط الإمارات. توفر شركة المتبضع للتجارة أفضل الأسعار لجميع التجار وأصحاب مراكز التجميل وأصحاب محلات الملابس والعطور.",
@@ -64,7 +66,8 @@ const visionTitle = document.getElementById("vision-title");
             privacyPolicy: "سياسة الخصوصية",
             terms: "شروط الاستخدام",
             followUs: "تابعنا",
-            copyright: "جميع الحقوق محفوظة | تسويق KGM"
+            copyright: "جميع الحقوق محفوظة | تسويق KGM",
+            
         }
     };
 
@@ -77,6 +80,7 @@ const visionTitle = document.getElementById("vision-title");
         document.querySelector(".container6 ul li:nth-child(2) a").textContent = translations[lang].aboutUs;
         document.querySelector(".container6 ul li:nth-child(3) a").textContent = translations[lang].login;
         document.querySelector(".container6 ul li:nth-child(4) a").textContent = translations[lang].contactUs;
+        document.querySelector(".container6 ul li:nth-child(5) a").textContent = translations[lang].sorting;
         document.querySelector(".support p").innerHTML = translations[lang].callSupport + ' <a href="tel:0528686321">0528686321</a>';
         document.querySelector(".about-content .sub-header").textContent = translations[lang].welcome;
         document.querySelector(".about-content p").textContent = translations[lang].description;

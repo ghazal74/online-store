@@ -2,639 +2,10 @@
 <html lang="en">
 <head>
 <script src="about.js"></script>
-    <style>
-        
-        *{
-    font-family: "Fira Sans", serif;
-    padding: 0;
-    margin: 0; 
-    max-width: 100%;
-    box-sizing: border-box;
-  }
-        /* Header Section Styling */
-.hash {
-  display: flex;
-  flex-direction: row;
-  /* Always keep elements horizontal */
-  justify-content: space-between;
-  align-items: center;
-  background-color: rgba(0, 0, 0, 0.844);
-  color: white;
-  padding: 10px 20px;
-  font-size: 15px;
-}
-
-/* Top Links and Menus */
-.container5 {
-  font-weight: bold;
-  color: white !important;
-}
-
-.top_links,
-.language,
-.currency {
-  position: relative;
-  list-style: none;
-  margin-left: 20px;
-  display: inline-block;
-}
-
-/* Links Inside Menus */
-.top_links a,
-.language a,
-.currency a {
-  color: white;
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  padding: 5px 10px;
-  cursor: pointer;
-  font-size: 14px;
-  min-width: 120px;
-}
-
-/* Language Icon */
-.language img {
-  width: 20px;
-  height: 15px;
-  margin-right: 5px;
-}
-
-/* Icons Styling */
-.top_links i,
-.language i,
-.currency i {
-  font-size: 12px;
-  margin-left: 5px;
-  color: white;
-}
-
-/* Dropdown Menus */
-.dropdown_links,
-.dropdown_language,
-.dropdown_currency {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background: white;
-  list-style: none;
-  padding: 5px 0;
-  border-radius: 5px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  min-width: 160px;
-  z-index: 100;
-}
-
-/* Dropdown Items */
-.dropdown_links li,
-.dropdown_language li,
-.dropdown_currency li {
-  padding: 8px 20px;
-  text-align: left;
-}
-
-/* Dropdown Links */
-.dropdown_links li a,
-.dropdown_language li a,
-.dropdown_currency li a {
-  text-decoration: none;
-  color: black;
-  display: inline-block;
-  font-size: 14px;
-  width: 100%;
-  position: relative;
-  padding-bottom: 5px;
-  align-items: center;
-}
-
-/* Bottom Line Effect */
-.dropdown_links li a::after,
-.dropdown_language li a::after,
-.dropdown_currency li a::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: black;
-  transition: width 0.3s ease-in-out;
-}
-
-.dropdown_links li a:hover::after,
-.dropdown_language li a:hover::after,
-.dropdown_currency li a:hover::after {
-  width: 100%;
-  left: 0;
-}
-
-/* Show Dropdown on Hover */
-.top_links:hover .dropdown_links,
-.language:hover .dropdown_language,
-.currency:hover .dropdown_currency {
-  display: block;
-}
-
-.dropdown_links:hover,
-.dropdown_language:hover,
-.dropdown_currency:hover {
-  display: block;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-
-  /* Keep elements horizontal even on small screens */
-  .hash {
-    flex-wrap: wrap;
-    /* Allow wrapping if the screen is too narrow */
-    justify-content: flex-start;
-    /* Align items to the start */
-    padding: 10px;
-  }
-
-  .top_links,
-  .language,
-  .currency {
-    margin-left: 10px;
-    /* Reduce spacing between elements */
-    display: inline-block;
-    /* Ensure elements are displayed horizontally */
-  }
-
-  .top_links a,
-  .language a,
-  .currency a {
-    padding: 8px 10px;
-    /* Reduce padding for smaller screens */
-    font-size: 12px;
-    /* Reduce font size for better fit */
-    min-width: auto;
-    /* Remove fixed minimum width */
-  }
-
-  .language img {
-    width: 15px;
-    height: 10px;
-  }
-
-  .dropdown_links,
-  .dropdown_language,
-  .dropdown_currency {
-    position: absolute;
-    /* Keep dropdowns positioned absolutely */
-    width: 160px;
-    /* Set a fixed width for dropdowns */
-    margin-top: 0;
-    /* Remove unnecessary margin */
-  }
-}
-
-/*logo*/
-    /* ✅ تحسين الصور لتكون متجاوبة */
-    
-  
-    /* ✅ تحسين الروابط */
-    a {
-      text-decoration: none;
-      color: black;
-    }
-  
-    /* ✅ تحسين الهيدر ليكون متجاوبًا */
-/* Header Section Styling */
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #fff;
-  padding: 15px 20px;
-  /* Add horizontal padding */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin-top: 10px;
-}
-
-/* Navigation Menu */
-header ul {
-  list-style: none;
-  display: flex;
-  /* Keep the menu horizontal */
-  margin: 0;
-  /* Remove unnecessary margin */
-  padding: 0;
-  /* Remove default padding */
-}
-
-header ul li {
-  position: relative;
-  margin-right: 30px;
-  /* Space between menu items */
-}
-
-header ul li:last-child {
-  margin-right: 0;
-  /* Remove margin for the last item */
-}
-
-header ul li a {
-  text-decoration: none;
-  color: #333;
-  font-size: 16px;
-  font-weight: 600;
-  transition: color 0.3s ease;
-}
-
-header ul li a:hover {
-  color: #e74c3c;
-  /* Change color on hover */
-}
-
-/* Support Section */
-.support {
-  font-size: 14px;
-  color: #666;
-}
-
-.support p {
-  margin: 0;
-  /* Remove unnecessary margin */
-}
-
-.support a {
-  text-decoration: none;
-  color: #e74c3c;
-  /* Highlight the phone number */
-  font-weight: bold;
-}
-
-.support a:hover {
-  text-decoration: underline;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-
-  /* Keep the header elements horizontal even on small screens */
-  header {
-    flex-wrap: wrap;
-    /* Allow wrapping if necessary */
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  header ul {
-    flex-direction: row;
-    /* Keep the menu horizontal */
-    margin: 0;
-    /* Remove unnecessary margin */
-    padding: 0;
-    /* Remove default padding */
-  }
-
-  header ul li {
-    margin-right: 15px;
-    /* Reduce spacing between menu items */
-  }
-
-  header ul li a {
-    font-size: 14px;
-    /* Reduce font size for better fit */
-  }
-
-  .support {
-    margin-top: 10px;
-    /* Add some spacing for the support section */
-    text-align: center;
-    /* Center align the support text */
-  }
-}
-  
-    
-/* Logo Section Styling */
-.logo {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 20px;
-  background-color: #fff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Logo Image Styling */
-.photo {
-  width: 250px;
-  /* Adjust the logo size */
-  height: auto;
-  border-radius: 5px;
-  
-}
-
-/* Almotabaed Word Styling */
-.container3 {
-  margin-left: 20px;
-}
-
-.almotabaed {
-  font-size: 40px;
-  font-weight: bold;
-  color: #70dd76fe;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  display: inline-block;
-}
-
-.almotabaed span {
-  display: inline-block;
-  animation: leRotateSkateInTop 1.5s ease-in-out forwards, blinkEffect 1.5s infinite alternate;
-  opacity: 0;
-}
-
-/* إضافة تأخير زمني لكل حرف لظهور تدريجي */
-.almotabaed span:nth-child(1) {
-  animation-delay: 0s, 0.8s;
-}
-
-.almotabaed span:nth-child(2) {
-  animation-delay: 0.1s, 0.9s;
-}
-
-.almotabaed span:nth-child(3) {
-  animation-delay: 0.2s, 1s;
-}
-
-.almotabaed span:nth-child(4) {
-  animation-delay: 0.3s, 1.1s;
-}
-
-.almotabaed span:nth-child(5) {
-  animation-delay: 0.4s, 1.2s;
-}
-
-.almotabaed span:nth-child(6) {
-  animation-delay: 0.5s, 1.3s;
-}
-
-.almotabaed span:nth-child(7) {
-  animation-delay: 0.6s, 1.4s;
-}
-
-.almotabaed span:nth-child(8) {
-  animation-delay: 0.7s, 1.5s;
-}
-
-.almotabaed span:nth-child(9) {
-  animation-delay: 0.8s, 1.6s;
-}
-
-.almotabaed span:nth-child(10) {
-  animation-delay: 0.9s, 1.7s;
-}
-.almotabaed span:nth-child(11) {
-  animation-delay: 1s, 1.8s;
-}
-.almotabaed span:nth-child(12) {
-  animation-delay: 1.1s, 1.9s;
-}
-.almotabaed span:nth-child(13) {
-  animation-delay: 1.2s, 2s;
-}
-.almotabaed span:nth-child(14) {
-  animation-delay: 1.3s, 2.1s;
-}
-.almotabaed span:nth-child(15) {
-  animation-delay: 1.4s, 2.2s;
-}
-.almotabaed span:nth-child(16) {
-  animation-delay: 1.5s, 2.3s;
-}
-.almotabaed span:nth-child(17) {
-  animation-delay: 1.6s, 2.4s;
-}
-
-/* الأنميشن الأول لتحريك الحروف */
-@keyframes leRotateSkateInTop {
-  from {
-    transform: scaleY(0.2) translateY(-100px);
-    opacity: 0;
-  }
-
-  to {
-    transform: scaleY(1) translateY(0);
-    opacity: 1;
-  }
-}
-
-/* تأثير الإضاءة المتكرر بعد انتهاء الأنميشن */
-@keyframes blinkEffect {
-  0% {
-    text-shadow: 0 0 7px rgba(0, 0, 0, 0.8);
-  }
-
-  100% {
-    text-shadow: #81c784;
-  }
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .logo {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 15px;
-  }
-
-  .photo {
-    width: 150px;
-  }
-
-  .almotabaed {
-    font-size: 20px;
-  }
-}
-
-
-
-
-        .footer {
-    background: #222;
-    color: #fff;
-    padding: 40px 0;
-    text-align: center;
-    font-size: 14px;
-}
-.footer .container7 {
-    width: 90%;
-    max-width: 1200px;
-    margin: auto;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: flex-start;
-    text-align: left;
-}
-.footer .column {
-    flex: 1;
-    min-width: 250px;
-    margin-bottom: 10px;
-}
-.footer h3 {
-    font-size: 16px;
-    margin-bottom: 10px;
-    color: #f39c12;
-    font-weight: normal;
-    font-style: inherit;
-}
-.footer p, .footer a {
-    color: #bbb;
-    text-decoration: none;
-   
-    margin: 5px 0;
-    transition: 0.3s;
-}
-.footer a:hover {
-    color: #f39c12;
-}
-.footer .social a {
-    display: inline-block;
-    margin-right: 10px;
-    font-size: 18px;
-}
-.footer .copyright {
-    margin-top: 20px;
-    font-size: 12px;
-    color: #777;
-    text-align: center;
-    padding-top: 10px;
-    border-top: 1px solid #444;
-}
-/* تصميم الهيدر */
-
-
-/* تصميم قسم about-content */
-.about-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    padding: 50px 20px;
-    box-sizing: border-box;
-}
-
-.content-box {
-    background-color: white;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    max-width: 600px;
-    text-align: center;
-}
-
-.sub-header {
-    font-size: 1.5rem;
-    margin-bottom: 20px;
-    color: #70dd76fe;
-}
-
-p {
-    font-size: 20px;
-    line-height: 1.6;
-    color: #555;
-    font-weight: bold;
-    font-style: normal;
-}
-
-/* تصميم الفوتر */
-footer {
-    text-align: center;
-    padding: 10px 0;
-    background-color: #333;
-    color: white;
-    width: 100%;
-    position: relative;
-    bottom: 0;
-}
-
-/* استهداف الأجهزة المحمولة */
-@media (max-width: 768px) {
-    .header-title {
-        font-size: 1.5rem;
-    }
-
-    .sub-header {
-        font-size: 1.2rem;
-    }
-
-    p {
-        font-size: 0.9rem;
-    }
-}
-
-.specialization {
-    padding: 50px 20px;
-    background-color: white;
-    text-align: center;
-}
-
-.container9 {
-    max-width: 1200px;
-    margin: auto;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-}
-
-.images {
-    display: flex;
-    gap: 10px;
-}
-
-.images img {
-    width: 250px;
-    height: 300px;
-    object-fit: cover;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.text {
-    margin-top: 20px;
-}
-
-.text h2 {
-    font-size: 1.8rem;
-    color: #333;
-    font-weight: 600;
-}
-
-.text a{
-    color: #70dd76fe;
-}
-.text a:hover{
-    color: rgb(251, 5, 5);
-}
-/* جعل الصفحة متجاوبة */
-@media (max-width: 768px) {
-    .container {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .images {
-        flex-direction: column;
-    }
-
-    .images img {
-        width: 100%;
-        max-width: 300px;
-    }
-}
-
-    </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>about</title>
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
@@ -677,12 +48,7 @@ footer {
           <div class="logo">
             <img class="photo" src="img/logo.jpeg" />
       
-            <!--almotabaed word-->
-            <div class="container3">
-              <h1 class="almotabaed">
-                <span>A</span><span>L</span><span>M</span><span>O</span><span>T</span><span>A</span><span>B</span><span>A</span><span>E</span><span>D</span><br><span>t</span><span>R<span>A<span>D<span>I<span>N<span>G</span>
-              </h1>
-            </div>
+            
             <!--search-->
             <div class="header-actions">
                 <div class="select-container">
@@ -704,6 +70,8 @@ footer {
                 <li><a href="about.html">About Us</a></li>
                 <li><a href="login.html">Log In</a></li>
                 <li><a href="contact.html">Contact Us</a></li>
+                          <li><a href="sort.html">sorting</a></li>
+
               </ul>
       
               <!--support-->
@@ -758,7 +126,7 @@ footer {
                         <section class="specialization">
                             <div class="container9">
                                 <div class="images">
-                                    <img src="img/man-per2.webp" alt="Fashion 1">
+                                    <img src="img/200.jpg" alt="Fashion 1">
                                     <img src="img/ph3.jpg" alt="Fashion 2">
                                     <img src="img/men1.webp" alt="Perfume">
                                 </div>
@@ -799,4 +167,166 @@ footer {
         </div>
     </footer>
 </body>
+<style>
+ /* ✅ تحسين القسم الرئيسي */
+.about-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: #f8f9fa;
+    padding: 50px 20px;
+}
+
+.content-box {
+    max-width: 900px;
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+}
+
+.content-box:hover {
+    transform: scale(1.02);
+}
+
+/* ✅ تحسين العناوين */
+.sub-header {
+    font-size: 24px;
+    color: #27ae60;
+    margin-bottom: 10px;
+    position: relative;
+    text-transform: uppercase;
+}
+
+/* ✅ إضافة خط تحت العناوين */
+.sub-header::after {
+    content: "";
+    display: block;
+    width: 80px;
+    height: 3px;
+    background: #27ae60;
+    margin: 5px auto 10px;
+}
+
+/* ✅ تحسين النصوص */
+.content-box p {
+    font-size: 18px;
+    color: #333;
+    line-height: 1.8;
+}
+
+/* ✅ تحسين قسم التخصص */
+.specialization {
+    background: linear-gradient(135deg, #27ae60, #219150);
+    padding: 50px 20px;
+    text-align: center;
+    color: white;
+}
+
+.container9 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    align-items: center;
+}
+
+.images img {
+    width: 100%;
+    max-width: 220px;
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.images img:hover {
+    transform: scale(1.05);
+}
+
+.text h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.text a {
+    display: inline-block;
+    padding: 10px 20px;
+    background: white;
+    color: #27ae60;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.text a:hover {
+    background: #27ae60;
+    color: white;
+}
+
+/* ✅ تحسين التجاوب للموبايل والتابلت */
+@media screen and (max-width: 1024px) {
+    .content-box {
+        padding: 25px;
+        max-width: 90%;
+    }
+
+    .specialization {
+        padding: 30px 10px;
+    }
+
+    .container9 {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .sub-header {
+        font-size: 20px;
+    }
+
+    .content-box p {
+        font-size: 16px;
+    }
+
+    .text h2 {
+        font-size: 20px;
+    }
+
+    .text a {
+        font-size: 14px;
+    }
+
+    .images img {
+        max-width: 180px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .content-box {
+        padding: 20px;
+    }
+
+    .sub-header {
+        font-size: 18px;
+    }
+
+    .content-box p {
+        font-size: 14px;
+    }
+
+    .text h2 {
+        font-size: 18px;
+    }
+
+    .images img {
+        max-width: 150px;
+    }
+}
+
+
+</style>
 </html>

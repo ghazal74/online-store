@@ -50,7 +50,9 @@ document.addEventListener("DOMContentLoaded", function () {
                     "terms_of_use": "Terms of Use",
                     "follow_us": "Follow Us",
                     "all_rights_reserved": "All Rights Reserved",
-                    "kgm_marketing": "KGM Marketing"
+                    "kgm_marketing": "KGM Marketing",
+                    "sorting": "Sorting",
+                    "cosmetics": "Cosmetics",
                 },
             },
             ar: {
@@ -69,6 +71,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     "about_us": "من نحن",
                     "log_in": "تسجيل الدخول",
                     "contact_us": "اتصل بنا",
+                     "sorting": "الفرز",
                     "call_support": "اتصل بالدعم المجاني:",
                     "our_collection": "تشكيلتنا",
                     "men_perfumes": "عطور الرجال",
@@ -101,7 +104,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     "terms_of_use": "شروط الاستخدام",
                     "follow_us": "تابعنا",
                     "all_rights_reserved": "جميع الحقوق محفوظة",
-                    "kgm_marketing": "تسويق KGM"
+                    "kgm_marketing": "تسويق KGM",
+                    "cosmetics": "مستحضرات التجميل",  
                 },
             },
         },
@@ -110,6 +114,11 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     function updateContent() {
+        const navSorting = document.querySelector('ul li a[href="sort.html"]');
+    
+    if (navSorting) {
+        navSorting.textContent = i18next.t("sorting");
+    }
         document.querySelector(".container5").textContent = i18next.t("free_returns");
         document.querySelector(".top_links a").childNodes[0].nodeValue = i18next.t("my_account") + " ";
         document.querySelector(".dropdown_links li a[href='login.html']").textContent = i18next.t("sign_in");
@@ -149,7 +158,6 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("women-wear-text").textContent = i18next.t("womens_wear");
         document.getElementById("winter-clothes").textContent = i18next.t("winter_clothes");
         document.getElementById("summer-clothes").textContent = i18next.t("summer_clothes");
-        document.getElementById("similar-items").textContent = i18next.t("similar_items");
         document.getElementById("contact-title").textContent = i18next.t("contact_information");
         document.getElementById("phone-text").textContent = i18next.t("phone");
         document.getElementById("email-text").textContent = i18next.t("email");
@@ -159,7 +167,10 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("follow-us").textContent = i18next.t("follow_us");
         document.getElementById("all-rights").textContent = i18next.t("all_rights_reserved");
         document.getElementById("kgm-marketing").textContent = i18next.t("kgm_marketing");
-
+const cosmeticsTitle = document.getElementById("cosemetics");
+        if (cosmeticsTitle) {
+            cosmeticsTitle.textContent = i18next.t("cosmetics");
+        }
 
         // تحديث الأيقونة عند تغيير اللغة
         const languageIcon = document.getElementById("language-icon");

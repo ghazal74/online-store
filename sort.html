@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sort Products</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- hash section -->
+<div class="hash">
+    <div class="container5">Free Returns: For First 40 Days</div>
+
+    <li class="top_links">
+        <a href="#">My Account <i class="ion-chevron-down"></i></a>
+        <ul class="dropdown_links">
+            <li><a href="login.html">Sign In</a></li>
+            <li><a href="#" onclick="logout()">Logout</a></li>
+        </ul>
+    </li>
+
+    <li class="language">
+        <a href="#" id="selected-language">
+            <img src="img/language.png" alt="" id="language-icon">
+            <span id="language-text">language</span>
+            <i class="ion-chevron-down"></i>
+        </a>
+        <ul class="dropdown_language">
+            <li><a href="#" id="switch-to-ar"><img src="img/language2.png" alt=""> العربية</a></li>
+            <li><a href="#" id="switch-to-en"><img src="img/language.png" alt=""> English</a></li>
+        </ul>
+    </li>
+
+
+    <div class="currency">
+        <a href="#" id="selected-currency">USD <i class="ion-chevron-down"></i></a>
+        <ul class="dropdown_currency">
+            <li><a href="#" id="currency-sar">SAR</a></li>
+            <li><a href="#" id="currency-aed">AED</a></li>
+            <li><a href="#" id="currency-ued">UED</a></li>
+        </ul>
+    </div>
+
+</div>
+
+<!--header section-->
+<!--logo-->
+<div class="logo">
+    <img class="photo" src="img/logo.jpeg" />
+
+
+
+</div>
+<hr>
+
+<div class="container6">
+    <header>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a id="login-link" href="login.html">Log In</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="sort.html">sorting</a></li>
+
+        </ul>
+
+        <!--support-->
+        <div class="support">
+            <p>call free support : <a href="tel:0528686321">0528686321</a></p>
+        </div>
+    </header>
+</div>
+
+    <h1>Sort and Filter Products</h1>
+
+    <!-- ✅ فلاتر الترتيب والتصفية -->
+    <div class="filters">
+        <label for="category">Select Category:</label>
+        <select id="category">
+            <option value="all">All Categories</option>
+            <option value="winterMen">Men's Winter Clothes</option>
+            <option value="summerMen">Men's Summer Clothes</option>
+            <option value="perfumeMen">Men's Perfume</option>
+            <option value="perfumeWoman">Women's Perfume</option>
+            <option value="cosemetics">Cosmetics</option>
+        </select>
+
+        <label for="price">Select Price Range:</label>
+        <input type="number" id="min-price" placeholder="Min Price">
+        <input type="number" id="max-price" placeholder="Max Price">
+
+        <label for="sort">Sort by Price:</label>
+        <select id="sort">
+            <option value="default">Default</option>
+            <option value="asc">Low to High</option>
+            <option value="desc">High to Low</option>
+        </select>
+
+        <button id="apply-filters">Apply Filters</button>
+    </div>
+
+    <!-- ✅ عرض المنتجات بعد التصفية -->
+    <div id="product-list" class="gallery"></div>
+
+    <footer class="footer">
+        <div class="container7">
+            <div class="column">
+                <h3 id="contact-title">Contact Information</h3>
+                <p>📞 <span id="phone-text">Phone:</span> <a href="tel:0528686321">0528686321</a></p>
+                <p>✉️ <span id="email-text">Email:</span> <a href="mailto:Info@almotabaed.com">Info@almotabaed.com</a></p>
+            </div>
+            <div class="column">
+                <h3 id="important-links">Important Links</h3>
+                <a href="#" id="privacy-policy">Privacy Policy</a>
+                <br>
+                <a href="#" id="terms-of-use">Terms of Use</a>
+            </div>
+            <div class="column social">
+                <h3 id="follow-us">Follow Us</h3>
+                <a href="https://www.facebook.com/almotabaedtrading?mibextid=ZbWKwL"> Facebook</a>
+                <br>
+                <a href="#"> Twitter</a>
+                <br>
+                <a href="https://www.instagram.com/almotabaedtrading/profilecard/?igsh=cGtsMWhrZmZmdDU4"> Instagram</a>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2025 <span id="all-rights">All Rights Reserved</span> | <span id="kgm-marketing">KGM Marketing</span>
+        </div>
+    </footer>
+
+    <script src="sort.js"></script>
+
+    <style>
+     /* ✅ تحسين مظهر الصفحة بالكامل */
+body {
+    font-family: "Arial", sans-serif;
+    background-color: #f4f4f4;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+/* ✅ تحسين العنوان */
+h1 {
+    font-size: 26px;
+    margin-top: 20px;
+    color: #333;
+}
+
+/* ✅ تنسيق قسم الفلاتر */
+.filters {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    max-width: 90%;
+    align-items: center;
+}
+
+/* ✅ تنسيق العناوين داخل الفلاتر */
+.filters label {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+/* ✅ تنسيق القوائم المنسدلة ومدخلات الأسعار */
+.filters select,
+.filters input {
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    font-size: 16px;
+    text-align: center;
+    width: 160px;
+    transition: all 0.3s ease-in-out;
+}
+
+.filters input {
+    width: 130px;
+}
+
+/* ✅ تحسين زر تطبيق الفلاتر */
+.filters button {
+    padding: 12px 20px;
+    background: #27ae60;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+.filters button:hover {
+    background: #219150;
+}
+
+/* ✅ تحسين عرض المنتجات */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+}
+
+/* ✅ تحسين مظهر كل منتج */
+.item {
+    background: white;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.item:hover {
+    transform: scale(1.05);
+}
+
+/* ✅ تحسين مظهر الصور داخل المنتجات */
+.item img {
+    width: 100%;
+    max-width: 160px;
+    border-radius: 8px;
+}
+
+/* ✅ تحسين مظهر السعر */
+.item p {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-top: 10px;
+}
+
+/* ✅ تحسين التجاوب مع الأجهزة الصغيرة */
+@media screen and (max-width: 1024px) {
+    .filters {
+        flex-direction: column;
+        padding: 15px;
+        max-width: 95%;
+    }
+
+    .filters select,
+    .filters input {
+        width: 90%;
+    }
+
+    .gallery {
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .filters {
+        gap: 10px;
+    }
+
+    .filters select,
+    .filters input {
+        width: 100%;
+    }
+
+    .gallery {
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        padding: 10px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .filters {
+        padding: 10px;
+    }
+
+    .filters select,
+    .filters input {
+        width: 100%;
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .filters button {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .gallery {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 8px;
+    }
+
+    .item img {
+        max-width: 120px;
+    }
+
+    .item p {
+        font-size: 16px;
+    }
+}
+
+    </style>
+</body>
+
+</html>
