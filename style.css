@@ -983,6 +983,11 @@ overflow: hidden;
    filter: brightness(0.9);
    transition: 0.3s ease-in-out;
  }
+ .woman_perfume_photo img {
+   width: 100%;
+   height: auto;
+   display: block;
+ }
 
  @media (max-width: 768px) {
    .gallery {
