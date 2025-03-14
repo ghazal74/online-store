@@ -308,7 +308,6 @@ header ul li a:hover {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px;
   background-color: #fff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   
@@ -450,7 +449,7 @@ header ul li a:hover {
   }
 
   .photo {
-    width: 150px;
+    width: 250px;
     
   }
  
@@ -566,6 +565,7 @@ select:focus {
     /* Reduce font size for better fit */
     padding: 8px 35px 8px 10px;
     /* Reduce padding for better fit */
+
   }
 
   .select-container select {
