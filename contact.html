@@ -130,7 +130,7 @@
                         </p>
                         <p>
                             <label>Your Email (required)</label>
-                            <input id="email" name="email" placeholder="Email *" type="email" required> <!-- ✅ لا يمكن تغييره -->
+                            <input id="email" name="email" placeholder="Email *" type="email" required> 
                         </p>
                         <p>
                             <label>Subject</label>
@@ -177,56 +177,7 @@
             &copy; 2025 All Rights Reserved | KGM Marketing
         </div>
     </footer>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-                const API_URL = "https://online-store-production-d74f.up.railway.app";
-                const contactForm = document.getElementById("contact-form");
-                const messageBox = document.querySelector(".form-message");
-
-                // ✅ معالجة إرسال الرسالة
-                contactForm.addEventListener("submit", async function (event) {
-                    event.preventDefault();
-
-                    const name = document.getElementById("name").value.trim();
-                    const email = document.getElementById("email").value.trim();
-                    const subject = document.getElementById("subject").value.trim();
-                    const message = document.getElementById("message").value.trim();
-
-                    // ✅ التحقق من صحة البريد الإلكتروني
-                    if (!email.includes("@") || !email.includes(".")) {
-                        messageBox.textContent = "❌ Please enter a valid email address.";
-                        return;
-                    }
-
-                    if (!name || !subject || !message) {
-                        messageBox.textContent = "❌ Please fill in all fields.";
-                        return;
-                    }
-
-                    const formData = { name, email, subject, message };
-
-                    try {
-                        const res = await fetch(`${API_URL}/send-message`, {
-                            method: "POST",
-                            headers: { "Content-Type": "application/json" },
-                            body: JSON.stringify(formData),
-                        });
-
-                        const data = await res.json();
-                        if (!res.ok) throw new Error(data.message || "Failed to send message.");
-
-                        messageBox.style.color = "green";
-                        messageBox.textContent = "✅ Message sent successfully!";
-                        contactForm.reset();
-                    } catch (error) {
-                        messageBox.style.color = "red";
-                        messageBox.textContent = `❌ ${error.message}`;
-                    }
-                });
-            });
-
-
-    </script>
+   
 </body>
 <style>
   /* ✅ تحسين عام للصفحة */

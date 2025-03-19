@@ -141,7 +141,6 @@ document.addEventListener("DOMContentLoaded", function () {
         document.querySelector(".support p").innerHTML = `${i18next.t("call_support")} <a href="tel:0528686321">0528686321</a>`;
         document.querySelector("#collection h1").textContent = `" ${i18next.t("our_collection")} "`;
         document.querySelector("#collection a[href='#mperfums']").textContent = i18next.t("men_perfumes");
-        document.querySelector("#collection a[href='#wperfums']").textContent = i18next.t("women_perfumes");
         document.querySelector(".text-content h2").textContent = i18next.t("trending_collection");
         document.querySelector(".text-content p").textContent = i18next.t("explore_products");
         document.querySelector("#mens-wear").textContent = i18next.t("mens_wear");
