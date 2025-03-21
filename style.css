@@ -890,7 +890,7 @@ overflow: hidden;
    
     /*men's wear text*/
     .animated-text {
-      font-size: 60px;
+      font-size: 53px;
       font-weight: bold;
     font-family: 'Cormorant Garamond', sans-serif;
           color: #333;
@@ -939,6 +939,114 @@ overflow: hidden;
       transition: color 0.3s ease-in-out;
   }
     
+  /*----------------*/
+    /* ✅ ضبط خلفية قسم الـ Cosmetics */
+    .gallery[data-category="cosemetics"] {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(6, 1fr));
+      /* يجعل المنتجات تتكيف مع حجم الشاشة */
+      gap: 15px;
+      padding: 20px;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      width: 100%;
+    }
+  
+    /* ✅ تنسيق عناصر المنتجات */
+    .gallery[data-category="cosemetics"] .item {
+      background: white;
+      border-radius: 12px;
+      padding: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+      cursor: pointer;
+    }
+  
+    .gallery[data-category="cosemetics"] .item:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    }
+  
+    /* ✅ ضبط حجم الصور */
+    .gallery[data-category="cosemetics"] .item img {
+      width: 100%;
+      max-width: 120px;
+      border-radius: 8px;
+      transition: transform 0.3s ease-in-out;
+    }
+  
+    .gallery[data-category="cosemetics"] .item:hover img {
+      transform: scale(1.05);
+    }
+  
+    /* ✅ ضبط النصوص */
+    .gallery[data-category="cosemetics"] .name {
+      font-size: 16px;
+      font-weight: bold;
+      color: #333;
+      margin-top: 8px;
+    }
+  
+    .gallery[data-category="cosemetics"] .price {
+      font-size: 14px;
+      font-weight: bold;
+      color: #000000;
+      /* لون السعر */
+      margin-top: 5px;
+    }
+  
+    /* ✅ تحسين التجاوب مع التابلت */
+    @media screen and (max-width: 768px) {
+      .gallery[data-category="cosemetics"] {
+        grid-template-columns: repeat(auto-fit, minmax(4, 1fr));
+        /* يضبط العناصر لتكون مناسبة */
+        gap: 10px;
+      }
+  
+      .gallery[data-category="cosemetics"] .item {
+        padding: 12px;
+      }
+  
+      .gallery[data-category="cosemetics"] .item img {
+        max-width: 120px;
+      }
+  
+      .gallery[data-category="cosemetics"] .name {
+        font-size: 14px;
+      }
+  
+      .gallery[data-category="cosemetics"] .price {
+        font-size: 13px;
+      }
+    }
+  
+    /* ✅ تحسين العرض على الموبايل */
+    @media screen and (max-width: 480px) {
+      .gallery[data-category="cosemetics"] {
+    grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+      }
+  
+      .gallery[data-category="cosemetics"] .item {
+        padding: 10px;
+      }
+  
+      .gallery[data-category="cosemetics"] .item img {
+        max-width: 50px;
+        max-height:100px;
+      }
+  
+      .gallery[data-category="cosemetics"] .name {
+        font-size: 12px;
+      }
+  
+      .gallery[data-category="cosemetics"] .price {
+        font-size: 12px;
+      }
+    }
+  
+  /*----------------*/
   /*men's photo*/
  
  .container2{
@@ -991,7 +1099,7 @@ overflow: hidden;
  }
 
  .gallery[data-category="winterMen"] .item img {
-  width: 110%;
+  width: 100%;
   max-width: 500px;
   height: auto;
   transition: transform 0.3s ease-in-out;
@@ -1009,6 +1117,13 @@ overflow: hidden;
    width: 100%;
    height: auto;
    display: block;
+ }
+ .item .price {
+   margin-top: 10px;
+   font-size: 15px;
+   font-weight: bold;
+   color: #2d2d2d;
+            font-family: 'Inter', sans-serif;
  }
 
  @media (max-width: 768px) {
@@ -1035,7 +1150,7 @@ overflow: hidden;
  }
   .price {
     margin-top: 10px;
-    font-size: 18px;
+    font-size: 12px;
     font-weight: bold;
     color: #2d2d2d;
   }
@@ -1257,21 +1372,21 @@ overflow: hidden;
 
   /*woman's perfume word*/
 .woman-perfume-text{
-        font-family: 'Cormorant Garamond', sans-serif;
-    align-items: center;
-    padding: 10px 20px;
-    font-size: 24px;
-    color: rgba(190, 110, 110, 0.995);
-    border: 2px solid rosybrown;
-    border-radius: 30px;
-    background-color: #ffffff;
-    font-weight: bold;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    text-align: center;
+  font-family: 'Cormorant Garamond', sans-serif;
+  align-items: center;
+  padding: 10px 20px;
+  font-size: 24px;
+  color: rgb(12, 151, 206);
+  border: 2px solid skyblue;
+  border-radius: 30px;
+  background-color: #ffffff;
+  font-weight: bold;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
     
   }
   .woman-perfume-text:hover{
-    background-color: rosybrown;
+    background-color: rgb(12, 151, 206);
     color: #ffffff;
     box-shadow: 0 6px 12px rgba(99, 102, 241, 0.4);
   }
@@ -1796,6 +1911,194 @@ top: -80px;
     /* Make buttons full width */
     margin-top: 0.5rem;
   }
+}
+/*------------------------CART---------------------*/
+/* ✅ تحسين أيقونة عربة التسوق */
+.cart-icon {
+  position: fixed;
+  top: 15px;
+  right: 20px;
+  background: #27ae60;
+  color: white;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 20px;
+  transition: background 0.3s ease-in-out;
+  z-index: 1000;
+}
+
+.cart-icon:hover {
+  background: #219150;
+}
+
+.cart-icon span {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: red;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+/* ✅ تحسين نافذة عربة التسوق */
+.cart-popup {
+  position: fixed;
+  top: 50px;
+  right: -350px;
+  /* مخفية بشكل افتراضي */
+  width: 320px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  padding: 15px;
+  transition: right 0.3s ease-in-out;
+  z-index: 1000;
+}
+
+/* ✅ عند الفتح */
+.cart-popup.open {
+  right: 10px;
+}
+
+/* ✅ تحسين العنوان العلوي لعربة التسوق */
+.cart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 10px;
+}
+
+.cart-header h3 {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.cart-header button {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #333;
+}
+
+.cart-header button:hover {
+  color: red;
+}
+
+/* ✅ تحسين قائمة المنتجات وإضافة `Scrollbar` */
+#cart-items {
+  max-height: 300px;
+  overflow-y: auto;
+  padding-right: 5px;
+}
+
+/* ✅ تحسين شريط التمرير */
+#cart-items::-webkit-scrollbar {
+  width: 6px;
+}
+
+#cart-items::-webkit-scrollbar-thumb {
+  background-color: #27ae60;
+  border-radius: 10px;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+}
+
+.cart-item img {
+  width: 50px;
+  height: 50px;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.cart-info {
+  flex: 1;
+}
+
+.cart-info h4 {
+  margin: 0;
+  font-size: 16px;
+  color: #333;
+}
+
+.cart-info p {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #666;
+}
+
+/* ✅ تحسين أزرار التحكم في الكمية */
+.cart-info button {
+  background: #27ae60;
+  color: white;
+  border: none;
+  padding: 5px 8px;
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 3px;
+  margin: 2px;
+  transition: background 0.3s ease-in-out;
+}
+
+.cart-info button:hover {
+  background: #219150;
+}
+
+/* ✅ تحسين زر الحذف */
+.remove-btn {
+  background: red !important;
+  padding: 5px 10px !important;
+}
+
+.remove-btn:hover {
+  background: darkred !important;
+}
+
+/* ✅ تحسين القسم السفلي لعربة التسوق */
+.cart-footer {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.cart-footer h4 {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.cart-footer button {
+  background: #27ae60;
+  color: white;
+  border: none;
+  padding: 10px;
+  width: 100%;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+
+.cart-footer button:hover {
+  background: #219150;
 }
 /*---------------------------------------------*/
 html {

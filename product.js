@@ -98,3 +98,23 @@ document.addEventListener("DOMContentLoaded", function () {
         changeLanguage("en");
     });
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    let product = JSON.parse(localStorage.getItem("product"));
+
+    if (!product || !product.price) {
+        console.error("❌ لا يوجد بيانات منتج في LocalStorage");
+        return;
+    }
+
+    document.getElementById("product-image").src = product.image;
+    document.getElementById("product-title").textContent = product.name;
+    document.getElementById("product-price").textContent = `${product.price} USD`;
+
+    console.log("📌 تم تحميل المنتج:", product);
+
+    document.getElementById("add-to-cart").addEventListener("click", function () {
+        addToCart(product);
+    });
+});
+

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Checkout</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="checkout.js"></script>
+</head>
+
+<body>
+    <div class="checkout-container">
+        <h2>🛒 Secure Payment</h2>
+
+        <form id="payment-form">
+            <!-- ✅ بيانات المستخدم -->
+            <div class="customer-info">
+                <h3>👤 Billing Information</h3>
+                <input type="text" id="full-name" name="full-name" placeholder="Full Name" required>
+                <input type="email" id="email" name="email" placeholder="Email Address" required>
+                <input type="text" id="phone" name="phone" placeholder="Phone Number" required>
+                <input type="text" id="address" name="address" placeholder="Billing Address" required>
+            </div>
+
+            <!-- ✅ اختيار وسيلة الدفع -->
+            <div class="payment-methods">
+                <h3>💰 Choose Payment Method</h3>
+                <label>
+                    <input type="radio" name="payment-method" value="card" checked>
+                    💳 Credit/Debit Card
+                </label>
+                <label>
+                    <input type="radio" name="payment-method" value="paypal">
+                    🅿 PayPal
+                </label>
+                <label>
+                    <input type="radio" name="payment-method" value="apple-google-pay">
+                    🍏 Apple Pay / Google Pay
+                </label>
+            </div>
+
+            <!-- ✅ بيانات الدفع بالبطاقة -->
+            <div id="card-details" class="payment-section">
+                <h3>💳 Card Details</h3>
+                <input type="text" id="card-name" name="card-name" placeholder="Cardholder Name">
+                <input type="text" id="card-number" name="card-number" placeholder="Card Number">
+                <div class="card-expiry-cvv">
+                    <input type="text" id="card-expiry" name="card-expiry" placeholder="MM/YY">
+                    <input type="text" id="card-cvv" name="card-cvv" placeholder="CVV">
+                </div>
+            </div>
+
+            <!-- ✅ بيانات PayPal -->
+            <div id="paypal-details" class="payment-section hidden">
+                <h3>🅿 PayPal Payment</h3>
+                <input type="email" id="paypal-email" name="paypal-email" placeholder="PayPal Email">
+            </div>
+
+            <!-- ✅ بيانات Apple Pay / Google Pay -->
+            <div id="apple-google-details" class="payment-section hidden">
+                <h3>🍏 Apple Pay / Google Pay</h3>
+                <input type="email" id="apple-google-email" name="apple-google-email" placeholder="Your Email">
+            </div>
+
+            <button type="submit" class="pay-btn">Complete Payment</button>
+        </form>
+    </div>
+</body>
+
+<style>
+ /* ✅ تحسين الصفحة */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');  
+body {
+          font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 120vh;
+}
+
+/* ✅ تنسيق صندوق الدفع */
+.checkout-container {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    width: 420px;
+    max-width: 90%;
+}
+
+/* ✅ تحسين العناوين */
+.checkout-container h2 {
+    color: #27ae60;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.checkout-container h3 {
+    color: #444;
+    font-size: 18px;
+    margin-top: 15px;
+    text-align: left;
+}
+
+/* ✅ تحسين إدخال البيانات */
+.customer-info input,
+.payment-section input {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    font-size: 16px;
+}
+
+/* ✅ تحسين خيارات الدفع */
+.payment-methods {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: left;
+}
+
+.payment-methods label {
+    background: #f8f8f8;
+    padding: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.payment-methods label:hover {
+    background: #e8e8e8;
+}
+
+/* ✅ تحسين ترتيب الحقول للبطاقة */
+.card-expiry-cvv {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-expiry-cvv input {
+    width: 48%;
+}
+
+/* ✅ تحسين زر الدفع */
+.pay-btn {
+    width: 100%;
+    padding: 12px;
+    margin-top: 20px;
+    background: #27ae60;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+.pay-btn:hover {
+    background: #219150;
+}
+
+/* ✅ إخفاء الأقسام عند عدم الحاجة */
+.hidden {
+    display: none;
+}
+
+/* ✅ تحسين التجاوب مع الشاشات الصغيرة */
+@media (max-width: 480px) {
+    .checkout-container {
+        width: 90%;
+        padding: 20px;
+    }
+
+    .pay-btn {
+        font-size: 16px;
+    }
+}
+
+
+</style>
+
+</html>
