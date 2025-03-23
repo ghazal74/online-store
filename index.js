@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     "currency_selected": "USD",
                     "currency_sar": "SAR",
                     "currency_aed": "AED",
-                    "currency_ued": "UED",
+                    "currency_ued": "USD",
                     "our_collection": "OUR Collection",
                     "men": "Men",
                     "women": "Women",
@@ -84,7 +84,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     "currency_selected": "دولار أمريكي",
                     "currency_sar": "ريال سعودي",
                     "currency_aed": "درهم إماراتي",
-                    "currency_ued": "درهم موحد",
+                    "currency_ued": "دولار أمريكي",
                      "our_collection": "مجموعتنا",
                     "men": "رجال",
                     "women": "نساء",
@@ -217,4 +217,5 @@ document.addEventListener("DOMContentLoaded", function () {
 
       localStorage.setItem("allProducts", JSON.stringify(products));
     });
+
 

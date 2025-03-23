@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
             currency: "USD",
             currency_sar: "SAR",
             currency_aed: "AED",
-            currency_ued: "UED",
+            currency_ued: "USD",
             callSupport: "Call Free Support",
             home: "Home",
             aboutUs: "About Us",
@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
             currency: "دولار أمريكي",
             currency_sar: "ريال سعودي",
             currency_aed: "درهم إماراتي",
-            currency_ued: "دينار إماراتي",
+            currency_ued: "دولار أمريكي",
             callSupport: "اتصل بالدعم المجاني",
             home: "الرئيسية",
             aboutUs: "معلومات عنا",
@@ -118,3 +118,164 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+    console.log("✅ product.js Loaded");
+
+    // ✅ تحميل المنتج من `localStorage`
+    let product = JSON.parse(localStorage.getItem("product"));
+    let allProducts = JSON.parse(localStorage.getItem("allProducts")) || [];
+    let relatedContainer = document.getElementById("related-products");
+
+    if (!product || !product.price) {
+        console.error("❌ لا يوجد بيانات منتج في LocalStorage");
+        return;
+    }
+
+    // ✅ تحديث بيانات المنتج الأساسي
+    document.getElementById("product-image").src = product.image;
+    document.getElementById("product-title").textContent = product.name;
+    let productPriceElement = document.getElementById("product-price");
+    let productPrice = parseFloat(product.price.replace(/[^\d.]/g, ''));
+    productPriceElement.setAttribute("data-original-price", productPrice);
+    productPriceElement.textContent = `AED ${productPrice.toFixed(2)}`;
+
+    console.log("📌 تم تحميل المنتج:", product);
+
+    document.getElementById("add-to-cart").addEventListener("click", function () {
+        addToCart(product);
+    });
+
+    document.getElementById("buy-now").addEventListener("click", function () {
+        window.location.href = "checkout.html"; // ✅ الانتقال إلى صفحة الدفع
+    });
+
+    // ✅ تحميل المنتجات المشابهة وتحديث الأسعار
+    if (product.category) {
+        let relatedProducts = allProducts.filter(item => item.category === product.category && item.image !== product.image);
+        relatedProducts = relatedProducts.slice(0, 8);
+
+        relatedContainer.innerHTML = "";
+        if (relatedProducts.length === 0) {
+            relatedContainer.innerHTML = "<p>No similar products found.</p>";
+        } else {
+            relatedProducts.forEach(item => {
+                let div = document.createElement("div");
+                div.classList.add("related-item");
+                let price = parseFloat(item.price.replace(/[^\d.]/g, ''));
+
+                div.innerHTML = `
+                    <img src="${item.image}" alt="Similar Product">
+                    <p class="similar-price" data-original-price="${price}">AED ${price.toFixed(2)}</p>
+                `;
+                div.addEventListener("click", function () {
+                    localStorage.setItem("product", JSON.stringify(item));
+                    window.location.reload();
+                });
+                relatedContainer.appendChild(div);
+            });
+        }
+    }
+
+    // ✅ تحميل العملة المختارة من `localStorage`
+    let currentCurrency = localStorage.getItem("selectedCurrency") || "AED";
+    updatePrices(currentCurrency, false);
+
+    // ✅ تغيير العملة عند النقر على أحد الخيارات
+    document.querySelectorAll(".dropdown_currency a").forEach(link => {
+        link.addEventListener("click", function (event) {
+            event.preventDefault();
+            let newCurrency = this.textContent.trim();
+            updatePrices(newCurrency, true);
+        });
+    });
+
+    // ✅ تحديث جميع الأسعار بناءً على العملة المختارة
+    function updatePrices(newCurrency = "AED", showNotification = true) {
+        const exchangeRates = {
+            "AED": 1,
+            "SAR": 1.02,
+            "USD": 0.27
+        };
+
+        if (!exchangeRates[newCurrency]) {
+            console.error(`❌ العملة ${newCurrency} غير مدعومة.`);
+            return;
+        }
+
+        // ✅ إظهار مؤشر تحميل
+        showLoadingIndicator(true);
+
+        setTimeout(() => {
+            // ✅ تحديث سعر المنتج الأساسي
+            let productPrice = parseFloat(productPriceElement.getAttribute("data-original-price"));
+            if (!isNaN(productPrice)) {
+                let convertedPrice = (productPrice * exchangeRates[newCurrency]).toFixed(2);
+                animatePriceChange(productPriceElement, `${newCurrency} ${convertedPrice}`);
+            }
+
+            // ✅ تحديث أسعار المنتجات المشابهة
+            document.querySelectorAll(".similar-price").forEach(priceElement => {
+                let originalPrice = parseFloat(priceElement.getAttribute("data-original-price"));
+                if (!isNaN(originalPrice)) {
+                    let convertedPrice = (originalPrice * exchangeRates[newCurrency]).toFixed(2);
+                    animatePriceChange(priceElement, `${newCurrency} ${convertedPrice}`);
+                }
+            });
+
+            // ✅ حفظ العملة المحددة في `localStorage`
+            localStorage.setItem("selectedCurrency", newCurrency);
+            console.log(`✅ تم تحديث الأسعار إلى العملة: ${newCurrency}`);
+
+            // ✅ إخفاء مؤشر التحميل
+            showLoadingIndicator(false);
+
+            // ✅ إظهار إشعار بنجاح تغيير العملة
+            if (showNotification) showToast(`💰 العملة تم تحديثها إلى ${newCurrency}`);
+
+        }, 800); // ⏳ محاكاة التأخير لتحسين تجربة المستخدم
+    }
+
+    // ✅ دالة لإظهار مؤشر التحميل
+    function showLoadingIndicator(show) {
+        let loader = document.getElementById("currency-loader");
+        if (!loader) {
+            loader = document.createElement("div");
+            loader.id = "currency-loader";
+            loader.style.position = "fixed";
+            loader.style.top = "10px";
+            loader.style.right = "10px";
+            loader.style.padding = "10px";
+            loader.style.background = "rgba(0,0,0,0.7)";
+            loader.style.color = "white";
+            loader.style.borderRadius = "5px";
+            loader.style.fontSize = "14px";
+            loader.style.display = "none";
+            loader.textContent = "⏳ جاري تحديث الأسعار...";
+            document.body.appendChild(loader);
+        }
+        loader.style.display = show ? "block" : "none";
+    }
+
+    // ✅ دالة لإظهار إشعار مؤقت عند تغيير العملة
+    function showToast(message) {
+        let toast = document.createElement("div");
+        toast.className = "toast-message";
+        toast.textContent = message;
+        document.body.appendChild(toast);
+
+        setTimeout(() => {
+            toast.style.opacity = "0";
+            setTimeout(() => toast.remove(), 500);
+        }, 2000);
+    }
+
+    // ✅ دالة لإنشاء تأثير تغيير السعر بسلاسة
+    function animatePriceChange(element, newText) {
+        element.style.transition = "opacity 0.3s";
+        element.style.opacity = "0";
+        setTimeout(() => {
+            element.textContent = newText;
+            element.style.opacity = "1";
+        }, 300);
+    }
+});

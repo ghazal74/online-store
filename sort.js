@@ -90,7 +90,7 @@ document.addEventListener("DOMContentLoaded", function () {
             ccurrency: "USD",
             currency_sar: "SAR",
             currency_aed: "AED",
-            currency_ued: "UED",
+            currency_ued: "USD",
             home: "Home",
             aboutUs: "About Us",
             login: "Log In",
@@ -131,7 +131,7 @@ document.addEventListener("DOMContentLoaded", function () {
             currency: "دولار أمريكي",
             currency_sar: "ريال سعودي",
             currency_aed: "درهم إماراتي",
-            currency_ued: "دينار إماراتي",
+            currency_ued: "دولار أمريكي",
             home: "الرئيسية",
             aboutUs: "من نحن",
             login: "تسجيل الدخول",
@@ -229,4 +229,92 @@ document.addEventListener("DOMContentLoaded", function () {
         e.preventDefault();
         changeLanguage("en");
     });
+});
+
+
+ document.addEventListener("DOMContentLoaded", function () {
+    const allProducts = JSON.parse(localStorage.getItem("allProducts")) || [];
+    const productList = document.getElementById("product-list");
+
+    const categoryFilter = document.getElementById("category");
+    const minPriceFilter = document.getElementById("min-price");
+    const maxPriceFilter = document.getElementById("max-price");
+    const sortFilter = document.getElementById("sort");
+    const applyFiltersBtn = document.getElementById("apply-filters");
+
+    // ✅ تحميل العملة المحفوظة مسبقًا
+    let currentCurrency = localStorage.getItem("selectedCurrency") || "AED";
+
+    // ✅ أسعار الصرف
+    const exchangeRates = {
+        "AED": 1,
+        "SAR": 1.02,
+        "USD": 0.27
+    };
+
+    function displayProducts(products) {
+        productList.innerHTML = "";
+        if (products.length === 0) {
+            productList.innerHTML = "<p>No products found.</p>";
+            return;
+        }
+
+        products.forEach(product => {
+            const div = document.createElement("div");
+            div.classList.add("item");
+
+            let originalPrice = parseFloat(product.price.replace("AED", "").trim());
+            let convertedPrice = (originalPrice * exchangeRates[currentCurrency]).toFixed(2);
+
+            div.innerHTML = `
+                <img src="${product.image}" alt="Product">
+                <p class="price" data-original-price="${originalPrice}">${currentCurrency} ${convertedPrice}</p>
+            `;
+
+            div.addEventListener("click", function () {
+                localStorage.setItem("product", JSON.stringify(product));
+                window.location.href = "product.html";
+            });
+
+            productList.appendChild(div);
+        });
+    }
+
+    function filterAndSortProducts() {
+        let filteredProducts = [...allProducts];
+
+        const selectedCategory = categoryFilter.value;
+        if (selectedCategory !== "all") {
+            filteredProducts = filteredProducts.filter(product => product.category === selectedCategory);
+        }
+
+        const minPrice = parseFloat(minPriceFilter.value) || 0;
+        const maxPrice = parseFloat(maxPriceFilter.value) || Infinity;
+        filteredProducts = filteredProducts.filter(product => {
+            const price = parseFloat(product.price.replace("AED", "").trim());
+            return price >= minPrice && price <= maxPrice;
+        });
+
+        if (sortFilter.value === "asc") {
+            filteredProducts.sort((a, b) => parseFloat(a.price.replace("AED", "").trim()) - parseFloat(b.price.replace("AED", "").trim()));
+        } else if (sortFilter.value === "desc") {
+            filteredProducts.sort((a, b) => parseFloat(b.price.replace("AED", "").trim()) - parseFloat(a.price.replace("AED", "").trim()));
+        }
+
+        displayProducts(filteredProducts);
+    }
+
+    applyFiltersBtn.addEventListener("click", filterAndSortProducts);
+
+    // ✅ تحديث الأسعار عند تغيير العملة
+    document.querySelectorAll(".dropdown_currency a").forEach(link => {
+        link.addEventListener("click", function (event) {
+            event.preventDefault();
+            currentCurrency = this.textContent.trim();
+            localStorage.setItem("selectedCurrency", currentCurrency);
+            displayProducts(allProducts);
+        });
+    });
+
+    displayProducts(allProducts);
 });

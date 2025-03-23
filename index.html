@@ -12,6 +12,7 @@
       src="https://cdnjs.cloudflare.com/ajax/libs/i18next-browser-languagedetector/6.1.4/i18nextBrowserLanguageDetector.min.js"></script>
 <script src="index.js"></script>
 <script src="cart.js"></script>
+<script src="currency.js" defer></script>
 
     <!--<script>
       const token = localStorage.getItem("token") || sessionStorage.getItem("token");
@@ -95,7 +96,7 @@
     <ul class="dropdown_currency">
       <li><a href="#" id="currency-sar">SAR</a></li>
       <li><a href="#" id="currency-aed">AED</a></li>
-      <li><a href="#" id="currency-ued">UED</a></li>
+      <li><a href="#" id="currency-ued">USD</a></li>
     </ul>
   </div>
 
@@ -216,106 +217,105 @@
     <div class="gallery" data-category="winterMen">
       <div class="item">
         <img src="img/men3edit.jpg" alt="ملابس 1"  id="img1"/>
-        <p class="price">AED 400</p>
+        <p class="price" data-original-price="400">AED 400</p>
       </div>
       <div class="item">
         <img src="img/men4edit.jpg" alt="ملابس 2" />
-        <p class="price">AED 400</p>
+        <p class="price" data-original-price="400">AED 400</p>
       </div>
       <div class="item">
         <img src="img/men5edit.jpg" alt="ملابس 3" />
-        <p class="price">AED 450</p>
+        <p class="price" data-original-price="450">AED 450</p>
       </div>
       <div class="item">
         <img src="img/men6edit.jpg" alt="ملابس 4" />
-        <p class="price">AED 450</p>
+        <p class="price" data-original-price="450">AED 450</p>
       </div>
       <div class="item">
         <img src="img/بنطلون 1.webp" alt="ملابس 5" />
-        <p class="price">AED 350</p>
+        <p class="price" data-original-price="350">AED 350</p>
       </div>
       <div class="item">
         <img src="img/بنطلون تشينوedit.jpg" alt="ملابس 6" />
-        <p class="price">AED 300</p>
+        <p class="price" data-original-price="300">AED 300</p>
       </div>
       <div class="item">
         <img src="img/بنطلون كتانedit.jpg" alt="ملابس 7" />
-        <p class="price">AED 300</p>
+        <p class="price" data-original-price="300">AED 300</p>
       </div>
       <div class="item">
         <img src="img/بنطلون رياضيedit.jpg" alt="ملابس 8" />
-        <p class="price">AED 300</p>
+        <p class="price" data-original-price="300">AED 300</p>
       </div>
       <div class="item">
         <img src="img/هودي جاكيت-edit.jpg" alt="ملابس 5" />
-        <p class="price">AED 600</p>
+        <p class="price" data-original-price="600">AED 600</p>
       </div>
       <div class="item">
         <img src="img/جاكيت جلدedit.jpg" alt="ملابس 6" />
-        <p class="price">AED 700</p>
+        <p class="price"data-original-price="700">AED 700</p>
       </div>
       <div class="item">
         <img src="img/جاكيت1edit.jpg" alt="ملابس 7" />
-        <p class="price">AED 750</p>
+        <p class="price" data-original-price="750">AED 750</p>
       </div>
       <div class="item">
         <img src="img/جاكيت 2edit.jpg" alt="ملابس 8" />
-        <p class="price">AED 1000</p>
+        <p class="price" data-original-price="1000">AED 1000</p>
       </div>
     </div>
 
     <div class="summer-clothes-text">SUMMER Clothes</div>
-
+    
     <!--men's summer clothes-->
     <div class="gallery" data-category="summerMen">
       <div class="item">
         <img src="img/صيفي 1edit.jpg" alt="ملابس 1" />
-        <p class="price">AED 100</p>
+        <p class="price" data-original-price="100">AED 100</p>
       </div>
       <div class="item">
         <img src="img/صيفي 2edit.jpg" alt="ملابس 2" />
-        <p class="price">AED 100</p>
+        <p class="price" data-original-price="100">AED 100</p>
       </div>
       <div class="item">
         <img src="img/صيفيedit.jpg" alt="ملابس 3" />
-        <p class="price">AED 100</p>
+        <p class="price" data-original-price="100">AED 100</p>
       </div>
       <div class="item">
         <img src="img/صيفي3edit.jpg" alt="ملابس 4" />
-        <p class="price">AED 150</p>
+        <p class="price" data-original-price="150">AED 150</p>
       </div>
       <div class="item">
         <img src="img/قميص1edit.jpg" alt="ملابس 5" />
-        <p class="price">AED 250</p>
+        <p class="price" data-original-price="250">AED 250</p>
       </div>
       <div class="item">
         <img src="img/قميص2edit.jpg" alt="ملابس 6" />
-        <p class="price">AED 250</p>
+        <p class="price" data-original-price="250">AED 250</p>
       </div>
       <div class="item">
         <img src="img/قميص3edit.jpg" alt="ملابس 7" />
-        <p class="price">AED 300</p>
+        <p class="price" data-original-price="300">AED 300</p>
       </div>
       <div class="item">
         <img src="img/قميص4edit.jpg" alt="ملابس 8" />
-        <p class="price">AED 250</p>
+        <p class="price" data-original-price="250">AED 250</p>
       </div>
       <div class="item">
         <img src="img/شورت1edit.jpg" alt="ملابس 5" />
-        <p class="price">AED 150</p>
+        <p class="price" data-original-price="150">AED 150</p>
       </div>
       <div class="item">
         <img src="img/شورت2edit.jpg" alt="ملابس 6" />
-        <p class="price">AED 150</p>
+        <p class="price" data-original-price="150">AED 150</p>
       </div>
       <div class="item">
         <img src="img/شورت3edit.jpg" alt="ملابس 7" />
-        <p class="price">AED 150</p>
+        <p class="price" data-original-price="150">AED 150</p>
       </div>
       <div class="item">
         <img src="img/شورت4edit.jpg" alt="ملابس 8" />
-        <p class="price">AED 150</p>
-        
+        <p class="price" data-original-price="150">AED 150</p>
       </div>
     </div>
     <hr />
@@ -333,181 +333,187 @@
     <!--perfume main photo-->
     <div class="man-with-perfume" id="mperfums">
       <img src="img/100.png" alt="" />
-      <div class="text-overlay2">
-      </div>
+      <div class="text-overlay2"></div>
     </div>
-
+    
     <!--perfume word-->
     <div class="perfume-label">
       <i class="fas fa-wind perfume-icon"></i>
       <span id="mens-perfume">Men's Perfume</span>
     </div>
+    
     <!--perfume photos-->
     <div class="gallery" data-category="perfumeMen">
       <div class="item">
         <img src="img/man-per8.png" alt="Image 1" />
-        <div class="price">AED 460.71</div>
+        <div class="price" data-original-price="460.71">AED 460.71</div>
       </div>
       <div class="item">
         <img src="img/man-per2.png" alt="Image 2" />
-        <div class="price">AED 460.71</div>
+        <div class="price" data-original-price="460.71">AED 460.71</div>
       </div>
       <div class="item">
         <img src="img/creed aventus.png" alt="Image 3" />
-        <div class="price">AED 1250.64</div>
+        <div class="price" data-original-price="1250.64">AED 1250.64</div>
       </div>
       <div class="item">
         <img src="img/acqua di gi.png" alt="Image 4" />
-        <div class="price">AED 403.08</div>
+        <div class="price" data-original-price="403.08">AED 403.08</div>
       </div>
       <div class="item">
         <img src="img/tom ford.png" alt="Image 5" />
-        <div class="price">AED 1101.82</div>
+        <div class="price" data-original-price="1101.82">AED 1101.82</div>
       </div>
       <div class="item">
         <img src="img/gentle men.png" alt="Image 6" />
-        <div class="price">AED 367.27</div>
+        <div class="price" data-original-price="367.27">AED 367.27</div>
       </div>
       <div class="item">
-        <img src="img/blue de chanel.jpg" alt="Image 1" />
-        <div class="price">AED 483.71</div>
+        <img src="img/blue de chanel.jpg" alt="Image 7" />
+        <div class="price" data-original-price="483.71">AED 483.71</div>
       </div>
       <div class="item">
-        <img src="img/VALENTINO.png" alt="Image 2" />
-        <div class="price">AED 511.71</div>
+        <img src="img/VALENTINO.png" alt="Image 8" />
+        <div class="price" data-original-price="511.71">AED 511.71</div>
       </div>
       <div class="item">
-        <img src="img/ROJA.png" alt="Image 3" />
-        <div class="price">AED 1285.64</div>
+        <img src="img/ROJA.png" alt="Image 9" />
+        <div class="price" data-original-price="1285.64">AED 1285.64</div>
       </div>
       <div class="item">
-        <img src="img/roberto cavalli.jpg" alt="Image 4" />
-        <div class="price">AED 495.08</div>
+        <img src="img/roberto cavalli.jpg" alt="Image 10" />
+        <div class="price" data-original-price="495.08">AED 495.08</div>
       </div>
       <div class="item">
-        <img src="img/mont black.jpg" alt="Image 5" />
-        <div class="price">AED 354.82</div>
+        <img src="img/mont black.jpg" alt="Image 11" />
+        <div class="price" data-original-price="354.82">AED 354.82</div>
       </div>
       <div class="item">
-        <img src="img/ARMANI.png" alt="Image 6" />
-        <div class="price">AED 690 </div>
+        <img src="img/ARMANI.png" alt="Image 12" />
+        <div class="price" data-original-price="690">AED 690</div>
       </div>
     </div>
+
     <hr style="font-size: 5px" />
     <br />
     <br />
     
      <!--men's wear text-->
 <div class="animated-text" id="women-wear-text">WOMEN'S WEAR</div>
-    <!--woman's main photo-->
-    <div class="woman_photo" id="womens-wear">
-      <img src="img/woman photo.png" />
-    </div>
+
+<!--woman's main photo-->
+<div class="woman_photo" id="womens-wear">
+  <img src="img/woman photo.png" />
+</div>
 
 <div class="winter-woman-clothes-text" id="winter-clothes">Winter Clothes</div>
-    <div class="gallery" data-category="winterWoman">
-      <div class="item">
-        <img src="img/woman w1.jpg" alt="ملابس 1" />
-        <p class="price">AED 1000</p>
-      </div>
-      <div class="item">
-        <img src="img/woman w2.jpg" alt="ملابس 2" />
-        <p class="price">AED 1200</p>
-      </div>
-      <div class="item">
-        <img src="img/woman w3.jpg" alt="ملابس 3" />
-        <p class="price">AED 1300</p>
-      </div>
-      <div class="item">
-        <img src="img/woman w4.jpg" alt="ملابس 4" />
-        <p class="price">AED 800</p>
-      </div>
-      <div class="item">
-        <img src="img/woman w5.jpg" alt="ملابس 5" />
-        <p class="price">AED 750</p>
-      </div>
-      <div class="item">
-        <img src="img/woman w6.jpg" alt="ملابس 6" />
-        <p class="price">AED 850</p>
-      </div>
-      <div class="item">
-        <img src="img/woman w7.jpg" alt="ملابس 7" />
-        <p class="price">AED 600</p>
-      </div>
-      <div class="item">
-        <img src="img/woman w8.jpg" alt="ملابس 8" />
-        <p class="price">AED 700</p>
-      </div>
-      <div class="item">
-        <img src="img/woman w9.jpg" alt="ملابس 5" />
-        <p class="price">AED 700</p>
-      </div>
-      <div class="item">
-        <img src="img/woman w10.jpg" alt="ملابس 6" />
-        <p class="price">AED 400</p>
-      </div>
-      <div class="item">
-        <img src="img/woman w11.jpg" alt="ملابس 7" />
-        <p class="price">AED 500</p>
-      </div>
-      <div class="item">
-        <img src="img/woman w12.jpg" alt="ملابس 8" />
-        <p class="price">AED 300</p>
-      </div>
-    </div>
+<div class="gallery" data-category="winterWoman">
+  <div class="item">
+    <img src="img/woman w1.jpg" alt="ملابس 1" />
+    <p class="price" data-original-price="1000">AED 1000</p>
+  </div>
+  <div class="item">
+    <img src="img/woman w2.jpg" alt="ملابس 2" />
+    <p class="price" data-original-price="1200">AED 1200</p>
+  </div>
+  <div class="item">
+    <img src="img/woman w3.jpg" alt="ملابس 3" />
+    <p class="price" data-original-price="1300">AED 1300</p>
+  </div>
+  <div class="item">
+    <img src="img/woman w4.jpg" alt="ملابس 4" />
+    <p class="price" data-original-price="800">AED 800</p>
+  </div>
+  <div class="item">
+    <img src="img/woman w5.jpg" alt="ملابس 5" />
+    <p class="price" data-original-price="750">AED 750</p>
+  </div>
+  <div class="item">
+    <img src="img/woman w6.jpg" alt="ملابس 6" />
+    <p class="price" data-original-price="850">AED 850</p>
+  </div>
+  <div class="item">
+    <img src="img/woman w7.jpg" alt="ملابس 7" />
+    <p class="price" data-original-price="600">AED 600</p>
+  </div>
+  <div class="item">
+    <img src="img/woman w8.jpg" alt="ملابس 8" />
+    <p class="price" data-original-price="700">AED 700</p>
+  </div>
+  <div class="item">
+    <img src="img/woman w9.jpg" alt="ملابس 9" />
+    <p class="price" data-original-price="700">AED 700</p>
+  </div>
+  <div class="item">
+    <img src="img/woman w10.jpg" alt="ملابس 10" />
+    <p class="price" data-original-price="400">AED 400</p>
+  </div>
+  <div class="item">
+    <img src="img/woman w11.jpg" alt="ملابس 11" />
+    <p class="price" data-original-price="500">AED 500</p>
+  </div>
+  <div class="item">
+    <img src="img/woman w12.jpg" alt="ملابس 12" />
+    <p class="price" data-original-price="300">AED 300</p>
+  </div>
+</div>
 
-    <!--women's summer clothes text-->
-<div class="summer-woman-clothes-text" id="summer-clothes">Summer Clothes</div>    <!--women's summer clothes and prices-->
-    <div class="gallery" data-category="summrWoman">
-      <div class="item">
-        <img src="img/summer1.jpg" alt="ملابس 1" />
-        <p class="price">AED 600</p>
-      </div>
-      <div class="item">
-        <img src="img/summer2.jpg" alt="ملابس 2" />
-        <p class="price">AED 500</p>
-      </div>
-      <div class="item">
-        <img src="img/summer3.jpg" alt="ملابس 3" />
-        <p class="price">AED 550</p>
-      </div>
-      <div class="item">
-        <img src="img/summer4.jpg" alt="ملابس 4" />
-        <p class="price">AED 400</p>
-      </div>
-      <div class="item">
-        <img src="img/summer5.jpg" alt="ملابس 5" />
-        <p class="price">AED 450</p>
-      </div>
-      <div class="item">
-        <img src="img/summer6.jpg" alt="ملابس 6" />
-        <p class="price">AED 550</p>
-      </div>
-      <div class="item">
-        <img src="img/summer7.jpg" alt="ملابس 7" />
-        <p class="price">AED 300</p>
-      </div>
-      <div class="item">
-        <img src="img/summer8.jpg" alt="ملابس 8" />
-        <p class="price">AED 350</p>
-      </div>
-      <div class="item">
-        <img src="img/summer9.jpg" alt="ملابس 5" />
-        <p class="price">AED 750</p>
-      </div>
-      <div class="item">
-        <img src="img/summer10.jpg" alt="ملابس 6" />
-        <p class="price">AED 400</p>
-      </div>
-      <div class="item">
-        <img src="img/summer11.jpg" alt="ملابس 7" />
-        <p class="price">AED 500</p>
-      </div>
-      <div class="item">
-        <img src="img/summer12.jpg" alt="ملابس 8" />
-        <p class="price">AED 550</p>
-      </div>
+
+  <!--women's summer clothes text-->
+  <div class="summer-woman-clothes-text" id="summer-clothes">Summer Clothes</div>
+  
+  <!--women's summer clothes and prices-->
+  <div class="gallery" data-category="summerWoman">
+    <div class="item">
+      <img src="img/summer1.jpg" alt="ملابس 1" />
+      <p class="price" data-original-price="600">AED 600</p>
     </div>
+    <div class="item">
+      <img src="img/summer2.jpg" alt="ملابس 2" />
+      <p class="price" data-original-price="500">AED 500</p>
+    </div>
+    <div class="item">
+      <img src="img/summer3.jpg" alt="ملابس 3" />
+      <p class="price" data-original-price="550">AED 550</p>
+    </div>
+    <div class="item">
+      <img src="img/summer4.jpg" alt="ملابس 4" />
+      <p class="price" data-original-price="400">AED 400</p>
+    </div>
+    <div class="item">
+      <img src="img/summer5.jpg" alt="ملابس 5" />
+      <p class="price" data-original-price="450">AED 450</p>
+    </div>
+    <div class="item">
+      <img src="img/summer6.jpg" alt="ملابس 6" />
+      <p class="price" data-original-price="550">AED 550</p>
+    </div>
+    <div class="item">
+      <img src="img/summer7.jpg" alt="ملابس 7" />
+      <p class="price" data-original-price="300">AED 300</p>
+    </div>
+    <div class="item">
+      <img src="img/summer8.jpg" alt="ملابس 8" />
+      <p class="price" data-original-price="350">AED 350</p>
+    </div>
+    <div class="item">
+      <img src="img/summer9.jpg" alt="ملابس 9" />
+      <p class="price" data-original-price="750">AED 750</p>
+    </div>
+    <div class="item">
+      <img src="img/summer10.jpg" alt="ملابس 10" />
+      <p class="price" data-original-price="400">AED 400</p>
+    </div>
+    <div class="item">
+      <img src="img/summer11.jpg" alt="ملابس 11" />
+      <p class="price" data-original-price="500">AED 500</p>
+    </div>
+    <div class="item">
+      <img src="img/summer12.jpg" alt="ملابس 12" />
+      <p class="price" data-original-price="550">AED 550</p>
+    </div>
+  </div>
+
     <hr>
     <br>
     <br>
@@ -520,58 +526,61 @@
   
     </div>
 
-    <!--perfume word-->
-<div class="woman-perfume-text" id="woman-perfume">Women's Perfume</div>    <!--perfume photos-->
-    <div class="gallery" data-category="perfumeWoman">
-      <div class="item">
-        <img src="img/peredit.jpg" alt="Image 1" />
-        <div class="price">AED 477.46</div>
-      </div>
-      <div class="item">
-        <img src="img/gucci.png" alt="Image 2" />
-        <div class="price">AED 367.27</div>
-      </div>
-      <div class="item">
-        <img src="img/فيرزاتشي.png" alt="Image 3" />
-        <div class="price">AED 404.00</div>
-      </div>
-      <div class="item">
-        <img src="img/tomford.png" alt="Image 4" />
-        <div class="price">AED 808.00</div>
-      </div>
-      <div class="item">
-        <img src="img/SL.png" alt="Image 5" />
-        <div class="price">AED 388.17</div>
-      </div>
-      <div class="item">
-        <img src="img/per2edit.jpg" alt="Image 6" />
-        <div class="price">AED 523.66</div>
-      </div>
-      <div class="item">
-        <img src="img/ARMANI WOMAN.jpg" alt="Image 1" />
-        <div class="price">AED 579.46</div>
-      </div>
-      <div class="item">
-        <img src="img/roberto cavalli WOMAN.jpg" alt="Image 2" />
-        <div class="price">AED 162.27</div>
-      </div>
-      <div class="item">
-        <img src="img/ELIE SAAB.jpg" alt="Image 3" />
-        <div class="price">AED 279.00</div>
-      </div>
-      <div class="item">
-        <img src="img/MONTALE.png" alt="Image 4" />
-        <div class="price">AED 573.00</div>
-      </div>
-      <div class="item">
-        <img src="img/GUERILAIN.png" alt="Image 5" />
-        <div class="price">AED 660.17</div>
-      </div>
-      <div class="item">
-        <img src="img/ROJA WOMAN.png" alt="Image 6" />
-        <div class="price">AED 1375.66</div>
-      </div>
+  <!--perfume word-->
+  <div class="woman-perfume-text" id="woman-perfume">Women's Perfume</div>
+  
+  <!--perfume photos-->
+  <div class="gallery" data-category="perfumeWoman">
+    <div class="item">
+      <img src="img/peredit.jpg" alt="Image 1" />
+      <div class="price" data-original-price="477.46">AED 477.46</div>
     </div>
+    <div class="item">
+      <img src="img/gucci.png" alt="Image 2" />
+      <div class="price" data-original-price="367.27">AED 367.27</div>
+    </div>
+    <div class="item">
+      <img src="img/فيرزاتشي.png" alt="Image 3" />
+      <div class="price" data-original-price="404.00">AED 404.00</div>
+    </div>
+    <div class="item">
+      <img src="img/tomford.png" alt="Image 4" />
+      <div class="price" data-original-price="808.00">AED 808.00</div>
+    </div>
+    <div class="item">
+      <img src="img/SL.png" alt="Image 5" />
+      <div class="price" data-original-price="388.17">AED 388.17</div>
+    </div>
+    <div class="item">
+      <img src="img/per2edit.jpg" alt="Image 6" />
+      <div class="price" data-original-price="523.66">AED 523.66</div>
+    </div>
+    <div class="item">
+      <img src="img/ARMANI WOMAN.jpg" alt="Image 7" />
+      <div class="price" data-original-price="579.46">AED 579.46</div>
+    </div>
+    <div class="item">
+      <img src="img/roberto cavalli WOMAN.jpg" alt="Image 8" />
+      <div class="price" data-original-price="162.27">AED 162.27</div>
+    </div>
+    <div class="item">
+      <img src="img/ELIE SAAB.jpg" alt="Image 9" />
+      <div class="price" data-original-price="279.00">AED 279.00</div>
+    </div>
+    <div class="item">
+      <img src="img/MONTALE.png" alt="Image 10" />
+      <div class="price" data-original-price="573.00">AED 573.00</div>
+    </div>
+    <div class="item">
+      <img src="img/GUERILAIN.png" alt="Image 11" />
+      <div class="price" data-original-price="660.17">AED 660.17</div>
+    </div>
+    <div class="item">
+      <img src="img/ROJA WOMAN.png" alt="Image 12" />
+      <div class="price" data-original-price="1375.66">AED 1375.66</div>
+    </div>
+  </div>
+
     <hr>
 <!--cosemetics text-->
 <div class="animated-text" id="cosemetics">cosmetics</div>
@@ -579,68 +588,69 @@
 <!--cosemetics photo-->
 <img src="img/cosemetics background.webp" />
 
-<div class="gallery" data-category="cosemetics" >
+<div class="gallery" data-category="cosemetics">
   <div class="item">
-    <img src="img/eye liner.jpg" alt="ملابس 1" />
+    <img src="img/eye liner.jpg" alt="منتج 1" />
     <p class="name">eye linear</p>
-    <p class="price">AED 110.18</p>
+    <p class="price" data-original-price="110.18">AED 110.18</p>
   </div>
   <div class="item">
-    <img src="img/foundation.jpg" alt="ملابس 2" />
+    <img src="img/foundation.jpg" alt="منتج 2" />
     <p class="name">foundation</p>
-    <p class="price">AED 183.64</p>
+    <p class="price" data-original-price="183.64">AED 183.64</p>
   </div>
   <div class="item">
-    <img src="img/makeup remover.jpg" alt="ملابس 3" />
+    <img src="img/makeup remover.jpg" alt="منتج 3" />
     <p class="name">makeup remover</p>
-    <p class="price">AED 91.82</p>
+    <p class="price" data-original-price="91.82">AED 91.82</p>
   </div>
   <div class="item">
-    <img src="img/makeup brush.jpg" alt="ملابس 4" />
+    <img src="img/makeup brush.jpg" alt="منتج 4" />
     <p class="name">makeup brush</p>
-    <p class="price">AED 459.09</p>
+    <p class="price" data-original-price="459.09">AED 459.09</p>
   </div>
   <div class="item">
-    <img src="img/lip palm.jpg" alt="ملابس 5" />
+    <img src="img/lip palm.jpg" alt="منتج 5" />
     <p class="name">lip palm</p>
-    <p class="price">AED 88.15</p>
+    <p class="price" data-original-price="88.15">AED 88.15</p>
   </div>
   <div class="item">
-    <img src="img/contour.jpg" alt="ملابس 6" />
+    <img src="img/contour.jpg" alt="منتج 6" />
     <p class="name">contour</p>
-    <p class="price">AED 165.27</p>
+    <p class="price" data-original-price="165.27">AED 165.27</p>
   </div>
   <div class="item">
-    <img src="img/body wash.jpg" alt="ملابس 7" />
+    <img src="img/body wash.jpg" alt="منتج 7" />
     <p class="name">body wash</p>
-    <p class="price">AED 91.82</p>
+    <p class="price" data-original-price="91.82">AED 91.82</p>
   </div>
   <div class="item">
-    <img src="img/ghost shampoo.jpg" alt="ملابس 8" />
+    <img src="img/ghost shampoo.jpg" alt="منتج 8" />
     <p class="name">ghost shampoo</p>
-    <p class="price">AED 80.80</p>
+    <p class="price" data-original-price="80.80">AED 80.80</p>
   </div>
   <div class="item">
-    <img src="img/serum oil.jpg" alt="ملابس 5" />
+    <img src="img/serum oil.jpg" alt="منتج 9" />
     <p class="name">serum oil</p>
-    <p class="price">AED 257.09</p>
+    <p class="price" data-original-price="257.09">AED 257.09</p>
   </div>
   <div class="item">
-    <img src="img/hair oil.jpg" alt="ملابس 6" />
+    <img src="img/hair oil.jpg" alt="منتج 10" />
     <p class="name">hair oil</p>
-    <p class="price">AED 330.55</p>
+    <p class="price" data-original-price="330.55">AED 330.55</p>
   </div>
   <div class="item">
-    <img src="img/sun cream body.jpg" alt="ملابس 7" />
+    <img src="img/sun cream body.jpg" alt="منتج 11" />
     <p class="name">sun cream body</p>
-    <p class="price">AED 146.91</p>
+    <p class="price" data-original-price="146.91">AED 146.91</p>
   </div>
   <div class="item">
-    <img src="img/body scrub.jpg" alt="ملابس 8" />
-    <p class="name">body scrup</p>
-    <p class="price">AED 146.91</p>
+    <img src="img/body scrub.jpg" alt="منتج 12" />
+    <p class="name">body scrub</p>
+    <p class="price" data-original-price="146.91">AED 146.91</p>
   </div>
 </div>
+
 
     <!-- نافذة العرض المنبثقة -->
     <!-- نافذة عرض الصورة -->
