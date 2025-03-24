@@ -1920,8 +1920,8 @@ top: -80px;
   right: 20px;
   background: #27ae60;
   color: white;
-  width: 45px;
-  height: 45px;
+  width: 50px;
+  height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2099,6 +2099,12 @@ top: -80px;
 
 .cart-footer button:hover {
   background: #219150;
+}
+.cart-icon i {
+  color: white;
+  /* ✅ جعل الأيقونة بيضاء */
+  font-size: 24px;
+  /* ✅ ضبط الحجم */
 }
 /*---------------------------------------------*/
 html {

@@ -1,0 +1,48 @@
+ <div class="item">
+        <img src="img/woman w1.jpg" alt="ملابس 1" />
+        <p class="price">AED 1000</p>
+      </div>
+      <div class="item">
+        <img src="img/woman w2.jpg" alt="ملابس 2" />
+        <p class="price">AED 900</p>
+      </div>
+      <div class="item">
+        <img src="img/woman w3.jpg" alt="ملابس 3" />
+        <p class="price">AED 1300</p>
+      </div>
+      <div class="item">
+        <img src="img/woman w4.jpg" alt="ملابس 4" />
+        <p class="price">AED 600</p>
+      </div>
+      <div class="item">
+        <img src="img/woman w5.jpg" alt="ملابس 5" />
+        <p class="price">AED 750</p>
+      </div>
+      <div class="item">
+        <img src="img/woman w6.jpg" alt="ملابس 6" />
+        <p class="price">AED 850</p>
+      </div>
+      <div class="item">
+        <img src="img/woman w7.jpg" alt="ملابس 7" />
+        <p class="price">AED 600</p>
+      </div>
+      <div class="item">
+        <img src="img/woman w8.jpg" alt="ملابس 8" />
+        <p class="price">AED 700</p>
+      </div>
+      <div class="item">
+        <img src="img/woman w9.jpg" alt="ملابس 5" />
+        <p class="price">AED 700</p>
+      </div>
+      <div class="item">
+        <img src="img/woman w10.jpg" alt="ملابس 6" />
+        <p class="price">AED 400</p>
+      </div>
+      <div class="item">
+        <img src="img/woman w11.jpg" alt="ملابس 7" />
+        <p class="price">AED 500</p>
+      </div>
+      <div class="item">
+        <img src="img/woman w12.jpg" alt="ملابس 8" />
+        <p class="price">AED 300</p>
+      </div>
