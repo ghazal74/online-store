@@ -103,20 +103,31 @@ document.addEventListener("DOMContentLoaded", function () {
     let product = JSON.parse(localStorage.getItem("product"));
 
     if (!product || !product.price) {
-        console.error("❌ لا يوجد بيانات منتج في LocalStorage");
+        console.error("❌ لا يوجد بيانات منتج في LocalStorage.");
         return;
     }
 
+    // ✅ تحديث بيانات المنتج عند تحميل الصفحة
     document.getElementById("product-image").src = product.image;
     document.getElementById("product-title").textContent = product.name;
     document.getElementById("product-price").textContent = `${product.price} USD`;
 
-    console.log("📌 تم تحميل المنتج:", product);
+    console.log("📌 المنتج الذي تم تحميله:", product);
+
+    // ✅ ضمان عدم تكرار الاستماع للنقر على الزر
+    const addToCartButton = document.getElementById("add-to-cart");
+    addToCartButton.replaceWith(addToCartButton.cloneNode(true)); // منع إضافة المستمع مرتين
 
     document.getElementById("add-to-cart").addEventListener("click", function () {
-        addToCart(product);
+        addToCart({
+            name: product.name,
+            price: product.price,
+            image: product.image
+        });
     });
 });
+
+
 
 document.addEventListener("DOMContentLoaded", function () {
     console.log("✅ product.js Loaded");
@@ -141,9 +152,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     console.log("📌 تم تحميل المنتج:", product);
 
-    document.getElementById("add-to-cart").addEventListener("click", function () {
-        addToCart(product);
-    });
 
     document.getElementById("buy-now").addEventListener("click", function () {
         window.location.href = "checkout.html"; // ✅ الانتقال إلى صفحة الدفع
@@ -176,9 +184,12 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // ✅ تحميل العملة المختارة من `localStorage`
+    // ✅ تحميل العملة واللغة المخزنة مسبقًا من `localStorage`
     let currentCurrency = localStorage.getItem("selectedCurrency") || "AED";
+    let currentLanguage = localStorage.getItem("selectedLanguage") || "en";
+
     updatePrices(currentCurrency, false);
+    updateLanguage(currentLanguage);
 
     // ✅ تغيير العملة عند النقر على أحد الخيارات
     document.querySelectorAll(".dropdown_currency a").forEach(link => {
@@ -186,6 +197,15 @@ document.addEventListener("DOMContentLoaded", function () {
             event.preventDefault();
             let newCurrency = this.textContent.trim();
             updatePrices(newCurrency, true);
+        });
+    });
+
+    // ✅ تغيير اللغة عند النقر على أحد الخيارات
+    document.querySelectorAll(".dropdown_language a").forEach(link => {
+        link.addEventListener("click", function (event) {
+            event.preventDefault();
+            let newLanguage = this.getAttribute("data-lang");
+            updateLanguage(newLanguage);
         });
     });
 
@@ -235,6 +255,18 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 800); // ⏳ محاكاة التأخير لتحسين تجربة المستخدم
     }
 
+    // ✅ تحديث لغة الموقع
+    function updateLanguage(newLanguage) {
+        if (!["en", "ar"].includes(newLanguage)) {
+            console.error(`❌ اللغة ${newLanguage} غير مدعومة.`);
+            return;
+        }
+
+        document.body.setAttribute("lang", newLanguage);
+        localStorage.setItem("selectedLanguage", newLanguage);
+        console.log(`✅ تم تحديث اللغة إلى: ${newLanguage}`);
+    }
+
     // ✅ دالة لإظهار مؤشر التحميل
     function showLoadingIndicator(show) {
         let loader = document.getElementById("currency-loader");
@@ -279,3 +311,51 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 300);
     }
 });
+
+function updatePrices(newCurrency = "AED", showNotification = true) {
+    const exchangeRates = {
+        "AED": 1,
+        "SAR": 1.02,
+        "USD": 0.27
+    };
+
+    if (!exchangeRates[newCurrency]) {
+        console.error(`❌ العملة ${newCurrency} غير مدعومة.`);
+        return;
+    }
+
+    // ✅ إظهار مؤشر تحميل
+    showLoadingIndicator(true);
+
+    setTimeout(() => {
+        // ✅ تحديث سعر المنتج الأساسي
+        let productPrice = parseFloat(productPriceElement.getAttribute("data-original-price"));
+        if (!isNaN(productPrice)) {
+            let convertedPrice = (productPrice * exchangeRates[newCurrency]).toFixed(2);
+            animatePriceChange(productPriceElement, `${newCurrency} ${convertedPrice}`);
+        }
+
+        // ✅ تحديث أسعار المنتجات المشابهة
+        document.querySelectorAll(".similar-price").forEach(priceElement => {
+            let originalPrice = parseFloat(priceElement.getAttribute("data-original-price"));
+            if (!isNaN(originalPrice)) {
+                let convertedPrice = (originalPrice * exchangeRates[newCurrency]).toFixed(2);
+                animatePriceChange(priceElement, `${newCurrency} ${convertedPrice}`);
+            }
+        });
+
+        // ✅ تحديث أسعار السلة أيضًا
+        updateCartCurrency(newCurrency);
+
+        // ✅ حفظ العملة المحددة في `localStorage`
+        localStorage.setItem("selectedCurrency", newCurrency);
+        console.log(`✅ تم تحديث الأسعار إلى العملة: ${newCurrency}`);
+
+        // ✅ إخفاء مؤشر التحميل
+        showLoadingIndicator(false);
+
+        // ✅ إظهار إشعار بنجاح تغيير العملة
+        if (showNotification) showToast(`💰 العملة تم تحديثها إلى ${newCurrency}`);
+
+    }, 800); // ⏳ محاكاة التأخير لتحسين تجربة المستخدم
+}

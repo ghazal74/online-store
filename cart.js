@@ -1,4 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
+    console.log("✅ cart.js Loaded");
+
     const cartIcon = document.getElementById("cart-icon");
     const cartPopup = document.getElementById("cart-popup");
     const closeCart = document.getElementById("close-cart");
@@ -8,39 +10,67 @@ document.addEventListener("DOMContentLoaded", function () {
     const checkoutBtn = document.getElementById("checkout");
 
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    let currentCurrency = localStorage.getItem("selectedCurrency") || "AED";
 
-    // ✅ تحديث واجهة المستخدم لعربة التسوق
-    window.updateCartUI = function () {
-        cartItemsContainer.innerHTML = "";
-        let total = 0;
-
-        cart.forEach((item, index) => {
-            let price = parseFloat(item.price) || 0; // ✅ تأكد من أن السعر رقم صحيح
-            total += price * item.quantity;
-
-            cartItemsContainer.innerHTML += `
-                <div class="cart-item">
-                    <img src="${item.image}" alt="${item.name}">
-                    <div class="cart-info">
-                        <h4>${item.name}</h4>
-                        <p>السعر: ${price.toFixed(2)} USD</p>
-                        <p>الكمية: 
-                            <button onclick="updateQuantity(${index}, -1)">-</button> 
-                            ${item.quantity} 
-                            <button onclick="updateQuantity(${index}, 1)">+</button>
-                        </p>
-                        <button onclick="removeItem(${index})">حذف</button>
-                    </div>
-                </div>
-            `;
-        });
-
-        cartTotal.textContent = total.toFixed(2);
-        cartCount.textContent = cart.length;
-        localStorage.setItem("cart", JSON.stringify(cart));
+    // ✅ أسعار الصرف المحدثة
+    const exchangeRates = {
+        "AED": 1,    
+        "SAR": 1.02,  
+        "USD": 0.27  
     };
 
-    // ✅ تحديث الكمية
+    function updateCartUI() {
+        cartItemsContainer.innerHTML = "";
+        let total = 0;
+        let itemCount = 0;
+
+        if (cart.length === 0) {
+            cartItemsContainer.innerHTML = "<p>🛒 The shopping cart is empty</p>";
+        } else {
+            cart.forEach((item, index) => {
+                let convertedPrice = parseFloat(item.originalPrice) * exchangeRates[currentCurrency];
+                convertedPrice = isNaN(convertedPrice) ? 0 : convertedPrice;
+                let subtotal = convertedPrice * item.quantity;
+                total += subtotal;
+                itemCount += item.quantity;
+
+                cartItemsContainer.innerHTML += `
+                    <div class="cart-item">
+                        <img src="${item.image}" alt="${item.name}">
+                        <div class="cart-info">
+                            <h4>${item.name}</h4>
+                            <p>Price: <span class="cart-price">${currentCurrency} ${convertedPrice.toFixed(2)}</span></p>
+                            <p>Color: <span style="color: black; font-weight: bold;">${item.color}</span></p>
+                            <p>Size: <strong>${item.size}</strong></p>
+                            <p>Quantity: 
+                                <button onclick="updateQuantity(${index}, -1)">-</button> 
+                                ${item.quantity} 
+                                <button onclick="updateQuantity(${index}, 1)">+</button>
+                            </p>
+                            <button onclick="removeItem(${index})">🗑️ Remove</button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        cartTotal.textContent = `${currentCurrency} ${total.toFixed(2)}`;
+        cartCount.textContent = itemCount;
+        localStorage.setItem("cart", JSON.stringify(cart));
+    }
+
+    function updateCartCurrency(newCurrency) {
+        if (!exchangeRates[newCurrency]) {
+            console.error(`❌ العملة ${newCurrency} غير مدعومة.`);
+            return;
+        }
+
+        currentCurrency = newCurrency;
+        localStorage.setItem("selectedCurrency", newCurrency);
+        console.log(`🔄 تحديث العملة إلى: ${newCurrency}, معدل التحويل: ${exchangeRates[newCurrency]}`);
+        updateCartUI();
+    }
+
     window.updateQuantity = function (index, amount) {
         cart[index].quantity += amount;
         if (cart[index].quantity <= 0) {
@@ -49,48 +79,46 @@ document.addEventListener("DOMContentLoaded", function () {
         updateCartUI();
     };
 
-    // ✅ حذف عنصر من العربة
     window.removeItem = function (index) {
         cart.splice(index, 1);
         updateCartUI();
     };
 
-    // ✅ إضافة منتج إلى العربة
     window.addToCart = function (product) {
         if (!product || !product.price) {
-            console.error("❌ لا يوجد منتج صالح للإضافة إلى السلة.");
-            alert("⚠️ لم يتم العثور على المنتج، يرجى المحاولة مرة أخرى.");
+            console.error("❌ No valid product data.");
             return;
         }
 
         let selectedColor = document.getElementById("color")?.value || "Default";
         let selectedSize = document.getElementById("selected-size")?.textContent.replace("Selected Size: ", "") || "One Size";
 
-        // ✅ تحويل السعر إلى رقم صحيح
-        let price = parseFloat(product.price.toString().replace(/[^\d.]/g, '')) || 0;
+        let price = parseFloat(product.price.replace(/[^\d.]/g, ''));
+        price = isNaN(price) ? 0 : price;
 
-        let cart = JSON.parse(localStorage.getItem("cart")) || [];
-        let existingItem = cart.find(item => item.name === product.name && item.color === selectedColor && item.size === selectedSize);
+        // ✅ تخزين السعر الأصلي دائمًا بالدرهم الإماراتي (AED)
+        let originalPrice = price / exchangeRates[product.currency || "AED"];
 
-        if (existingItem) {
-            existingItem.quantity++;
-        } else {
+      
+
+        
             cart.push({
                 name: product.name,
-                price: price,
+                price: price.toFixed(2),
+                originalPrice: originalPrice.toFixed(2),
+                currency: currentCurrency,
                 image: product.image,
                 color: selectedColor,
                 size: selectedSize,
                 quantity: 1
             });
-        }
 
-        localStorage.setItem("cart", JSON.stringify(cart));
-        updateCartUI();
-        alert("✅ المنتج تمت إضافته إلى السلة!");
+            localStorage.setItem("cart", JSON.stringify(cart));
+            updateCartUI();
+            showToast("✅ Product added to cart!");
+        
     };
 
-    // ✅ فتح وإغلاق نافذة العربة
     cartIcon.addEventListener("click", () => {
         cartPopup.classList.toggle("open");
     });
@@ -99,13 +127,31 @@ document.addEventListener("DOMContentLoaded", function () {
         cartPopup.classList.remove("open");
     });
 
-    // ✅ إتمام الشراء
     checkoutBtn.addEventListener("click", () => {
-        alert("🛍️ تم تنفيذ عملية الشراء بنجاح!");
+        alert("📦 Your order is under review!");
         cart = [];
         updateCartUI();
     });
 
-    // ✅ تحديث العربة عند تحميل الصفحة
+    function showToast(message) {
+        let toast = document.createElement("div");
+        toast.className = "toast-message";
+        toast.textContent = message;
+        document.body.appendChild(toast);
+
+        setTimeout(() => {
+            toast.style.opacity = "0";
+            setTimeout(() => toast.remove(), 500);
+        }, 2000);
+    }
+
+    document.querySelectorAll(".dropdown_currency a").forEach(link => {
+        link.addEventListener("click", function (event) {
+            event.preventDefault();
+            let newCurrency = this.textContent.trim();
+            updateCartCurrency(newCurrency);
+        });
+    });
+
     updateCartUI();
 });
