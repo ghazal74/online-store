@@ -40,7 +40,6 @@
       document.addEventListener("DOMContentLoaded", function () {
           const searchInput = document.querySelector(".search-container input");
 
-          // قائمة الكلمات المفتاحية وأقسامها
           const sections = {
             "men": "mens-wear",
             "women": "womens-wear",
@@ -51,7 +50,7 @@
           };
 
           searchInput.addEventListener("keypress", function (event) {
-            if (event.key === "Enter") { // عند الضغط على Enter
+            if (event.key === "Enter") { 
               const searchText = searchInput.value.trim().toLowerCase(); // النص المُدخل
 
               if (sections[searchText]) {
@@ -147,7 +146,6 @@
 <div id="cart-icon" class="cart-icon">
   <i class="fas fa-shopping-cart"></i> <span id="cart-count">0</span>
 </div>
-
 
 <!-- ✅ نافذة العربة -->
 <div id="cart-popup" class="cart-popup">

@@ -235,7 +235,6 @@ document.addEventListener("DOMContentLoaded", function () {
  document.addEventListener("DOMContentLoaded", function () {
     const allProducts = JSON.parse(localStorage.getItem("allProducts")) || [];
     const productList = document.getElementById("product-list");
-
     const categoryFilter = document.getElementById("category");
     const minPriceFilter = document.getElementById("min-price");
     const maxPriceFilter = document.getElementById("max-price");
