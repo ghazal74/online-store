@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
     let currentCurrency = localStorage.getItem("selectedCurrency") || "AED";
 
-    // ✅ أسعار الصرف المحدثة
+    // ✅ أسعار الصرف
     const exchangeRates = {
         "AED": 1,    
         "SAR": 1.02,  
@@ -34,14 +34,17 @@ document.addEventListener("DOMContentLoaded", function () {
                 total += subtotal;
                 itemCount += item.quantity;
 
+                // ✅ إخفاء اللون والمقاس للمنتجات من الفئات المحددة
+                let hideDetails = ["perfumeWoman", "perfumeMen", "cosemetics"].includes(item.category);
+
                 cartItemsContainer.innerHTML += `
                     <div class="cart-item">
                         <img src="${item.image}" alt="${item.name}">
                         <div class="cart-info">
                             <h4>${item.name}</h4>
                             <p>Price: <span class="cart-price">${currentCurrency} ${convertedPrice.toFixed(2)}</span></p>
-                            <p>Color: <span style="color: black; font-weight: bold;">${item.color}</span></p>
-                            <p>Size: <strong>${item.size}</strong></p>
+                            ${hideDetails ? "" : `<p>Color: <span style="color: black; font-weight: bold;">${item.color}</span></p>`}
+                            ${hideDetails ? "" : `<p>Size: <strong>${item.size}</strong></p>`}
                             <p>Quantity: 
                                 <button onclick="updateQuantity(${index}, -1)">-</button> 
                                 ${item.quantity} 
@@ -99,24 +102,24 @@ document.addEventListener("DOMContentLoaded", function () {
         // ✅ تخزين السعر الأصلي دائمًا بالدرهم الإماراتي (AED)
         let originalPrice = price / exchangeRates[product.currency || "AED"];
 
-      
+        // ✅ تخزين الفئة للمنتج لتحديد ما إذا كنا نخفي اللون والمقاس
+        let category = product.category || "default";
 
-        
-            cart.push({
-                name: product.name,
-                price: price.toFixed(2),
-                originalPrice: originalPrice.toFixed(2),
-                currency: currentCurrency,
-                image: product.image,
-                color: selectedColor,
-                size: selectedSize,
-                quantity: 1
-            });
+        cart.push({
+            name: product.name,
+            price: price.toFixed(2),
+            originalPrice: originalPrice.toFixed(2),
+            currency: currentCurrency,
+            image: product.image,
+            color: selectedColor,
+            size: selectedSize,
+            quantity: 1,
+            category: category  // ✅ تخزين الفئة
+        });
 
-            localStorage.setItem("cart", JSON.stringify(cart));
-            updateCartUI();
-            showToast("✅ Product added to cart!");
-        
+        localStorage.setItem("cart", JSON.stringify(cart));
+        updateCartUI();
+        showToast("✅ Product added to cart!");
     };
 
     cartIcon.addEventListener("click", () => {
