@@ -27,10 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     "mens_wear": "MEN'S WEAR",
                     "winter_clothes": "Winter Clothes",
                     "summer_clothes": "SUMMER Clothes",
-                    "currency_selected": "USD",
-                    "currency_sar": "SAR",
-                    "currency_aed": "AED",
-                    "currency_ued": "USD",
+                    
                     "our_collection": "OUR Collection",
                     "men": "Men",
                     "women": "Women",
@@ -81,10 +78,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     "mens_wear": "ملابس الرجال",
                     "winter_clothes": "ملابس الشتاء",
                     "summer_clothes": "ملابس الصيف",
-                    "currency_selected": "دولار أمريكي",
-                    "currency_sar": "ريال سعودي",
-                    "currency_aed": "درهم إماراتي",
-                    "currency_ued": "دولار أمريكي",
+                
                      "our_collection": "مجموعتنا",
                     "men": "رجال",
                     "women": "نساء",
@@ -123,10 +117,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.querySelector(".top_links a").childNodes[0].nodeValue = i18next.t("my_account") + " ";
         document.querySelector(".dropdown_links li a[href='login.html']").textContent = i18next.t("sign_in");
         document.querySelector(".dropdown_links li a[onclick='logout()']").textContent = i18next.t("logout");
-        document.getElementById("selected-currency").innerHTML = i18next.t("currency_selected") + ' <i class="ion-chevron-down"></i>';
-        document.getElementById("currency-sar").textContent = i18next.t("currency_sar");
-        document.getElementById("currency-aed").textContent = i18next.t("currency_aed");
-        document.getElementById("currency-ued").textContent = i18next.t("currency_ued");
+        
         document.querySelector(".select-container select option:first-child").textContent = i18next.t("choose_option");
         document.querySelector(".select-container select option[value='1']").textContent = i18next.t("all_categories");
         document.querySelector(".select-container select option[value='2']").textContent = i18next.t("men");

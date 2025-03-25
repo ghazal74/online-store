@@ -10,10 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
             myAccount: "My Account",
             signIn: "Sign In",
             logout: "Logout",
-            currency: "USD",
-            currency_sar: "SAR",
-            currency_aed: "AED",
-            currency_ued: "USD",
+            
             callSupport: "Call Free Support",
             home: "Home",
             aboutUs: "About Us",
@@ -32,10 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
             myAccount: "حسابي",
             signIn: "تسجيل الدخول",
             logout: "تسجيل الخروج",
-            currency: "دولار أمريكي",
-            currency_sar: "ريال سعودي",
-            currency_aed: "درهم إماراتي",
-            currency_ued: "دولار أمريكي",
+            
             callSupport: "اتصل بالدعم المجاني",
             home: "الرئيسية",
             aboutUs: "معلومات عنا",
@@ -56,10 +50,6 @@ document.addEventListener("DOMContentLoaded", function () {
         document.querySelector(".top_links a").textContent = translations[lang].myAccount;
         document.querySelector(".dropdown_links li:nth-child(1) a").textContent = translations[lang].signIn;
         document.querySelector(".dropdown_links li:nth-child(2) a").textContent = translations[lang].logout;
-        document.getElementById("selected-currency").textContent = translations[lang].currency;
-        document.getElementById("currency-sar").textContent = translations[lang].currency_sar;
-        document.getElementById("currency-aed").textContent = translations[lang].currency_aed;
-        document.getElementById("currency-ued").textContent = translations[lang].currency_ued;
         document.querySelector(".support p").innerHTML = `${translations[lang].callSupport} : <a href="tel:0528686321">0528686321</a>`;
         document.querySelectorAll("header ul li a")[0].textContent = translations[lang].home;
         document.querySelectorAll("header ul li a")[1].textContent = translations[lang].aboutUs;
@@ -102,30 +92,26 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener("DOMContentLoaded", function () {
     let product = JSON.parse(localStorage.getItem("product"));
 
-    if (!product || !product.price) {
-        console.error("❌ لا يوجد بيانات منتج في LocalStorage.");
+    if (!product || !product.price || !product.category) {
+        console.error("❌ لا يوجد بيانات منتج في LocalStorage.", product);
         return;
     }
 
-    // ✅ تحديث بيانات المنتج عند تحميل الصفحة
-    document.getElementById("product-image").src = product.image;
-    document.getElementById("product-title").textContent = product.name;
-    document.getElementById("product-price").textContent = `${product.price} USD`;
-
     console.log("📌 المنتج الذي تم تحميله:", product);
 
-    // ✅ ضمان عدم تكرار الاستماع للنقر على الزر
+    document.getElementById("product-image").src = product.image;
+    document.getElementById("product-title").textContent = product.name || "Unknown";
+    document.getElementById("product-price").textContent = `${product.price} USD`;
+
     const addToCartButton = document.getElementById("add-to-cart");
-    addToCartButton.replaceWith(addToCartButton.cloneNode(true)); // منع إضافة المستمع مرتين
+    addToCartButton.replaceWith(addToCartButton.cloneNode(true)); // منع التكرار
 
     document.getElementById("add-to-cart").addEventListener("click", function () {
-        addToCart({
-            name: product.name,
-            price: product.price,
-            image: product.image
-        });
+        console.log("🛒 Attempting to add product to cart:", product);
+        addToCart(product);
     });
 });
+
 
 
 

@@ -87,10 +87,6 @@ document.addEventListener("DOMContentLoaded", function () {
             myAccount: "My Account",
             signIn: "Sign In",
             logout: "Logout",
-            ccurrency: "USD",
-            currency_sar: "SAR",
-            currency_aed: "AED",
-            currency_ued: "USD",
             home: "Home",
             aboutUs: "About Us",
             login: "Log In",
@@ -128,10 +124,6 @@ document.addEventListener("DOMContentLoaded", function () {
             myAccount: "حسابي",
             signIn: "تسجيل الدخول",
             logout: "تسجيل الخروج",
-            currency: "USD",
-            currency_sar: "SAR",
-            currency_aed: "AED",
-            currency_ued: "USD",
             home: "الرئيسية",
             aboutUs: "من نحن",
             login: "تسجيل الدخول",
@@ -176,11 +168,6 @@ document.addEventListener("DOMContentLoaded", function () {
         document.querySelector(".container6 ul li:nth-child(4) a").textContent = translations[lang].contactUs;
         document.querySelector(".container6 ul li:nth-child(5) a").textContent = translations[lang].sorting;
         document.querySelector(".support p").innerHTML = translations[lang].callSupport + ' <a href="tel:0528686321">0528686321</a>';
-
-        document.getElementById("selected-currency").textContent = translations[lang].currency;
-        document.getElementById("currency-sar").textContent = translations[lang].currency_sar;
-        document.getElementById("currency-aed").textContent = translations[lang].currency_aed;
-        document.getElementById("currency-ued").textContent = translations[lang].currency_ued;
 
         document.querySelector("h1").textContent = translations[lang].pageTitle;
         document.querySelector("label[for='category']").textContent = translations[lang].selectCategory;

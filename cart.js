@@ -14,9 +14,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // ✅ أسعار الصرف
     const exchangeRates = {
-        "AED": 1,    
-        "SAR": 1.02,  
-        "USD": 0.27  
+        "AED": 1,
+        "SAR": 1.02,
+        "USD": 0.27
     };
 
     function updateCartUI() {
@@ -34,14 +34,16 @@ document.addEventListener("DOMContentLoaded", function () {
                 total += subtotal;
                 itemCount += item.quantity;
 
-                // ✅ إخفاء اللون والمقاس للمنتجات من الفئات المحددة
+                // ✅ التأكد من أن الفئة مخزنة بشكل صحيح
+                console.log(`🛍️ Checking product category: ${item.category}`);
+
+                // ✅ إخفاء اللون والمقاس إذا كان المنتج من الفئات المحددة
                 let hideDetails = ["perfumeWoman", "perfumeMen", "cosemetics"].includes(item.category);
 
                 cartItemsContainer.innerHTML += `
                     <div class="cart-item">
                         <img src="${item.image}" alt="${item.name}">
                         <div class="cart-info">
-                            <h4>${item.name}</h4>
                             <p>Price: <span class="cart-price">${currentCurrency} ${convertedPrice.toFixed(2)}</span></p>
                             ${hideDetails ? "" : `<p>Color: <span style="color: black; font-weight: bold;">${item.color}</span></p>`}
                             ${hideDetails ? "" : `<p>Size: <strong>${item.size}</strong></p>`}
@@ -88,39 +90,46 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
     window.addToCart = function (product) {
-        if (!product || !product.price) {
-            console.error("❌ No valid product data.");
-            return;
-        }
+    if (!product || !product.price || !product.category) {
+        console.error("❌ No valid product data.", product);
+        return;
+    }
 
-        let selectedColor = document.getElementById("color")?.value || "Default";
-        let selectedSize = document.getElementById("selected-size")?.textContent.replace("Selected Size: ", "") || "One Size";
+    let selectedColor = document.getElementById("color")?.value || "Default";
+    let selectedSize = document.getElementById("selected-size")?.textContent.replace("Selected Size: ", "") || "One Size";
 
-        let price = parseFloat(product.price.replace(/[^\d.]/g, ''));
-        price = isNaN(price) ? 0 : price;
+    let price = parseFloat(product.price.replace(/[^\d.]/g, ''));
+    if (isNaN(price)) {
+        console.error("❌ Invalid product price.", product.price);
+        return;
+    }
 
-        // ✅ تخزين السعر الأصلي دائمًا بالدرهم الإماراتي (AED)
-        let originalPrice = price / exchangeRates[product.currency || "AED"];
+    let originalPrice = price / exchangeRates[product.currency || "AED"];
+    let category = product.category || "default";
 
-        // ✅ تخزين الفئة للمنتج لتحديد ما إذا كنا نخفي اللون والمقاس
-        let category = product.category || "default";
+    console.log(`🛒 Adding product to cart: ${product.name}, Category: ${category}`);
 
-        cart.push({
-            name: product.name,
-            price: price.toFixed(2),
-            originalPrice: originalPrice.toFixed(2),
-            currency: currentCurrency,
-            image: product.image,
-            color: selectedColor,
-            size: selectedSize,
-            quantity: 1,
-            category: category  // ✅ تخزين الفئة
-        });
-
-        localStorage.setItem("cart", JSON.stringify(cart));
-        updateCartUI();
-        showToast("✅ Product added to cart!");
+    let newProduct = {
+        name: product.name || "Unknown",
+        price: price.toFixed(2),
+        originalPrice: originalPrice.toFixed(2),
+        currency: currentCurrency,
+        image: product.image || "",
+        quantity: 1,
+        category: category
     };
+
+    if (!["perfumeWoman", "perfumeMen", "cosemetics"].includes(category)) {
+        newProduct.color = selectedColor;
+        newProduct.size = selectedSize;
+    }
+
+    cart.push(newProduct);
+    localStorage.setItem("cart", JSON.stringify(cart));
+    updateCartUI();
+    showToast("✅ Product added to cart!");
+};
+
 
     cartIcon.addEventListener("click", () => {
         cartPopup.classList.toggle("open");

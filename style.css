@@ -1916,7 +1916,7 @@ top: -80px;
 /* ✅ تحسين أيقونة عربة التسوق */
 .cart-icon {
   position: fixed;
-  top: 15px;
+  top: 50px;
   right: 20px;
   background: #27ae60;
   color: white;
